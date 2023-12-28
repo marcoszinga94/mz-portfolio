@@ -1,0 +1,31 @@
+---
+import ExperienciaItem from "./ExperienciaItem.astro";
+const EXPERIENCIA = [
+  {
+    fecha: "2021 - Actualidad",
+    titulo: "Desarrollador Web",
+    descripcion: "",
+  },
+  {
+    fecha: "2015 - 2021",
+    titulo: "Vendedor",
+    descripcion: "",
+  },
+  {
+    fecha: "2009 - 2012",
+    titulo: "Asistente de Farmacia",
+    descripcion: "",
+  },
+];
+---
+
+<h3 class="flex text-4xl font-bold justify-center my-8 mx-auto px-8 border-2 rounded-full">Experiencia</h3>
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+  {
+    EXPERIENCIA.map((experiencia) => (
+      <li class="mb-10 ms-4">
+        <ExperienciaItem {...experiencia} />
+      </li>
+    ))
+  }
+</ol>

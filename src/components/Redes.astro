@@ -1,49 +1,51 @@
-<section id="contacto" class="p-auto m-auto p-8 max-w-md flex flex-col justify-center">
+---
+import Section from "./SectionContainer.astro";
+---
+
+<Section>
   <div class="flex flex-row justify-center m-auto p-auto">
-    <div class="flex flex-col py-auto px-8">
-      <ul class="flex flex-row gap-10">
-        <li>
-          <div class="card">
-            <div class="front face">
-              <img src="/Images/instagram.svg" alt="" class="w-10 h-10" />
-            </div>
-            <div class="back face">
-              <a target="_blank" href="https://www.instagram.com/marcosfzinga/" class="text-xl flex justify-center" rel="noopener">Instagram</a>
-            </div>
+    <ul class="flex flex-row gap-10">
+      <li>
+        <div class="card">
+          <div class="front face">
+            <img src="/Images/instagram.svg" alt="" class="size-10" />
           </div>
-        </li>
-        <li>
-          <div class="card">
-            <div class="face front">
-              <img src="/Images/linkedin.svg" alt="" class="w-10 h-10" />
-            </div>
-            <div class="face back">
-              <a target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/" class="text-xl flex justify-center" rel="noopener">LinkedIn</a>
-            </div>
+          <div class="back face">
+            <a target="_blank" href="https://www.instagram.com/marcosfzinga/" class="text-xl flex justify-center" rel="noopener">Instagram</a>
           </div>
-        </li><li>
-          <div class="card">
-            <div class="front face">
-              <img src="/Images/whatsapp.svg" alt="" class="w-10 h-10" />
-            </div>
-            <div class="back face">
-              <a target="_blank" href="https://wa.link/tle2k3" class="text-xl flex justify-center" rel="noopener">Whatsapp</a>
-            </div>
+        </div>
+      </li>
+      <li>
+        <div class="card">
+          <div class="face front">
+            <img src="/Images/linkedin.svg" alt="" class="size-10" />
           </div>
-        </li><li>
-          <div class="card">
-            <div class="front face">
-              <img src="/Images/email.svg" alt="" class="w-10 h-10" />
-            </div>
-            <div class="back face">
-              <a target="_blank" href="mailto:marcoszinga94@gmail.com" class="text-xl flex justify-center" rel="noopener">Email</a>
-            </div>
+          <div class="face back">
+            <a target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/" class="text-xl flex justify-center" rel="noopener">LinkedIn</a>
           </div>
-        </li>
-      </ul>
-    </div>
+        </div>
+      </li><li>
+        <div class="card">
+          <div class="front face">
+            <img src="/Images/whatsapp.svg" alt="" class="size-10" />
+          </div>
+          <div class="back face">
+            <a target="_blank" href="https://wa.link/tle2k3" class="text-xl flex justify-center" rel="noopener">Whatsapp</a>
+          </div>
+        </div>
+      </li><li>
+        <div class="card">
+          <div class="front face">
+            <img src="/Images/email.svg" alt="" class="size-10" />
+          </div>
+          <div class="back face">
+            <a target="_blank" href="mailto:marcoszinga94@gmail.com" class="text-xl flex justify-center" rel="noopener">Email</a>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
-</section>
+</Section>
 
 <style>
   .card {

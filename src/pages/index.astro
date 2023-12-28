@@ -3,16 +3,27 @@ import Layout from "../layouts/Layout.astro";
 import Encabezado from "../components/Encabezado.astro";
 import Sobremi from "../components/Sobremi.astro";
 import Proyectos from "../components/Proyectos.astro";
-import Redes from "../components/Redes.astro";
 import Navegador from "../components/Navegador.astro";
-import Formulario from "../components/Formulario.astro";
+import Experiencia from "../components/Experiencia.astro";
+import Section from "../components/SectionContainer.astro";
 ---
 
-<Layout title="M@RCo$ Z!nG@r3TT! - Mi CV">
-  <Encabezado />
-  <Redes />
-  <Sobremi />
-  <Proyectos />
-  <Formulario />
-  <Navegador />
+<Layout title="M@RCo$ Z!nG@r3TT! - Desarrollador y Programador Web" description="Desarrollador y Programador web de páginas personaliadas">
+  <main>
+    <Encabezado />
+
+    <Section id="sobremi">
+      <Sobremi />
+    </Section>
+
+    <Section id="experiencia">
+      <Experiencia />
+    </Section>
+
+    <Section id="proyectos">
+      <Proyectos />
+    </Section>
+
+    <Navegador />
+  </main>
 </Layout>
