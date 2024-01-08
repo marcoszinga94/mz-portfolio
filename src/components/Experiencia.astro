@@ -3,18 +3,32 @@ import ExperienciaItem from "./ExperienciaItem.astro";
 const EXPERIENCIA = [
   {
     fecha: "...Actualidad",
-    titulo: "Desarrollador Web",
-    descripcion: "",
+    titulo: "Desarrollador Web Full-Stack",
+    descripcion: "De manera INDEPENDIENTE y con proyectos simples, me propongo mejorar diariamente para dar lo mejor de mi dentro de este mundo.",
   },
   {
     fecha: "2021",
-    titulo: "Vendedor",
-    descripcion: "",
+    titulo: "Vendedor especializado en Tecnología",
+    descripcion:
+      "Trabajé en una tienda minorista especializada, centrado en proporcionar un servicio al cliente excepcional, entender las necesidades de los clientes y cumplir metas de ventas consistentes.",
   },
   {
-    fecha: "2009...",
-    titulo: "Asistente de Farmacia",
-    descripcion: "",
+    fecha: "2019-2021",
+    titulo: "Barista Profesional",
+    descripcion:
+      "Mi pasión por el café me llevó a brindar experiencias excepcionales a los clientes mediante la preparación de bebidas de alta calidad y manteniendo estándares de servicio.",
+  },
+  {
+    fecha: "2016",
+    titulo: "Profesor Adjunto en Academia Privada",
+    descripcion:
+      "Contribuí al proceso educativo al asistir en la impartición de clases, guiando a los estudiantes y apoyando en tareas administrativas relacionadas con la enseñanza.",
+  },
+  {
+    fecha: "2012...",
+    titulo: "Auxiliar de Farmacia",
+    descripcion:
+      "Empecá a colaborar en una farmacia local, gestionando inventario, brindando atención personalizada y asesorando sobre productos farmacéuticos.",
   },
 ];
 ---
@@ -23,7 +37,7 @@ const EXPERIENCIA = [
 <ol class="relative border-s border-gray-200 dark:border-gray-700">
   {
     EXPERIENCIA.map((experiencia) => (
-      <li class="mb-10 ms-4">
+      <li class="mb-8 ms-4">
         <ExperienciaItem {...experiencia} />
       </li>
     ))
