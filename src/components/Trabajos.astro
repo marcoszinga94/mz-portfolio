@@ -1,0 +1,34 @@
+---
+import TrabajosItem from "./TrabajosItem.astro";
+const TRABAJOS = [
+  {
+    url: "https://landingagro.vercel.app",
+    imagen: "elsocorro.webp",
+    titulo: "El Socorro SRL",
+    descripcion: "Landing Page creada desde cero con Astro y Tailwind CSS",
+  },
+  {
+    url: "https://zapatosyulii.com/",
+    imagen: "zapatosyulii.webp",
+    titulo: "Zapatos Yulii",
+    descripcion: "Tienda creada en Wordpress",
+  },
+  {
+    url: "https://yerbasamate.com/",
+    imagen: "a-mate.webp",
+    titulo: "A-Mate Almacén de Yerbas",
+    descripcion: "Tienda creada en Wordpress",
+  },
+];
+---
+
+<h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full">Trabajos</h3>
+<ul class="">
+  {
+    TRABAJOS.map((Trabajos) => (
+      <section class="mb-8 ms-4">
+        <TrabajosItem {...Trabajos} />
+      </section>
+    ))
+  }
+</ul>

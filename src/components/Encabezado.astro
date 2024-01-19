@@ -1,9 +1,10 @@
 ---
+import Badge from "./Badge.astro";
 import Redes from "./Redes.astro";
 ---
 
 <head>
-  <div class="max-w-3xl m-auto flex flex-col items-center">
+  <div class="max-w-3xl mx-auto my-8 flex flex-col items-center">
     <div class="flex lg:flex-row flex-col items-center">
       <img
         title="foto de Marcos"
@@ -19,7 +20,7 @@ import Redes from "./Redes.astro";
         <h1 class="text-6xl text-center pt-8">Marcos F. <span class="font-black text-justify">Zingaretti</span></h1>
         <h2 class="text-xl text-center p-4 text-[#ff4d06]">Desarrollador Web Full-Stack</h2>
         <a class="flex justify-center" target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/">
-          <span class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded">Disponible para trabajar</span>
+          <Badge>Disponible para trabajar</Badge>
         </a>
         <Redes />
       </div>

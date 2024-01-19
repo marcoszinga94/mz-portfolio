@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Encabezado from "../components/Encabezado.astro";
 import Sobremi from "../components/Sobremi.astro";
-import Proyectos from "../components/Proyectos.astro";
+import Trabajos from "../components/Trabajos.astro";
 import Experiencia from "../components/Experiencia.astro";
 import Section from "../components/SectionContainer.astro";
 import Navegador from "../components/Navegador.astro";
@@ -19,15 +19,16 @@ import Header from "../components/Header.astro";
       <Sobremi />
     </Section>
 
+    <Section id="trabajos">
+      <Trabajos />
+    </Section>
+
     <Section id="experiencia">
       <Experiencia />
     </Section>
 
-    <Section id="proyectos">
-      <Proyectos />
-    </Section>
-
     <Footer />
+
     <Navegador />
   </main>
 </Layout>
