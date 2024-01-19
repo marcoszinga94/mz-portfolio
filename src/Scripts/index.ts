@@ -14,7 +14,6 @@ async function enviarCorreo() {
   };
 
   // Puedes hacer una solicitud HTTP aquí para enviar los datos al servidor
-  // Por ejemplo, usando fetch o axios
 
   try {
     const response = await fetch("http://localhost:3000/enviar-correo", {
