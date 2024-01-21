@@ -16,19 +16,25 @@ const TRABAJOS = [
   {
     url: "https://yerbasamate.com/",
     imagen: "a-mate.webp",
-    titulo: "A-Mate Almacén de Yerbas",
+    titulo: "A-Mate",
     descripcion: "Tienda creada en Wordpress",
   },
 ];
 ---
 
 <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full">Trabajos</h3>
-<ul class="">
+<div id="bento" class="grid grid-cols-2 gap-4">
   {
     TRABAJOS.map((Trabajos) => (
-      <section class="mb-8 ms-4">
+      <div>
         <TrabajosItem {...Trabajos} />
-      </section>
+      </div>
     ))
   }
-</ul>
+</div>
+
+<style>
+  #bento div:first-child {
+    grid-column: 1 /-1;
+  }
+</style>
