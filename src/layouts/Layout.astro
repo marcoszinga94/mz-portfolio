@@ -24,6 +24,16 @@ const { title, description } = Astro.props;
 <style is:global>
   @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Source+Code+Pro:wght@200;300;500;700;900&display=swap");
 
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #bb1e10;
+  }
+
   html {
     font-family: "Source Code Pro", monospace;
     scroll-behavior: smooth;
