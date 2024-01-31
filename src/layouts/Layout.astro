@@ -30,8 +30,10 @@ const { title, description } = Astro.props;
 </html>
 
 <style is:global>
-  @import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Source+Code+Pro:wght@200;300;500;700;900&display=swap");
-
+  @font-face {
+    font-family: "Fira Code";
+    src: url("/Fira_Code_v6.2/variable_ttf/FiraCode-VF.ttf");
+  }
   ::-webkit-scrollbar {
     width: 10px;
     background-color: black;
@@ -42,7 +44,7 @@ const { title, description } = Astro.props;
   }
 
   html {
-    font-family: "Source Code Pro", monospace;
+    font-family: "Fira Code", monospace;
     scroll-behavior: smooth;
   }
   @media (prefers-reduced-motion: reduce) {
