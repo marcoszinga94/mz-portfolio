@@ -1,5 +1,4 @@
 ---
-import ExperienciaItem from "../components/ExperienciaItem.astro";
 const EXPERIENCIA = [
   {
     fecha: "...Actualidad",
@@ -27,7 +26,10 @@ const EXPERIENCIA = [
   {
     EXPERIENCIA.map((experiencia) => (
       <li class="mb-8 ms-4">
-        <ExperienciaItem {...experiencia} />
+        <div class="absolute w-3 h-3 bg-gray-500 rounded-full mt-1.5 -start-1.5 border border-white"></div>
+          <time class="mb-1 text-sm font-bold leading-none text-gray-400">{experiencia.fecha}</time>
+          <h3 class="text-lg font-semibold text-[#f50000]">{experiencia.titulo}</h3>
+          <p class="mx-4 mb-4 text-base font-light text-gray-500">{experiencia.descripcion}</p>
       </li>
     ))
   }
