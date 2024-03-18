@@ -10,49 +10,53 @@ const TRABAJOS = [
     url: "https://zapatosyulii.com/",
     imagen: "zapatosyulii.webp",
     titulo: "Zapatos Yulii",
-    descripcion: "Tienda creada en Wordpress",
+    descripcion: "Tienda creada con Wordpress a pedido del cliente",
   },
   {
     url: "https://yerbasamate.com/",
     imagen: "a-mate.webp",
     titulo: "A-Mate",
-    descripcion: "Tienda creada en Wordpress",
+    descripcion: "Tienda creada con Wordpress a pedido del cliente",
   },
   {
     url: "https://lcesports.vercel.app",
     imagen: "lcesports.webp",
     titulo: "LCE",
-    descripcion: "Página web con blog creada para una comunidad gamer de mi ciudad. EN PROCESO",
+    descripcion: "Página web con blog creada para la comunidad gamer",
+  },
+  {
+    url: "https://yulianabottos.vercel.app",
+    imagen: "yulibottos.webp",
+    titulo: "Yuliana Bottos Portafolio",
+    descripcion: "Portafolio creada desde cero con Astro y Tailwind CSS",
   },
 ];
 ---
 
 <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full">Trabajos</h3>
-<div id="bento" class="grid grid-cols-2 gap-4 px-3">
+<div id="bento" class="grid grid-cols-2 md:grid-cols-3 gap-6 px-2">
   {
-    TRABAJOS.map((trabajos) => (
-      <div>
-        <a href=`${trabajos.url}` target="_blank">
+    TRABAJOS.map((trabajo) => (
+      <a href={trabajo.url} target="_blank">
         <div class="flex flex-col bg-gradient-to-t from-gray-700 to-transparent rounded-xl">
           <img
-            class="hover:scale-105 hover:shadow-xl active:scale-95 active:shadow-lg transition-transform rounded-xl w-auto h-full"
-            src=`/Images/${trabajos.imagen}`
-            alt=`${trabajos.descripcion}`
+            class="hover:scale-105 hover:shadow-xl active:scale-95 active:shadow-lg transition-transform rounded-xl w-auto h-full aspect-auto"
+            src={`/Images/${trabajo.imagen}`}
+            alt={trabajo.descripcion}
           />
-    <h4 class="font-bold text-xl text-center">{trabajos.titulo}</h4>
-    <p class="text-center text-sm">{trabajos.descripcion}</p>
-  </div>
-</a>
-      </div>
+          <h4 class="font-bold text-xl text-center">{trabajo.titulo}</h4>
+          <p class="text-center text-sm">{trabajo.descripcion}</p>
+        </div>
+      </a>
     ))
   }
 </div>
 
 <style>
-  #bento div:first-child {
+  #bento a:first-child {
     grid-column: 1 /-1;
   }
-  #bento div:last-child {
+  #bento a:last-child {
     grid-column: 1 /-1;
   }
 </style>
