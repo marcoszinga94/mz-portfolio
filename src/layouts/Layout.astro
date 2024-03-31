@@ -12,20 +12,30 @@ const { title, description } = Astro.props;
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
-
-    <meta name="description" content={description} />
+    <meta name="description" content=`${description}` />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="generator" content="{Astro.generator}" />
 
+    <!-- Meta etiquetas de Open Graph para redes sociales -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content=`${title}` />
     <meta property="og:description" content=`${description}` />
     <meta property="og:image" content="/Images/og-image.png" />
     <meta property="og:url" content="https://portafoliozingaretti.vercel.app/" />
-  </head>
 
+    <!-- Meta etiquetas de Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content=`${title}` />
+    <meta name="twitter:description" content=`${description}` />
+    <meta name="twitter:image" content="/Images/og-image.png" />
+
+    <!-- Metadatos para SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content=`${title}` />
+    <meta name="keywords" content="Desarrollador Web, Web Developer" />
+  </head>
   <body>
     <Header />
     <slot />
