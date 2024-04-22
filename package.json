@@ -18,9 +18,9 @@
     "@vercel/analytics": "^1.2.2",
     "@vercel/speed-insights": "^1.0.10",
     "astro": "^4.6.3",
-    "astro-navbar": "^2.3.1",
+    "astro-navbar": "^2.3.2",
     "dotenv": "^16.4.5",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.5"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.3"
