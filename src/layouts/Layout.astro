@@ -12,12 +12,12 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Basico -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content=`${description}` />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="../src/style.css" />
     <meta name="generator" content="{Astro.generator}" />
 
     <!-- Meta etiquetas de Open Graph para redes sociales -->
@@ -43,5 +43,44 @@ const { title, description } = Astro.props;
   <body>
     <Header />
     <slot />
+    <style is:global>
+      @font-face {
+        font-family: "Fira Code";
+        src: url("/fonts/FiraCode-VF.ttf");
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+        background-color: black;
+      }
+      ::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background-color: #680000;
+      }
+
+      html {
+        font-family: "Fira Code", monospace;
+        scroll-behavior: smooth;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      body {
+        overflow-x: hidden;
+        background-image: linear-gradient(to top, #000 0%, #191e28 100%);
+        background-attachment: fixed;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      a {
+        color: #f50000;
+      }
+    </style>
   </body>
 </html>
