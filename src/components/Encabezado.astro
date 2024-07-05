@@ -3,27 +3,25 @@ import Badge from "../components/Badge.astro";
 import Redes from "../components/Redes.astro";
 ---
 
-<head>
-  <div class="max-w-3xl mx-auto my-8 flex flex-col items-center">
-    <div class="flex lg:flex-row flex-col items-center">
-      <img
-        title="foto de Marcos"
-        alt="Foto de Marcos Z usando una campera de jean"
-        src="/Images/selfie.webp"
-        width="300px"
-        height="auto"
-        loading="eager"
-        class="rounded-full items-center"
-      />
+<div class="max-w-3xl mx-auto flex lg:flex-row flex-col items-center">
+  <img
+    title="foto de Marcos"
+    alt="Foto de Marcos Z usando una campera de jean"
+    src="/Images/selfie.webp"
+    width="300px"
+    height="auto"
+    loading="eager"
+    class="rounded-full items-center"
+  />
 
-      <div class="flex flex-col">
-        <h1 class="text-6xl text-center pt-8">Marcos F. <span class="font-black text-justify">Zingaretti</span></h1>
-        <h2 class="text-xl text-center p-4 text-[#f50000]">Desarrollador Web Full-Stack</h2>
-        <a class="flex justify-center" target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/">
-          <Badge>Disponible para trabajar</Badge>
-        </a>
-        <Redes />
-      </div>
+  <div class="flex flex-col">
+    <h1 class="text-6xl pt-8">Marcos F <span class="font-black text-justify">Zingaretti</span></h1>
+    <h2 class="text-xl py-4 text-[#f50000]">Desarrollador Web Full-Stack</h2>
+    <a target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/">
+      <Badge>Disponible para trabajar</Badge>
+    </a>
+    <div>
+      <Redes />
     </div>
   </div>
-</head>
+</div>
