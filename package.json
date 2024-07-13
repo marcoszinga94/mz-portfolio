@@ -19,7 +19,6 @@
     "@vercel/speed-insights": "^1.0.12",
     "astro": "^4.11.5",
     "astro-navbar": "^2.3.3",
-    "dotenv": "^16.4.5",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
