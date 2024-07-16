@@ -4,26 +4,14 @@ import Hero from "../components/Hero.astro";
 import Sobremi from "../components/Sobremi.astro";
 import Trabajos from "../components/Trabajos.astro";
 import Experiencia from "../components/Experiencia.astro";
-import Section from "../components/SectionContainer.astro";
 import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Marcos Zingaretti - Desarrollador Web" description="Desarrollador y Programador web de Páginas Web Personaliadas">
-  <main>
+  <main class="m-auto py-10 max-w-3xl flex flex-col">
     <Hero />
-
-    <Section id="trabajos">
-      <Trabajos />
-    </Section>
-
-    <Section id="sobremi">
-      <Sobremi />
-    </Section>
-
-    <Section id="experiencia">
-      <Experiencia />
-    </Section>
-
-    <Footer />
+    <Trabajos />
+    <Sobremi />
+    <Experiencia />
   </main>
 </Layout>

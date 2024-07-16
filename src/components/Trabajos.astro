@@ -56,51 +56,53 @@ const TRABAJOS = [
 ];
 ---
 
-<h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">Trabajos</h3>
-<div id="bento" class="grid grid-cols-1 gap-6 px-2">
-  {
-    TRABAJOS.map((trabajo) => (
-      <>
-        <a id="trabajos" href={trabajo.url} target="_blank" class="block">
-          <!-- CARD -->
-          <div class="flex flex-col md:flex-row bg-gradient-to-l from-fondo to-transparent rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
-            <!-- IMAGEN -->
-            <div class="md:w-1/2">
-              <img loading="lazy" class="w-full h-full object-cover" src={`/Images/${trabajo.imagen}.webp`} alt={trabajo.descripcion} />
-            </div>
+<section id="trabajos" class="m-auto py-10">
+  <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">Trabajos</h3>
+  <div id="bento" class="grid grid-cols-1 gap-6 px-2">
+    {
+      TRABAJOS.map((trabajo) => (
+        <>
+          <a href={trabajo.url} target="_blank" class="block">
+            <!-- CARD -->
+            <div class="flex flex-col md:flex-row bg-gradient-to-l from-fondo to-transparent rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <!-- IMAGEN -->
+              <div class="md:w-1/2">
+                <img loading="lazy" class="w-full h-full object-cover" src={`/Images/${trabajo.imagen}.webp`} alt={trabajo.descripcion} />
+              </div>
 
-            <!-- INFORMACION -->
-            <div class="md:w-1/2 p-4 flex flex-col justify-between">
-              <div>
-                <h4 class="font-semibold text-lg text-acento mb-2">{trabajo.titulo}</h4>
-                <p class="text-sm text-medio mb-2">{trabajo.descripcion}</p>
-                <p class="text-xs text-medio mb-2">Rol: {trabajo.rol}</p>
-                <div class="text-xs text-medio mb-2">
-                  <p class="font-semibold">Características destacadas:</p>
-                  <ul class="list-disc list-inside">
-                    {trabajo.caracteristicasDestacadas.map((caracteristica) => (
-                      <li>{caracteristica}</li>
-                    ))}
-                  </ul>
+              <!-- INFORMACION -->
+              <div class="md:w-1/2 p-4 flex flex-col justify-between">
+                <div>
+                  <h4 class="font-semibold text-lg text-acento mb-2">{trabajo.titulo}</h4>
+                  <p class="text-sm text-medio mb-2">{trabajo.descripcion}</p>
+                  <p class="text-xs text-medio mb-2">Rol: {trabajo.rol}</p>
+                  <div class="text-xs text-medio mb-2">
+                    <p class="font-semibold">Características destacadas:</p>
+                    <ul class="list-disc list-inside">
+                      {trabajo.caracteristicasDestacadas.map((caracteristica) => (
+                        <li>{caracteristica}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p class="text-xs text-medio mb-2">Categoría: {trabajo.categoria}</p>
                 </div>
-                <p class="text-xs text-medio mb-2">Categoría: {trabajo.categoria}</p>
-              </div>
-              <div>
-                <div class="flex flex-wrap gap-2 mb-2">
-                  {trabajo.stack.map((stack) => (
-                    <img
-                      loading="lazy"
-                      src={`/Images/stacks/${stack}.svg`}
-                      alt={`Icono de ${stack}`}
-                      class="size-6 hover:scale-125 transition-transform duration-300"
-                    />
-                  ))}
+                <div>
+                  <div class="flex flex-wrap gap-2 mb-2">
+                    {trabajo.stack.map((stack) => (
+                      <img
+                        loading="lazy"
+                        src={`/Images/stacks/${stack}.svg`}
+                        alt={`Icono de ${stack}`}
+                        class="size-6 hover:scale-125 transition-transform duration-300"
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </a>
-      </>
-    ))
-  }
-</div>
+          </a>
+        </>
+      ))
+    }
+  </div>
+</section>
