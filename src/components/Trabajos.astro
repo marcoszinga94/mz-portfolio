@@ -7,7 +7,6 @@ const TRABAJOS = [
     descripcion: "Tienda aplicando el checkout de MercadoPago.",
     stack: ["Astro", "Tailwindcss", "JavaScript"],
     giturl: "https://github.com/marcoszinga94/mistercafe-front",
-    rol: "Desarrollador Full Stack",
     caracteristicasDestacadas: ["Integración con MercadoPago", "Diseño responsive", "Catálogo de productos dinámico"],
     categoria: "E-commerce",
   },
@@ -18,7 +17,6 @@ const TRABAJOS = [
     descripcion: "Landing page ",
     stack: ["Astro", "Tailwindcss", "JavaScript"],
     giturl: "https://github.com/marcoszinga94/LandingAgro",
-    rol: "Desarrollador Full Stack",
     caracteristicasDestacadas: ["Diseño moderno y limpio", "Formulario de contacto integrado", "Galería de imágenes interactiva"],
     categoria: "Landing Page",
   },
@@ -29,7 +27,6 @@ const TRABAJOS = [
     descripcion: "Portafolio con estilo bento.",
     stack: ["Astro", "Tailwindcss", "TypeScript"],
     giturl: "https://github.com/marcoszinga94/portafolio-yuliana",
-    rol: "Desarrollador Front-end",
     caracteristicasDestacadas: ["Diseño único estilo bento", "Animaciones suaves", "Optimización de rendimiento"],
     categoria: "Portafolio",
   },
@@ -62,12 +59,12 @@ const TRABAJOS = [
     {
       TRABAJOS.map((trabajo) => (
         <>
+        <!-- CARD -->
           <a href={trabajo.url} target="_blank" class="block">
-            <!-- CARD -->
-            <div class="flex flex-col md:flex-row bg-gradient-to-l from-fondo to-transparent rounded-xl overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div class="flex flex-col md:flex-row bg-gradient-to-l from-fondo to-transparent rounded-xl overflow-hidden">
               <!-- IMAGEN -->
               <div class="md:w-1/2">
-                <img loading="lazy" class="w-full h-full object-cover" src={`/Images/paginas/${trabajo.imagen}.webp`} alt={trabajo.descripcion} />
+                <img loading="lazy" class="w-full h-full object- hover:scale-125 transition-transform duration-300" src={`/Images/paginas/${trabajo.imagen}.webp`} alt={trabajo.descripcion} />
               </div>
 
               <!-- INFORMACION -->
@@ -75,7 +72,6 @@ const TRABAJOS = [
                 <div>
                   <h4 class="font-semibold text-lg text-acento mb-2">{trabajo.titulo}</h4>
                   <p class="text-sm text-medio mb-2">{trabajo.descripcion}</p>
-                  <p class="text-xs text-medio mb-2">Rol: {trabajo.rol}</p>
                   <div class="text-xs text-medio mb-2">
                     <p class="font-semibold">Características destacadas:</p>
                     <ul class="list-disc list-inside">
