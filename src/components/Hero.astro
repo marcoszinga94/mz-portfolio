@@ -1,17 +1,18 @@
 ---
+import { Image } from "astro:assets";
 import Badge from "./Badge.astro";
 import Redes from "./Redes.astro";
 ---
 
 <div class="max-w-3xl mx-auto flex lg:flex-row flex-col items-center min-h-[75vh] max-h-screen">
-  <img
+  <Image
     title="Foto de Marcos"
     alt="Foto de Marcos Zingaretti usando una campera de jean"
     src="/Images/selfie.webp"
-    width="300px"
-    height="auto"
+    width={540}
+    height={720}
     loading="eager"
-    class="rounded-full items-center"
+    class="rounded-full items-center h-[350px] w-auto"
   />
   <div class="flex flex-col items-center text-center">
     <h1 class="text-6xl pt-8 text-acento">Marcos F <span class="font-black text-justify">Zingaretti</span></h1>
