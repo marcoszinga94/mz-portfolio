@@ -1,4 +1,5 @@
 ---
+import ViewTransitions from "astro/components/ViewTransitions.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -44,41 +45,43 @@ const { title, description } = Astro.props;
     <meta name="google-site-verification" content="LpShcNMVNuXGpFxxWhmJHoRzng-ddqGSCh2zBBuS7F4" />
 
     <!-- Speed Insights de Vercel -->
+    <ViewTransitions />
     <SpeedInsights />
   </head>
   <body>
     <Header />
     <slot />
     <Footer />
-    <style is:global>
-      @font-face {
-        font-family: "Fira Code";
-        src: url("/fonts/FiraCode-VF.ttf");
-      }
-      ::-webkit-scrollbar {
-        width: 10px;
-        background-color: #000;
-      }
-      ::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        background-color: #680000;
-      }
-
-      html {
-        font-family: "Fira Code", monospace;
-        scroll-behavior: smooth;
-      }
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-
-      body {
-        overflow-x: hidden;
-        background-image: linear-gradient(to top, #000000 0%, #1e2533 100%);
-        background-attachment: fixed;
-      }
-    </style>
   </body>
 </html>
+
+<style is:global>
+  @font-face {
+    font-family: "Fira Code";
+    src: url("/fonts/FiraCode-VF.ttf");
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    background-color: #000;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #680000;
+  }
+
+  html {
+    font-family: "Fira Code", monospace;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    overflow-x: hidden;
+    background-image: linear-gradient(to top, #000000 0%, #1e2533 100%);
+    background-attachment: fixed;
+  }
+</style>

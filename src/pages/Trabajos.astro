@@ -1,10 +1,106 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Trabajos from "../components/Trabajos.astro";
+import { Image } from "astro:assets";
+
+const TRABAJOS = [
+  {
+    titulo: "Mister Café",
+    url: "https://mistercafe.vercel.app",
+    imagen: "mistercafe",
+    descripcion: "Tienda aplicando el checkout de MercadoPago.",
+    stack: ["Astro", "Tailwindcss", "JavaScript"],
+    giturl: "https://github.com/marcoszinga94/mistercafe-front",
+    caracteristicasDestacadas: ["Integración con MercadoPago", "Diseño responsive", "Catálogo de productos dinámico"],
+    categoria: "E-commerce",
+  },
+  {
+    titulo: "El Socorro SRL",
+    url: "https://elsocorrosrl.com/",
+    imagen: "elsocorro",
+    descripcion: "Landing page ",
+    stack: ["Astro", "Tailwindcss", "JavaScript"],
+    giturl: "https://github.com/marcoszinga94/LandingAgro",
+    caracteristicasDestacadas: ["Diseño moderno y limpio", "Formulario de contacto integrado", "Galería de imágenes interactiva"],
+    categoria: "Landing Page",
+  },
+  {
+    titulo: "Yuliana Bottos Portafolio",
+    url: "https://yulianabottos.vercel.app",
+    imagen: "yulibottos",
+    descripcion: "Portafolio con estilo bento.",
+    stack: ["Astro", "Tailwindcss", "TypeScript"],
+    giturl: "https://github.com/marcoszinga94/portafolio-yuliana",
+    caracteristicasDestacadas: ["Diseño único estilo bento", "Animaciones suaves", "Optimización de rendimiento"],
+    categoria: "Portafolio",
+  },
+  {
+    titulo: "A-Mate",
+    url: "https://yerbasamate.com/",
+    imagen: "a-mate",
+    descripcion: "Tienda creada con Wordpress a pedido del cliente.",
+    stack: ["Wordpress"],
+    rol: "Desarrollador WordPress",
+    caracteristicasDestacadas: ["Catálogo de productos extenso", "Blog integrado", "Sistema de reseñas de clientes"],
+    categoria: "E-commerce",
+  },
+  {
+    titulo: "Zapatos Yulii",
+    url: "https://zapatosyulii.com/",
+    imagen: "zapatosyulii",
+    descripcion: "Tienda creada con Wordpress a pedido del cliente.",
+    stack: ["Wordpress"],
+    rol: "Desarrollador WordPress",
+    caracteristicasDestacadas: ["Diseño personalizado", "Integración con WooCommerce", "Optimización SEO"],
+    categoria: "E-commerce",
+  },
+];
 ---
 
 <Layout title="Marcos Zingaretti - Desarrollador Web" description="Desarrollador y Programador web de Páginas Web Personaliadas">
   <main class="flex flex-col m-auto py-10 max-w-3xl">
-    <Trabajos />
+    <section id="trabajos" class="m-auto py-10">
+      <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">Trabajos</h3>
+      <div id="bento" class="grid grid-cols-1 gap-6">
+        {
+          TRABAJOS.map((trabajo) => (
+            <>
+            <!-- CARD -->
+              <a href={trabajo.url} target="_blank" class="block">
+                <div class="flex flex-col md:flex-row bg-gradient-to-l from-fondo to-transparent rounded-xl overflow-hidden">
+                  <!-- IMAGEN -->
+                  <div class="md:w-1/2">
+                    <Image src={`/Images/paginas/${trabajo.imagen}.webp`} alt={trabajo.descripcion} width={1920} height={940} class="w-full h-full object-cover hover:scale-105 transition-transform duration-300" />
+                  </div>
+    
+                  <!-- INFORMACION -->
+                  <div class="md:w-1/2 p-4 flex flex-col justify-between">
+                    <div>
+                      <h4 class="font-semibold text-lg text-acento mb-2">{trabajo.titulo}</h4>
+                      <p class="text-sm text-medio mb-2">{trabajo.descripcion}</p>
+                      <div class="text-xs text-medio mb-2">
+                        <p class="font-semibold">Características destacadas:</p>
+                        <ul class="list-disc list-inside">  
+                          {trabajo.caracteristicasDestacadas.map((caracteristica) => (
+                            <li>{caracteristica}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <p class="text-xs text-medio mb-2">Categoría: {trabajo.categoria}</p>
+                    </div>
+                    <div>
+                      <div class="flex flex-wrap gap-2 mb-2">
+                        {trabajo.stack.map((stack) => (
+                          <Image src={`/Images/stacks/${stack}.svg`} alt={`Icono de ${stack}`} width={40} height={40} class="size-6 hover:scale-125 transition-transform duration-300" />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </>
+          ))
+        }
+      </div>
+    </section>
   </main>
 </Layout>
