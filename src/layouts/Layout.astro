@@ -49,9 +49,11 @@ const { title, description } = Astro.props;
     <SpeedInsights />
   </head>
   <body>
-    <Header />
-    <slot />
-    <Footer />
+    <div class="grid grid-rows-[auto_1fr_auto] h-screen">
+      <Header />
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
 

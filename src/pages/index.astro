@@ -1,11 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import Badge from "../components/Badge.astro";
 ---
 
-<Layout title="Marcos Zingaretti - Desarrollador Web" description="Desarrollador y Programador web de Páginas Web Personaliadas">
-  <main class="flex flex-col m-auto py-10 max-w-3xl">
+<Layout title="Marcos Zingaretti - Inicio" description="Desarrollador y Programador web de Páginas Web Personalizadas">
+  <main class="flex flex-col m-auto max-w-3xl items-center">
     <div class="max-w-3xl mx-auto flex lg:flex-row flex-col items-center min-h-[75vh] max-h-screen">
       <Image
         title="Foto de Marcos"
@@ -20,7 +19,7 @@ import Badge from "../components/Badge.astro";
         <h1 class="text-5xl pt-8 text-acento text-center">Marcos Federico <span class="font-black text-center text-7xl">Zingaretti</span></h1>
         <h2 class="text-2xl py-4 text-acento text-center">Desarrollador Web Full-Stack</h2>
         <a target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/">
-          <Badge>Disponible para trabajar</Badge>
+          <span class={`animate-pulse bg-claro text-acento text-lg font-medium px-3 py-2 rounded border-acento`}>Disponible para Trabajar</span>
         </a>
       </div>
     </div>
