@@ -1,5 +1,5 @@
 ---
-const EXPERIENCIA = [
+const EDUCACION = [
   {
     fecha: "...Actualidad",
     titulo: "Desarrollador Web Full-Stack Independiente",
@@ -21,16 +21,16 @@ const EXPERIENCIA = [
 ];
 ---
 
-<section id="experiencia" class="m-auto py-10">
-  <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">Experiencia</h3>
+<section id="educacion" class="m-auto py-10">
+  <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">Educacion</h3>
   <ol class="relative border-s border-gray-200 dark:border-gray-700 m-4">
     {
-      EXPERIENCIA.map((experiencia) => (
+      EDUCACION.map((educacion) => (
         <li class="mb-8 ms-4">
           <div class="absolute w-3 h-3 bg-claro rounded-full mt-1.5 -start-1.5 border border-white" />
-          <time class="mb-1 text-sm font-bold leading-none text-medio">{experiencia.fecha}</time>
-          <h4 class="text-lg font-semibold  text-acento">{experiencia.titulo}</h4>
-          <p class="mx-4 mb-4 text-base font-light text-claro">{experiencia.descripcion}</p>
+          <time class="mb-1 text-sm font-bold leading-none text-medio">{educacion.fecha}</time>
+          <h4 class="text-lg font-semibold  text-acento">{educacion.titulo}</h4>
+          <p class="mx-4 mb-4 text-base font-light text-claro">{educacion.descripcion}</p>
         </li>
       ))
     }
