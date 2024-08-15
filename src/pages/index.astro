@@ -4,24 +4,23 @@ import { Image } from "astro:assets";
 ---
 
 <Layout title="Marcos Zingaretti - Inicio" description="Desarrollador y Programador web de Páginas Web Personalizadas">
-  <main class="flex flex-col m-auto max-w-3xl items-center">
-    <div class="max-w-3xl mx-auto flex lg:flex-row flex-col items-center min-h-[75vh] max-h-screen">
-      <Image
-        title="Foto de Marcos"
-        alt="Foto de Marcos Zingaretti usando una campera de jean"
-        src="/Images/selfie.webp"
-        width={540}
-        height={720}
-        loading="eager"
-        class="rounded-full items-center h-[450px] w-auto"
-      />
-      <div class="flex flex-col items-center text-center">
-        <h1 class="text-5xl pt-8 text-acento text-center">Marcos Federico <span class="font-black text-center text-7xl">Zingaretti</span></h1>
-        <h2 class="text-2xl py-4 text-acento text-center">Desarrollador Web Full-Stack</h2>
-        <a target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/">
-          <span class={`animate-pulse bg-claro text-acento text-lg font-medium px-3 py-2 rounded border-acento`}>Disponible para Trabajar</span>
-        </a>
-      </div>
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-4 m-auto">
+    <Image
+      title="Foto de Marcos"
+      alt="Foto de Marcos Zingaretti usando una campera de jean"
+      src="/Images/selfie.webp"
+      width={540}
+      height={720}
+      loading="eager"
+      class="rounded-full h-[250px] lg:h-[500px] w-auto m-auto"
+    />
+    <div class="flex flex-col m-auto gap-0">
+      <h1 class="text-3xl lg:text-6xl text-center lg:text-left text-acento">Marcos Federico</h1>
+      <h2 class="text-5xl lg:text-8xl text-center lg:text-left text-acento font-black">Zingaretti</h2>
+      <h3 class="text-lg lg:text-4xl py-4 text-acento text-center">Desarrollador Web Full-Stack</h3>
+      <a target="_blank" href="https://www.linkedin.com/in/marcos-zingaretti/" class="flex justify-center">
+        <span class="animate-pulse bg-claro text-acento text-base lg:text-lg font-medium px-4 py-2 rounded border-acento">Disponible para Trabajar</span>
+      </a>
     </div>
   </main>
 </Layout>
