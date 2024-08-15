@@ -3,10 +3,10 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 ---
 
 <header class="sticky top-0 right-0 left-0 bg-gradient-to-b from-black via-black via-75% to-transparent z-50 flex flex-row justify-around">
-  <div class="text-center flex justify-center flex-col">
-    <p class="text-2xl text-acento">Marcos F. Zingaretti</p>
-    <p class="hidden lg:block text-xl font-semibold text-acento">Desarrollador Web</p>
-  </div>
+  <a href="/" class="text-center flex justify-center flex-col">
+    <p class="text-xl text-acento">Marcos F. Zingaretti</p>
+    <p class="hidden lg:block text-lg font-semibold text-acento">Desarrollador Web</p>
+  </a>
 
   <div>
     <Astronav>
@@ -15,11 +15,11 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
       </div>
 
       <MenuItems class="relative hidden lg:flex flex-row gap-4 m-auto">
-        <div class="lg:static flex flex-col lg:flex-row absolute top-0 right-0 gap-4 m-auto rounded-lg p-6">
+        <div class="lg:static flex flex-col lg:flex-row absolute top-0 right-0 gap-4 m-auto rounded-lg p-6 bg-black lg:bg-transparent">
           <a class="p-2 text-acento hover:text-medio font-medium" href="/" title="Home">Inicio</a>
           <a class="p-2 text-acento hover:text-medio font-medium" href="/Trabajos" title="Works">Trabajos</a>
-          <a class="p-2 text-acento hover:text-medio font-medium" href="/Sobremi" title="About">Sobre mí</a>
           <a class="p-2 text-acento hover:text-medio font-medium" href="/Educacion" title="Experience">Educacion</a>
+          <a class="p-2 text-acento hover:text-medio font-medium" href="/Sobremi" title="About">Sobre mí</a>
         </div>
       </MenuItems>
     </Astronav>
