@@ -1,5 +1,6 @@
 ---
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import Player from "./Player";
 ---
 
 <header class="sticky top-0 right-0 left-0 bg-gradient-to-b from-black via-black via-75% to-transparent z-50 flex flex-row justify-around">
@@ -20,6 +21,7 @@ import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
           <a class="p-2 text-acento hover:text-medio font-medium" href="/Historial" title="Historial">Historial</a>
           <a class="p-2 text-acento hover:text-medio font-medium" href="/Trabajos" title="Works">Trabajos</a>
           <a class="p-2 text-acento hover:text-medio font-medium" href="/Sobremi" title="About">Sobre mí</a>
+          <Player client:load transition-name="media-player" transition:persist />
         </div>
       </MenuItems>
     </Astronav>
