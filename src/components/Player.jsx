@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from "react";
 
 export const Play = () => (
   <svg
-    fill="#000000"
+    fill="#D70000"
     height="30px"
     width="30px"
     version="1.1"
@@ -28,7 +28,7 @@ export const Play = () => (
 
 export const Pause = () => (
   <svg
-    fill="#000000"
+    fill="#D70000"
     height="30px"
     width="30px"
     version="1.1"
@@ -51,7 +51,6 @@ export const Pause = () => (
 
 export default function Player() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentSong, setCurrentSong] = useState(null);
   const audioRef = useRef();
 
   useEffect(() => {
@@ -63,7 +62,7 @@ export default function Player() {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
-      audioRef.current.volume = 0.2;
+      audioRef.current.volume = 0.1;
     }
 
     setIsPlaying(!isPlaying);
@@ -71,7 +70,7 @@ export default function Player() {
 
   return (
     <div>
-      <button className="bg-white rounded-full" onClick={handleClick}>
+      <button className="bg-black rounded-full" onClick={handleClick}>
         {isPlaying ? <Pause /> : <Play />}
       </button>
       <audio ref={audioRef}></audio>
