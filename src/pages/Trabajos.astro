@@ -57,65 +57,53 @@ const TRABAJOS = [
 ---
 
 <Layout title="Marcos Zingaretti - Trabajos" description="Desarrollador y Programador web de Páginas Web Personalizadas">
-  <main class="flex flex-col m-auto py-10 max-w-3xl">
-    <section class="m-auto py-10">
-      <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">
-        Trabajos
-      </h3>
-      <div id="bento">
-        {TRABAJOS.map((trabajo) => (
-          <!-- CARD -->
-          <a href={trabajo.url} target="_blank" class="block">
-            <div class="flex flex-col bg-gradient-to-t from-fondo to-transparent rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
-              <!-- IMAGEN -->
-              <Image
-                src={`/Images/paginas/${trabajo.imagen}.webp`}
-                alt={trabajo.descripcion}
-                width={1920}
-                height={940}
-                class="w-auto h-[200px] max-h-full object-fill"
-              />
-  
-              <!-- INFORMACION -->
-              <div class="p-4 flex flex-col justify-between">
-                <div class="flex flex-col gap-3">
-                  <h4 class="font-semibold text-lg text-acento">{trabajo.titulo}</h4>
-                  <p class="text-xs text-medio">{trabajo.descripcion}</p>
-                  <div class="text-xs text-medio text-pretty">
-                    <p class="font-semibold">Características destacadas:</p>
-                    <ul class="list-disc list-inside">
-                      {trabajo.caracteristicasDestacadas.map((caracteristica) => (
-                        <li>{caracteristica}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <p class="text-xs text-medio">Categoría: {trabajo.categoria}</p>
+  <main class="flex flex-col m-auto max-w-3xl">
+    <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">
+      Trabajos
+    </h3>
+    <div class="grid grid-cols-2 gap-4 m-auto">
+      {TRABAJOS.map((trabajo) => (
+        <a href={trabajo.url} target="_blank" class="block">
+          <div class="flex flex-col bg-gradient-to-t from-fondo to-transparent rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+            <!-- IMAGEN -->
+            <Image
+              src={`/Images/paginas/${trabajo.imagen}.webp`}
+              alt={trabajo.descripcion}
+              width={1920}
+              height={940}
+              class="w-auto h-52 max-h-full object-cover"
+            />
+
+            <div class="p-4 flex flex-col justify-between">
+              <div class="flex flex-col gap-3">
+                <h4 class="font-semibold text-lg text-acento">{trabajo.titulo}</h4>
+                <p class="text-xs text-medio">{trabajo.descripcion}</p>
+                <div class="text-xs text-medio text-pretty">
+                  <p class="font-semibold">Características destacadas:</p>
+                  <ul class="list-disc list-inside">
+                    {trabajo.caracteristicasDestacadas.map((caracteristica) => (
+                      <li>{caracteristica}</li>
+                    ))}
+                  </ul>
                 </div>
-                <div class="flex flex-wrap gap-3">
-                  {trabajo.stack.map((stack) => (
-                    <Image
-                      src={`/Images/stacks/${stack}.svg`}
-                      alt={`Icono de ${stack}`}
-                      width={40}
-                      height={40}
-                      class="size-6 hover:scale-125 transition-transform duration-300"
-                    />
-                  ))}
-                </div>
+                <p class="text-xs text-medio">Categoría: {trabajo.categoria}</p>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                {trabajo.stack.map((stack) => (
+                  <Image
+                    src={`/Images/stacks/${stack}.svg`}
+                    alt={`Icono de ${stack}`}
+                    width={40}
+                    height={40}
+                    class="size-6 hover:scale-125 transition-transform duration-300"
+                  />
+                ))}
               </div>
             </div>
-          </a>
-        ))}
-      </div>
-    </section>
+          </div>
+        </a>
+      ))}
+    </div>
   </main>
   
 </Layout>
-
-<style>
-  #bento{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-  }
-</style>
