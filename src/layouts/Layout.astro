@@ -62,19 +62,22 @@ const { title, description } = Astro.props;
     font-family: "Fira Code";
     src: url("/Fonts/FiraCode-VF.ttf");
   }
+
   ::-webkit-scrollbar {
     width: 10px;
     background-color: #000;
   }
+
   ::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #680000;
+    background-color: #bb0000;
   }
 
   html {
     font-family: "Fira Code", monospace;
     scroll-behavior: smooth;
   }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
