@@ -54,18 +54,18 @@ export default function Player() {
   const audioRef = useRef();
 
   useEffect(() => {
-    audioRef.current.src = `/Music/Nostalgia - Infraction.mp3`;
+    audioRef.current.src = `/Music/Whispers in the Wind.mp3`;
   }, []);
 
   const handleClick = () => {
+    setIsPlaying(!isPlaying);
+
     if (isPlaying) {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
-      audioRef.current.volume = 0.1;
+      audioRef.current.volume = 0.05;
     }
-
-    setIsPlaying(!isPlaying);
   };
 
   return (
