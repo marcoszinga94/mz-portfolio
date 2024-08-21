@@ -1,5 +1,5 @@
 export interface Playlist {
-  id: string;
+  id: number;
   albumId: number;
   title: string;
   cover: string;
@@ -8,14 +8,14 @@ export interface Playlist {
 
 export const playlists: Playlist[] = [
   {
-    id: "01",
+    id: 1,
     albumId: 1,
     title: "01",
     cover: "/Images/playlist01/Lost in the City.jpeg",
     artists: ["none"],
   },
   {
-    id: "02",
+    id: 2,
     albumId: 2,
     title: "Lo-Fi Chill Session",
     cover: "/Images/playlist2/cancion01.jpeg",

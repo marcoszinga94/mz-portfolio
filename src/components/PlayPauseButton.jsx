@@ -1,7 +1,7 @@
-import { Play, Pause } from "./Icons";
-import { usePlayerStore } from "../hooks/playerHook";
+import { Play, Pause } from "./Icons.jsx";
+import { usePlayerStore } from "../hooks/playerHook.js";
 
-const PlayPauseButton = ({ isPlaying }) => {
+export default function PlayPauseButton() {
   const togglePlay = usePlayerStore((state) => state.togglePlay);
 
   return (
@@ -9,6 +9,4 @@ const PlayPauseButton = ({ isPlaying }) => {
       {isPlaying ? <Pause /> : <Play />}
     </button>
   );
-};
-
-export default PlayPauseButton;
+}

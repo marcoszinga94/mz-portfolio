@@ -1,8 +1,8 @@
-import { PlayPauseButton } from "./PlayPauseButton";
-import { usePlayerStore } from "../hooks/playerHook";
-import { NextSong, PrevSong } from "./Icons";
+import { PlayPauseButton } from "./PlayPauseButton.jsx";
+import { usePlayerStore } from "../hooks/playerHook.js";
+import { NextSong, PrevSong } from "./Icons.jsx";
 
-const Controls = () => {
+export default function Controls() {
   const isPlaying = usePlayerStore((state) => state.isPlaying);
   const nextSong = usePlayerStore((state) => state.nextSong);
   const prevSong = usePlayerStore((state) => state.prevSong);
@@ -20,6 +20,4 @@ const Controls = () => {
       </button>
     </div>
   );
-};
-
-export default Controls;
+}

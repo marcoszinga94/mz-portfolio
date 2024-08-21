@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Slider } from "./Slider";
+import { Slider } from "./Slider.jsx";
 
-const SongControl = ({ audio }) => {
+export default function SongControl({ audio }) {
   const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
@@ -41,6 +41,4 @@ const SongControl = ({ audio }) => {
       <span className="opacity-50 w-12">{duration ? formatTime(duration) : "0:00"}</span>
     </div>
   );
-};
-
-export default SongControl;
+}

@@ -1,17 +1,18 @@
-import CurrentSong from "./CurrentSong";
-import SongControl from "./SongControl";
-import VolumeControl from "./VolumeControl";
-import Controls from "./Controls";
+import React from "react";
+import { usePlayerStore } from "../hooks/playerHook";
 
-const Player = ({ currentSong }) => {
-  const audioRef = useRef(new Audio(currentSong.src));
+export default function Player({ currentsong }) {
+  const { setCurrentMusic, setIsPlaying } = usePlayerStore((state) => ({
+    setCurrentMusic: state.setCurrentMusic,
+    setIsPlaying: state.setIsPlaying,
+  }));
 
-  useEffect(() => {
-    audioRef.current.src = currentSong.src;
-    if (isPlaying) {
-      audioRef.current.play();
+  React.useEffect(() => {
+    if (currentsong) {
+      setCurrentMusic({ song: { src: currentsong }, playlist: null, songs: [{ src: currentsong }] });
+      setIsPlaying(true);
     }
-  }, [currentSong.src]);
+  }, [currentsong, setCurrentMusic, setIsPlaying]);
 
   return (
     <div className="w-full h-24 bg-black flex justify-between items-center p-3">
@@ -25,6 +26,4 @@ const Player = ({ currentSong }) => {
       <VolumeControl />
     </div>
   );
-};
-
-export default Player;
+}

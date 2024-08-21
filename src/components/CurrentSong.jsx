@@ -1,4 +1,4 @@
-const CurrentSong = ({ title, artists }) => {
+export default function CurrentSong({ title, artists }) {
   return (
     <div className={`flex items-center gap-5 relative overflow-hidden`}>
       <div className="flex flex-col">
@@ -7,6 +7,4 @@ const CurrentSong = ({ title, artists }) => {
       </div>
     </div>
   );
-};
-
-export default CurrentSong;
+}

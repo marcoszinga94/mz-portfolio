@@ -1,7 +1,7 @@
-import { Pause, Play } from "./Player";
-import { usePlayerStore } from "../hooks/playerHook";
+import { Pause, Play } from "./Player.jsx";
+import { usePlayerStore } from "../hooks/playerHook.js";
 
-export default function CardPlayButton({ id }) {
+export default function PlayerButton({ id }) {
   const { currentMusic, isPlaying, setIsPlaying, setCurrentMusic } = usePlayerStore((state) => state);
 
   const isPlayingPlaylist = isPlaying && currentMusic?.playlist.id === id;
@@ -10,7 +10,7 @@ export default function CardPlayButton({ id }) {
     setIsPlaying(!isPlaying);
   };
 
-  fetch(`/api/get-info-music.json?id=${id}`)
+  fetch(`/api/get-info-playlist.json?id=${id}`)
     .then((res) => res.json())
     .then((data) => {
       const { songs, playlist } = data;
