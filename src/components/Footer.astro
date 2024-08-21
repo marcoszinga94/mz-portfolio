@@ -1,7 +1,15 @@
 ---
+import Player from "../components/Player";
 
+const currentSong = {
+  id: 1,
+  title: "Lost in the City",
+  src: "/Music//01/Lost in the City.mp3",
+  artist: "none",
+};
 ---
 
-<footer class="flex flex-row w-screen py-6 items-center">
-  <p class="flex-1 text-center text-acento">Desde 2021 - De mi mente al mundo</p>
+<footer class="flex flex-col justify-center w-screen py-6 items-center m-auto">
+  <p class="text-acento">Desde 2021 - De mi mente al mundo</p>
+  <Player client:load transition-name="media-player" transition:persist currentSong={currentSong} />
 </footer>
