@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
-import { Button } from "../components/ui/button";
-import { Card } from "../components/ui/card";
-import { Slider } from "../components/ui/slider";
+import { Button } from "./ui/button";
+import { Card } from "./ui/card";
+import { Slider } from "./ui/slider";
 import { PlayIcon, PauseIcon, SkipBackIcon, SkipForwardIcon, Volume2, VolumeOff } from "lucide-react";
 
 const songs = [
