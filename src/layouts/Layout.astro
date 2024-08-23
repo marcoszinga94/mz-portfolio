@@ -59,13 +59,11 @@ const { title, description } = Astro.props;
     <!-- Speed Insights de Vercel -->
     <SpeedInsights />
   </head>
-  <body>
-    <div id="app" class="grid grid-rows-[auto_1fr_auto] h-screen">
-      <Header />
-      <slot />
-      <Player client:load transition-name="player" transition:persist />
-      <Footer />
-    </div>
+  <body class="grid grid-rows-[auto_1fr_auto] h-screen">
+    <Header />
+    <slot />
+    <Player client:load transition-name="player" transition:persist />
+    <Footer />
   </body>
 </html>
 
