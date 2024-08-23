@@ -45,6 +45,13 @@ const { title, description } = Astro.props;
     <!-- Google Verification -->
     <meta name="google-site-verification" content="LpShcNMVNuXGpFxxWhmJHoRzng-ddqGSCh2zBBuS7F4" />
 
+    <style>
+      @font-face {
+        font-family: "Fira Code";
+        src: url("/Fonts/FiraCode-VF.ttf");
+      }
+    </style>
+
     <!-- Speed Insights de Vercel -->
     <ViewTransitions />
     <SpeedInsights />
@@ -60,11 +67,6 @@ const { title, description } = Astro.props;
 </html>
 
 <style is:global>
-  @font-face {
-    font-family: "Fira Code";
-    src: url("/Fonts/FiraCode-VF.ttf");
-  }
-
   ::-webkit-scrollbar {
     width: 10px;
     background-color: #000;
