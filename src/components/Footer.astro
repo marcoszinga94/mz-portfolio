@@ -1,7 +1,8 @@
 ---
-
+import Player from "./Player";
 ---
 
 <footer class="flex flex-col justify-center w-screen py-6 items-center m-auto">
   <p class="text-acento">Desde 2021 - De mi mente al mundo</p>
+  <Player client:load transition-name="player" transition:persist />
 </footer>
