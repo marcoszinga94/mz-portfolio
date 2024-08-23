@@ -3,6 +3,7 @@ import ViewTransitions from "astro/components/ViewTransitions.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Player from "../components/Player";
 
 interface Props {
   title: string;
@@ -51,6 +52,7 @@ const { title, description } = Astro.props;
   <body>
     <div id="app" class="grid grid-rows-[auto_1fr_auto] h-screen">
       <Header />
+      <Player client:load transition-name="player" transition:persist />
       <slot />
       <Footer />
     </div>
