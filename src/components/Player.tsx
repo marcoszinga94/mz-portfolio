@@ -156,7 +156,7 @@ export default function MusicPlayer() {
   };
 
   return (
-    <Card className="fixed bottom-5 left-5 flex flex-row text-white px-6 py-4 gap-4 z-10">
+    <Card className="fixed bottom-5 left-5 flex flex-col lg:flex-row text-white px-6 py-4 gap-4 z-10">
       <div className="flex flex-col gap-4">
         <SongInfo {...songs[currentSongIndex]} />
         <div className="flex flex-col gap-4 flex-1">
