@@ -5,10 +5,10 @@ import { Slider } from "../components/ui/slider";
 import { PlayIcon, PauseIcon, SkipBackIcon, SkipForwardIcon, Volume2, VolumeOff } from "lucide-react";
 
 const songs = [
-  { title: "Lost in the City", artist: "Suno AI", src: "/Music/1/Lost in the City.mp3", cover: "/Images/playlist01/Lost in the City.jpeg" },
-  { title: "Lost in the Rain", artist: "Suno AI", src: "/Music/1/Lost in the Rain.mp3", cover: "/Images/playlist01/Lost in the Rain.jpeg" },
-  { title: "Wandering Melodies", artist: "Suno AI", src: "/Music/1/Wandering Melodies.mp3", cover: "/Images/playlist01/Wandering Melodies.jpeg" },
-  { title: "Whispers in the Wind", artist: "Suno AI", src: "/Music/1/Whispers in the Wind.mp3", cover: "/Images/playlist01/Whispers in the Wind.jpeg" },
+  { artist: "Suno AI", title: "Lost in the City", src: "/Music/1/Lost in the City.mp3", cover: "/Images/playlist01/Lost in the City.jpeg" },
+  { artist: "Suno AI", title: "Wandering Melodies", src: "/Music/1/Wandering Melodies.mp3", cover: "/Images/playlist01/Wandering Melodies.jpeg" },
+  { artist: "Suno AI", title: "Lost in the Rain", src: "/Music/1/Lost in the Rain.mp3", cover: "/Images/playlist01/Lost in the Rain.jpeg" },
+  { artist: "Suno AI", title: "Whispers in the Wind", src: "/Music/1/Whispers in the Wind.mp3", cover: "/Images/playlist01/Whispers in the Wind.jpeg" },
 ];
 
 const formatTime = (time: number) => {
