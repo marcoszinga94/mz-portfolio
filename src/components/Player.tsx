@@ -18,7 +18,7 @@ const formatTime = (time: number) => {
 };
 
 const SongInfo = ({ title, artist, cover }: { title: string; artist: string; cover: string }) => (
-  <div className="flex flex-row items-center gap-4">
+  <div className="flex flex-row justify-center items-center gap-4">
     <img src={cover} alt={`${title} caratula`} className="h-10 w-10 rounded-md" />
     <div className="flex flex-col">
       <h2 className="text-sm font-semibold text-claro">{title}</h2>
@@ -82,7 +82,7 @@ export default function MusicPlayer() {
   const [currentSongIndex, setCurrentSongIndex] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [volume, setVolume] = useState(0.05);
+  const [volume, setVolume] = useState(0.1);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const loadSong = (index: number) => {
@@ -156,14 +156,16 @@ export default function MusicPlayer() {
   };
 
   return (
-    <Card className="fixed bottom-5 left-5 grid grid-cols-1 lg:grid-cols-3 text-white px-6 py-4 gap-4 z-10">
-      <div className="flex flex-row lg:flex-col gap-4">
-        <SongInfo {...songs[currentSongIndex]} />
-        <div className="flex flex-col gap-4 flex-1">
-          <ProgressBar currentTime={currentTime} duration={duration} onProgressChange={handleProgressChange} />
+    <Card className="static lg:fixed bottom-5 flex text-white px-6 py-4 gap-4 mx-5">
+      <div className="flex flex-col gap-4 flex-1">
+        <div className="flex flex-col gap-4">
+          <SongInfo {...songs[currentSongIndex]} />
           <Controls isPlaying={isPlaying} onPrevious={handlePrevious} onPlayPause={togglePlayPause} onNext={handleNext} />
         </div>
-        <VolumeControl volume={volume} onVolumeChange={handleVolumeChange} />
+        <div className="flex flex-col gap-4">
+          <ProgressBar currentTime={currentTime} duration={duration} onProgressChange={handleProgressChange} />
+          <VolumeControl volume={volume} onVolumeChange={handleVolumeChange} />
+        </div>
       </div>
     </Card>
   );

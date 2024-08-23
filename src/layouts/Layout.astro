@@ -52,8 +52,8 @@ const { title, description } = Astro.props;
   <body>
     <div id="app" class="grid grid-rows-[auto_1fr_auto] h-screen">
       <Header />
-      <Player client:load transition-name="player" transition:persist />
       <slot />
+      <Player client:load transition-name="player" transition:persist />
       <Footer />
     </div>
   </body>
