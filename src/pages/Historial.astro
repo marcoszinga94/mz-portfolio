@@ -22,17 +22,30 @@ const HISTORIAL = [
 ];
 ---
 
-<Layout title="Marcos Zingaretti - Educación" description="Desarrollador y Programador web de Páginas Web Personalizadas">
+<Layout
+  title="Marcos Zingaretti - Educación"
+  description="Desarrollador y Programador web de Páginas Web Personalizadas"
+>
   <main class="flex flex-col m-auto max-w-3xl">
-    <h3 class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento">Historial</h3>
+    <h3
+      class="flex text-4xl font-bold justify-center mb-8 mx-auto px-8 border-2 rounded-full border-acento text-acento"
+    >
+      Historial
+    </h3>
     <ol class="relative border-s border-gray-200 dark:border-gray-700 m-4">
       {
         HISTORIAL.map((historial) => (
           <li class="mb-8 ms-4">
             <div class="absolute w-3 h-3 bg-claro rounded-full mt-1.5 -start-1.5 border border-white" />
-            <time class="mb-1 text-sm font-bold leading-none text-medio">{historial.fecha}</time>
-            <h4 class="text-lg font-semibold  text-acento">{historial.titulo}</h4>
-            <p class="mx-4 mb-4 text-base font-light text-claro">{historial.descripcion}</p>
+            <time class="mb-1 text-sm font-bold leading-none text-medio">
+              {historial.fecha}
+            </time>
+            <h4 class="text-lg font-semibold  text-acento">
+              {historial.titulo}
+            </h4>
+            <p class="mx-4 mb-4 text-base font-light text-claro">
+              {historial.descripcion}
+            </p>
           </li>
         ))
       }
