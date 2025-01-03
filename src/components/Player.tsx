@@ -3,13 +3,40 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import { Slider } from "./ui/slider";
-import { PlayIcon, PauseIcon, SkipBackIcon, SkipForwardIcon, Volume2, VolumeOff } from "lucide-react";
+import {
+  PlayIcon,
+  PauseIcon,
+  SkipBackIcon,
+  SkipForwardIcon,
+  Volume2,
+  VolumeOff,
+} from "lucide-react";
 
 const songs = [
-  { artist: "Suno AI", title: "Lost in the City", src: "/Music/1/Lost in the City.mp3", cover: "/Images/playlist01/Lost in the City.jpeg" },
-  { artist: "Suno AI", title: "Wandering Melodies", src: "/Music/1/Wandering Melodies.mp3", cover: "/Images/playlist01/Wandering Melodies.jpeg" },
-  { artist: "Suno AI", title: "Lost in the Rain", src: "/Music/1/Lost in the Rain.mp3", cover: "/Images/playlist01/Lost in the Rain.jpeg" },
-  { artist: "Suno AI", title: "Whispers in the Wind", src: "/Music/1/Whispers in the Wind.mp3", cover: "/Images/playlist01/Whispers in the Wind.jpeg" },
+  {
+    artist: "Suno AI",
+    title: "Lost in the City",
+    src: "/Music/1/Lost in the City.mp3",
+    cover: "/Images/playlist01/Lost in the City.jpeg",
+  },
+  {
+    artist: "Suno AI",
+    title: "Wandering Melodies",
+    src: "/Music/1/Wandering Melodies.mp3",
+    cover: "/Images/playlist01/Wandering Melodies.jpeg",
+  },
+  {
+    artist: "Suno AI",
+    title: "Lost in the Rain",
+    src: "/Music/1/Lost in the Rain.mp3",
+    cover: "/Images/playlist01/Lost in the Rain.jpeg",
+  },
+  {
+    artist: "Suno AI",
+    title: "Whispers in the Wind",
+    src: "/Music/1/Whispers in the Wind.mp3",
+    cover: "/Images/playlist01/Whispers in the Wind.jpeg",
+  },
 ];
 
 const formatTime = (time: number) => {
@@ -18,9 +45,21 @@ const formatTime = (time: number) => {
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 };
 
-const SongInfo = ({ title, artist, cover }: { title: string; artist: string; cover: string }) => (
+const SongInfo = ({
+  title,
+  artist,
+  cover,
+}: {
+  title: string;
+  artist: string;
+  cover: string;
+}) => (
   <div className="flex flex-row justify-center items-center gap-4">
-    <img src={cover} alt={`${title} caratula`} className="h-10 w-10 rounded-md" />
+    <img
+      src={cover}
+      alt={`${title} caratula`}
+      className="h-10 w-10 rounded-md"
+    />
     <div className="flex flex-col">
       <h2 className="text-sm font-semibold text-claro">{title}</h2>
       <p className="text-xs text-medio">{artist}</p>
@@ -40,7 +79,12 @@ const ProgressBar = ({
   <>
     <div className="flex flex-row items-center gap-2">
       <span>{formatTime(currentTime)}</span>
-      <Slider value={[currentTime]} max={duration} step={1} onValueChange={onProgressChange} />
+      <Slider
+        value={[currentTime]}
+        max={duration}
+        step={1}
+        onValueChange={onProgressChange}
+      />
       <span>{formatTime(duration)}</span>
     </div>
   </>
@@ -58,22 +102,53 @@ const Controls = ({
   onNext: () => void;
 }) => (
   <div className="flex justify-center items-center gap-4">
-    <Button onClick={onPrevious} variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+    <Button
+      onClick={onPrevious}
+      variant="ghost"
+      size="icon"
+      className="text-white hover:bg-zinc-800"
+    >
       <SkipBackIcon className="size-5" />
     </Button>
-    <Button onClick={onPlayPause} variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
-      {isPlaying ? <PauseIcon className="size-8" /> : <PlayIcon className="size-8" />}
+    <Button
+      onClick={onPlayPause}
+      variant="ghost"
+      size="icon"
+      className="text-white hover:bg-zinc-800"
+    >
+      {isPlaying ? (
+        <PauseIcon className="size-8" />
+      ) : (
+        <PlayIcon className="size-8" />
+      )}
     </Button>
-    <Button onClick={onNext} variant="ghost" size="icon" className="text-white hover:bg-zinc-800">
+    <Button
+      onClick={onNext}
+      variant="ghost"
+      size="icon"
+      className="text-white hover:bg-zinc-800"
+    >
       <SkipForwardIcon className="size-5" />
     </Button>
   </div>
 );
 
-const VolumeControl = ({ volume, onVolumeChange }: { volume: number; onVolumeChange: (newValue: number[]) => void }) => (
+const VolumeControl = ({
+  volume,
+  onVolumeChange,
+}: {
+  volume: number;
+  onVolumeChange: (newValue: number[]) => void;
+}) => (
   <div className="flex items-center gap-2">
     <VolumeOff className="size-5 text-zinc-400" />
-    <Slider value={[volume]} max={1} step={0.01} onValueChange={onVolumeChange} className="w-full" />
+    <Slider
+      value={[volume]}
+      max={1}
+      step={0.01}
+      onValueChange={onVolumeChange}
+      className="w-full"
+    />
     <Volume2 className="size-5 text-zinc-400" />
   </div>
 );
@@ -105,8 +180,10 @@ export default function MusicPlayer() {
     audioRef.current.volume = volume;
 
     const handleEnded = () => handleNext();
-    const handleTimeUpdate = () => setCurrentTime(audioRef.current?.currentTime || 0);
-    const handleLoadedMetadata = () => setDuration(audioRef.current?.duration || 0);
+    const handleTimeUpdate = () =>
+      setCurrentTime(audioRef.current?.currentTime || 0);
+    const handleLoadedMetadata = () =>
+      setDuration(audioRef.current?.duration || 0);
 
     audioRef.current.addEventListener("ended", handleEnded);
     audioRef.current.addEventListener("timeupdate", handleTimeUpdate);
@@ -117,7 +194,10 @@ export default function MusicPlayer() {
         audioRef.current.pause();
         audioRef.current.removeEventListener("ended", handleEnded);
         audioRef.current.removeEventListener("timeupdate", handleTimeUpdate);
-        audioRef.current.removeEventListener("loadedmetadata", handleLoadedMetadata);
+        audioRef.current.removeEventListener(
+          "loadedmetadata",
+          handleLoadedMetadata
+        );
       }
     };
   }, []);
@@ -137,8 +217,12 @@ export default function MusicPlayer() {
     }
   };
 
-  const handleNext = () => setCurrentSongIndex((prevIndex) => (prevIndex + 1) % songs.length);
-  const handlePrevious = () => setCurrentSongIndex((prevIndex) => (prevIndex - 1 + songs.length) % songs.length);
+  const handleNext = () =>
+    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % songs.length);
+  const handlePrevious = () =>
+    setCurrentSongIndex(
+      (prevIndex) => (prevIndex - 1 + songs.length) % songs.length
+    );
 
   const handleProgressChange = (newValue: number[]) => {
     if (audioRef.current) {
@@ -161,10 +245,19 @@ export default function MusicPlayer() {
       <div className="flex flex-col gap-4 flex-1">
         <div className="flex flex-col gap-4">
           <SongInfo {...songs[currentSongIndex]} />
-          <Controls isPlaying={isPlaying} onPrevious={handlePrevious} onPlayPause={togglePlayPause} onNext={handleNext} />
+          <Controls
+            isPlaying={isPlaying}
+            onPrevious={handlePrevious}
+            onPlayPause={togglePlayPause}
+            onNext={handleNext}
+          />
         </div>
         <div className="flex flex-col gap-4">
-          <ProgressBar currentTime={currentTime} duration={duration} onProgressChange={handleProgressChange} />
+          <ProgressBar
+            currentTime={currentTime}
+            duration={duration}
+            onProgressChange={handleProgressChange}
+          />
           <VolumeControl volume={volume} onVolumeChange={handleVolumeChange} />
         </div>
       </div>
