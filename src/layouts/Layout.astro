@@ -3,7 +3,7 @@ import ClientRouter from "astro/components/ClientRouter.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Player from "../components/Player";
+// import Player from "../components/Player";
 
 interface Props {
   title: string;
@@ -21,7 +21,6 @@ const { title, description } = Astro.props;
     <title>{title}</title>
     <meta name="description" content=`${description}` />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="generator" content="{Astro.generator}" />
     <link rel="canonical" href="https://portafoliozingaretti.vercel.app/" />
 
     <!-- Meta etiquetas de Open Graph para redes sociales -->
