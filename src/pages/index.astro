@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
-const TRABAJOS = [
+const PROYECTOS = [
   {
     nombre: "Argentista",
     enlace: "https://argentista.vercel.app",
@@ -60,18 +60,19 @@ const HISTORIAL = [
   title="Marcos Zingaretti - Desarrollador Web Full-Stack"
   description="Desarrollador y Programador web de Páginas Web Personalizadas"
 >
-  <main class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12">
+  <main class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12 mt-20">
     <section
+      id="inicio"
       class="flex flex-col lg:flex-row items-center gap-8 m-auto min-h-[75vh]"
     >
       <Image
         title="Foto de Marcos"
-        alt="Foto de Marcos Zingaretti usando una campera de jean"
+        alt="Foto de Marcos Zingaretti"
         src="/Images/selfie.webp"
         width={540}
         height={720}
         loading="eager"
-        class="rounded-full h-64 lg:h-96 w-auto object-cover"
+        class="rounded-full h-72 lg:h-96 w-auto object-cover"
       />
       <div class="flex flex-col gap-6 text-center lg:text-left">
         <div>
@@ -106,6 +107,7 @@ const HISTORIAL = [
     </section>
 
     <section
+      id="sobre-mi"
       class="bg-gradient-to-br from-fondo to-oscuro rounded-3xl p-8 shadow-2xl"
     >
       <h3 class="text-4xl font-bold text-center mb-8 text-acento">Sobre mí</h3>
@@ -132,42 +134,42 @@ const HISTORIAL = [
       </div>
     </section>
 
-    <section>
+    <section id="proyectos">
       <h3 class="text-4xl font-bold text-center mb-12 text-acento">
         Proyectos Destacados
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         {
-          TRABAJOS.map((trabajo) => (
-            <a href={trabajo.enlace} target="_blank" class="group">
+          PROYECTOS.map((proyecto) => (
+            <a href={proyecto.enlace} target="_blank" class="group">
               <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <Image
-                  src={`/Images/paginas/${trabajo.imagen}.webp`}
-                  alt={trabajo.descripcion}
+                  src={`/Images/paginas/${proyecto.imagen}.webp`}
+                  alt={proyecto.descripcion}
                   width={1920}
                   height={940}
-                  class="w-full h-48 object-cover"
+                  class="w-full h-48 object-content"
                 />
                 <div class="p-6">
                   <h4 class="font-bold text-2xl text-acento mb-2">
-                    {trabajo.nombre}
+                    {proyecto.nombre}
                   </h4>
-                  <p class="text-claro mb-4">{trabajo.descripcion}</p>
+                  <p class="text-claro mb-4">{proyecto.descripcion}</p>
                   <div class="mb-4">
                     <p class="font-semibold text-medio mb-2">
                       Características destacadas:
                     </p>
                     <ul class="list-disc list-inside text-claro">
-                      {trabajo.caracteristicas.map((caracteristica) => (
+                      {proyecto.caracteristicas.map((caracteristica) => (
                         <li>{caracteristica}</li>
                       ))}
                     </ul>
                   </div>
                   <p class="text-sm text-medio mb-4">
-                    Categoría: {trabajo.categoria}
+                    Categoría: {proyecto.categoria}
                   </p>
                   <div class="flex flex-wrap gap-3">
-                    {trabajo.tecnologias.map((stack) => (
+                    {proyecto.tecnologias.map((stack) => (
                       <Image
                         src={`/Images/stacks/${stack}.svg`}
                         alt={`Icono de ${stack}`}
@@ -185,7 +187,7 @@ const HISTORIAL = [
       </div>
     </section>
 
-    <section>
+    <section id="trayectoria">
       <h3 class="text-4xl font-bold text-center mb-12 text-acento">
         Mi Trayectoria
       </h3>

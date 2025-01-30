@@ -1,4 +1,4 @@
-<header class="sticky top-0 right-0 left-0 bg-black z-50">
+<header class="fixed top-0 right-0 left-0 bg-black z-50">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center py-4">
       <a href="/" class="text-center flex flex-col">
@@ -32,29 +32,21 @@
         </div>
 
         <ul id="menuItems" class="hidden lg:flex lg:flex-row gap-4">
-          <li>
-            <a class="p-2 text-acento hover:text-medio font-medium" href="/"
-              >Inicio</a
-            >
-          </li>
-          <li>
-            <a
-              class="p-2 text-acento hover:text-medio font-medium"
-              href="/Sobremi">Sobre mí</a
-            >
-          </li>
-          <li>
-            <a
-              class="p-2 text-acento hover:text-medio font-medium"
-              href="/Historial">Historial</a
-            >
-          </li>
-          <li>
-            <a
-              class="p-2 text-acento hover:text-medio font-medium"
-              href="/Trabajos">Trabajos</a
-            >
-          </li>
+          <a class="p-2 text-acento hover:text-medio font-medium" href="#top"
+            >Inicio</a
+          >
+          <a
+            class="p-2 text-acento hover:text-medio font-medium"
+            href="#sobre-mi">Sobre mí</a
+          >
+          <a
+            class="p-2 text-acento hover:text-medio font-medium"
+            href="#proyectos">proyectos</a
+          >
+          <a
+            class="p-2 text-acento hover:text-medio font-medium"
+            href="#trayectoria">Trayectoria</a
+          >
         </ul>
       </nav>
     </div>
@@ -81,7 +73,7 @@
 </script>
 
 <style>
-  @media (max-width: 1023px) {
+  @media (max-width: 50%) {
     #menuItems {
       width: 100%;
     }
