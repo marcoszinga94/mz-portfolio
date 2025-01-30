@@ -14,16 +14,16 @@ const { title, description } = Astro.props;
 <!doctype html>
 <html lang="es">
   <head>
-    <!-- Basico -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content=`${description}` />
+    <meta
+      name="keywords"
+      content="Desarrollador Web, Full-Stack Developer, JavaScript, React, Astro, TailwindCSS"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href="https://portafoliozingaretti.vercel.app/" />
 
-    <!-- Meta etiquetas de Open Graph para redes sociales -->
-    <meta property="og:type" content="website" />
     <meta property="og:title" content=`${title}` />
     <meta property="og:description" content=`${description}` />
     <meta property="og:image" content="/Images/og-image.png" />
@@ -32,35 +32,12 @@ const { title, description } = Astro.props;
       content="https://portafoliozingaretti.vercel.app/"
     />
 
-    <!-- Meta etiquetas de Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content=`${title}` />
     <meta name="twitter:description" content=`${description}` />
     <meta name="twitter:image" content="/Images/og-image.png" />
 
-    <!-- Metadatos para SEO -->
-    <meta name="robots" content="index, follow" />
-    <meta name="author" content=`${title}` />
-    <meta name="keywords" content="Desarrollador Web, Web Developer" />
-
-    <!-- Google Verification -->
-    <meta
-      name="google-site-verification"
-      content="LpShcNMVNuXGpFxxWhmJHoRzng-ddqGSCh2zBBuS7F4"
-    />
-
-    <!-- Styles -->
-    <style>
-      @font-face {
-        font-family: "Fira Code";
-        src: url("/Fonts/FiraCode.ttf");
-      }
-    </style>
-
-    <!-- View Transitions -->
     <ClientRouter />
-
-    <!-- Speed Insights de Vercel -->
     <SpeedInsights />
   </head>
   <body>
