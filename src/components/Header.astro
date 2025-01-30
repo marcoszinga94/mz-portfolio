@@ -1,51 +1,92 @@
----
-import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
----
+<header class="sticky top-0 right-0 left-0 bg-black z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <a href="/" class="text-center flex flex-col">
+        <span class="text-xl text-acento">Marcos F. Zingaretti</span>
+        <span class="hidden lg:block text-lg font-semibold text-acento">
+          Desarrollador Web
+        </span>
+      </a>
 
-<header
-  class="sticky top-0 right-0 left-0 bg-gradient-to-b from-black via-black via-75% to-transparent z-50 flex flex-row justify-around"
->
-  <a href="/" class="text-center flex justify-center flex-col">
-    <p class="text-xl text-acento">Marcos F. Zingaretti</p>
-    <p class="hidden lg:block text-lg font-semibold text-acento">
-      Desarrollador Web
-    </p>
-  </a>
-
-  <div>
-    <Astronav>
-      <div class="flex lg:hidden">
-        <MenuIcon class="size-8 text-white" />
-      </div>
-      <div>
-        <MenuItems class="relative hidden lg:flex flex-row gap-4 m-auto">
-          <div
-            class="lg:static flex flex-col lg:flex-row absolute top-0 right-0 gap-4 m-auto rounded-lg p-6 bg-black lg:bg-transparent items-center"
+      <nav>
+        <div class="flex lg:hidden">
+          <button
+            id="menuButton"
+            aria-label="Abrir menú"
+            class="text-acento hover:text-medio"
           >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <ul id="menuItems" class="hidden lg:flex lg:flex-row gap-4">
+          <li>
+            <a class="p-2 text-acento hover:text-medio font-medium" href="/"
+              >Inicio</a
+            >
+          </li>
+          <li>
             <a
               class="p-2 text-acento hover:text-medio font-medium"
-              href="/"
-              title="Home">Inicio</a
+              href="/Sobremi">Sobre mí</a
             >
+          </li>
+          <li>
             <a
               class="p-2 text-acento hover:text-medio font-medium"
-              href="/Sobremi"
-              title="About">Sobre mí</a
+              href="/Historial">Historial</a
             >
+          </li>
+          <li>
             <a
               class="p-2 text-acento hover:text-medio font-medium"
-              href="/Historial"
-              title="Historial">Historial</a
+              href="/Trabajos">Trabajos</a
             >
-            <a
-              class="p-2 text-acento hover:text-medio font-medium"
-              href="/Trabajos"
-              title="Works">Trabajos</a
-            >
-            <!-- <PlayerButton id={"01"} /> -->
-          </div>
-        </MenuItems>
-      </div>
-    </Astronav>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const menuItems = document.getElementById("menuItems");
+
+  if (menuButton && menuItems) {
+    menuButton.addEventListener("click", () => {
+      menuItems.classList.toggle("hidden");
+      menuItems.classList.toggle("flex");
+      menuItems.classList.toggle("flex-col");
+      menuItems.classList.toggle("absolute");
+      menuItems.classList.toggle("top-16");
+      menuItems.classList.toggle("right-0");
+      menuItems.classList.toggle("bg-black");
+      menuItems.classList.toggle("p-4");
+      menuItems.classList.toggle("rounded-lg");
+    });
+  }
+</script>
+
+<style>
+  @media (max-width: 1023px) {
+    #menuItems {
+      width: 100%;
+    }
+    #menuItems.flex {
+      display: flex;
+    }
+  }
+</style>

@@ -1,48 +1,200 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+
+const TRABAJOS = [
+  {
+    nombre: "Argentista",
+    enlace: "https://argentista.vercel.app",
+    imagen: "argentista",
+    descripcion:
+      "Aplicación interactiva que utiliza APIs para mostrar datos económicos.",
+    tecnologias: ["Astro", "React", "TailwindCSS", "JavaScript"],
+    caracteristicas: [
+      "Integración con APIs",
+      "Visualización de datos mediante gráficas",
+      "Diseño responsivo adaptado a diversos dispositivos",
+    ],
+    categoria: "Economía",
+  },
+  {
+    nombre: "El Socorro SRL",
+    enlace: "https://elsocorrosrl.com/",
+    imagen: "elsocorro",
+    descripcion:
+      "Landing page con enfoque en el sector agrícola, optimizada para conversión.",
+    tecnologias: ["Astro", "TailwindCSS", "JavaScript"],
+    repositorio: "https://github.com/marcoszinga94/LandingAgro",
+    caracteristicas: [
+      "Diseño minimalista y elegante",
+      "Formulario de contacto funcional e integrado",
+      "Galería de imágenes interactiva y atractiva",
+    ],
+    categoria: "Landing Page",
+  },
+];
+
+const HISTORIAL = [
+  {
+    fecha: "...Actualidad",
+    titulo: "Desarrollador Web Full-Stack",
+    descripcion:
+      "Comprometido con la mejora continua mediante proyectos independientes, me esfuerzo a diario por ofrecer soluciones innovadoras y de calidad en el dinámico entorno del desarrollo web.",
+  },
+  {
+    fecha: "2020 - 2021",
+    titulo: "Argentina Programa 2.0 - Formalización de Estudios",
+    descripcion:
+      "Avancé en mi trayectoria profesional formalizando mis estudios en programación a través del programa Argentina Programa 2.0. Durante esta etapa, adquirí competencias avanzadas trabajando con frameworks como Angular y optimizando el uso de diversas tecnologías.",
+  },
+  {
+    fecha: "2009 - 2020",
+    titulo: "Autodidacta en Programación",
+    descripcion:
+      "Mi pasión por la programación comenzó en 2015, cuando inicié mi aprendizaje autodidacta. A través de plataformas como Stack Overflow, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
+  },
+];
 ---
 
 <Layout
-  title="Marcos Zingaretti - Inicio"
+  title="Marcos Zingaretti - Desarrollador Web Full-Stack"
   description="Desarrollador y Programador web de Páginas Web Personalizadas"
 >
-  <main class="flex flex-col lg:flex-row gap-4 m-auto">
-    <Image
-      title="Foto de Marcos"
-      alt="Foto de Marcos Zingaretti usando una campera de jean"
-      src="/Images/selfie.webp"
-      width={540}
-      height={720}
-      loading="eager"
-      class="rounded-full h-[250px] lg:h-[500px] w-auto m-auto"
-    />
-    <div class="flex flex-col m-auto gap-8">
-      <div class="flex flex-col gap-2">
-        <h1 class="text-3xl lg:text-6xl text-center lg:text-left text-acento">
-          Marcos Federico
-        </h1>
-        <h2
-          class="text-5xl lg:text-8xl text-center lg:text-left text-acento font-black"
-        >
-          Zingaretti
-        </h2>
-      </div>
-      <div class="flex flex-col gap-2">
-        <h3 class="text-lg lg:text-3xl text-acento text-left">
+  <main class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12">
+    <section class="flex flex-col lg:flex-row items-center gap-8 m-auto">
+      <Image
+        title="Foto de Marcos"
+        alt="Foto de Marcos Zingaretti usando una campera de jean"
+        src="/Images/selfie.webp"
+        width={540}
+        height={720}
+        loading="eager"
+        class="rounded-full h-64 lg:h-96 w-auto object-cover"
+      />
+      <div class="flex flex-col gap-6 text-center lg:text-left">
+        <div>
+          <h1 class="text-4xl lg:text-6xl text-acento font-bold mb-2">
+            Marcos Federico
+          </h1>
+          <h2 class="text-5xl lg:text-7xl text-medio font-black">Zingaretti</h2>
+        </div>
+        <h3 class="text-2xl lg:text-3xl text-claro font-semibold">
           Desarrollador Web Full-Stack
         </h3>
         <a
           target="_blank"
           href="https://www.linkedin.com/in/marcos-zingaretti/"
-          class="flex justify-center lg:justify-start"
+          class="inline-block bg-acento text-claro text-lg font-medium px-6 py-3 rounded-full hover:bg-medio transition-colors duration-300 shadow-md"
         >
-          <span
-            class="animate-pulse bg-claro text-acento text-sm lg:text-base font-medium px-4 py-2 rounded border-acento"
-            >Disponible para Trabajar</span
-          >
+          <span class="flex items-center justify-center gap-2">
+            Disponible para Trabajar
+          </span>
         </a>
       </div>
-    </div>
+    </section>
+
+    <section
+      class="bg-gradient-to-br from-fondo to-oscuro rounded-3xl p-8 shadow-2xl"
+    >
+      <h3 class="text-4xl font-bold text-center mb-8 text-acento">Sobre mí</h3>
+      <div
+        class="flex flex-col gap-6 text-lg text-claro text-center max-w-3xl mx-auto"
+      >
+        <p>
+          Desde pequeño, la tecnología captó mi atención, y a los 15 años
+          descubrí que escribir código era mucho más interesante que cualquier
+          otra cosa.
+        </p>
+
+        <p>
+          Comencé con pequeños proyectos, desentrañando cada línea como si fuera
+          un enigma. Con el tiempo, comprendí que la programación no es solo
+          sobre código, sino sobre crear soluciones.
+        </p>
+
+        <p>
+          Hoy, con una sólida experiencia, desarrollo proyectos desde cero,
+          aplicando lo aprendido y evitando—en la medida de lo posible—los
+          errores que alguna vez me hicieron replantearme mi carrera.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="text-4xl font-bold text-center mb-12 text-acento">
+        Proyectos Destacados
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          TRABAJOS.map((trabajo) => (
+            <a href={trabajo.enlace} target="_blank" class="group">
+              <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <Image
+                  src={`/Images/paginas/${trabajo.imagen}.webp`}
+                  alt={trabajo.descripcion}
+                  width={1920}
+                  height={940}
+                  class="w-full h-48 object-cover"
+                />
+                <div class="p-6">
+                  <h4 class="font-bold text-2xl text-acento mb-2">
+                    {trabajo.nombre}
+                  </h4>
+                  <p class="text-claro mb-4">{trabajo.descripcion}</p>
+                  <div class="mb-4">
+                    <p class="font-semibold text-medio mb-2">
+                      Características destacadas:
+                    </p>
+                    <ul class="list-disc list-inside text-claro">
+                      {trabajo.caracteristicas.map((caracteristica) => (
+                        <li>{caracteristica}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p class="text-sm text-medio mb-4">
+                    Categoría: {trabajo.categoria}
+                  </p>
+                  <div class="flex flex-wrap gap-3">
+                    {trabajo.tecnologias.map((stack) => (
+                      <Image
+                        src={`/Images/stacks/${stack}.svg`}
+                        alt={`Icono de ${stack}`}
+                        width={40}
+                        height={40}
+                        class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+                      />
+                    ))}
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <section>
+      <h3 class="text-4xl font-bold text-center mb-12 text-acento">
+        Mi Trayectoria
+      </h3>
+      <ol class="relative border-l-2 border-acento">
+        {
+          HISTORIAL.map((historial) => (
+            <li class="mb-10 ml-6">
+              <span class="absolute flex items-center justify-center size-6 bg-acento rounded-full -left-3 ring-4 ring-fondo" />
+              <time class="block mb-2 text-sm font-normal leading-none text-medio">
+                {historial.fecha}
+              </time>
+              <h4 class="text-lg font-semibold text-acento mb-2">
+                {historial.titulo}
+              </h4>
+              <p class="mb-4 text-base font-normal text-claro">
+                {historial.descripcion}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
   </main>
 </Layout>
