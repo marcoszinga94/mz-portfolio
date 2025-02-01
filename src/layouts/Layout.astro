@@ -1,6 +1,5 @@
 ---
 import ClientRouter from "astro/components/ClientRouter.astro";
-import SpeedInsights from "@vercel/speed-insights/astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -38,7 +37,6 @@ const { title, description } = Astro.props;
     <meta name="twitter:image" content="/Images/og-image.png" />
 
     <ClientRouter />
-    <SpeedInsights />
   </head>
   <body>
     <div class="grid grid-rows-[auto_1fr_auto]">
