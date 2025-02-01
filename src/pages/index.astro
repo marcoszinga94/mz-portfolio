@@ -1,4 +1,5 @@
 ---
+import Button from "../components/ui/button.astro";
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 
@@ -58,7 +59,9 @@ const HISTORIAL = [
   title="Marcos Zingaretti - Desarrollador Web Full-Stack"
   description="Desarrollador y Programador web de Páginas Web Personalizadas"
 >
-  <main class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12 mt-20">
+  <main
+    class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12 mt-20 min-h-[75vh]"
+  >
     <!-- Inicio -->
     <section
       id="inicio"
@@ -86,23 +89,13 @@ const HISTORIAL = [
           Desarrollador Web Full-Stack
         </h3>
         <div class="flex flex-row gap-4">
-          <a
+          <Button
             target="_blank"
-            href="https://www.linkedin.com/in/marcos-zingaretti/"
-            class="inline-block bg-acento text-claro text-xs lg:text-base font-medium px-6 py-3 rounded-full hover:bg-medio transition-colors duration-300 shadow-md animate-pulse"
+            url="https://www.linkedin.com/in/marcos-zingaretti/"
+            >Disponible para trabajar</Button
           >
-            <span class="flex items-center justify-center gap-2"
-              >Disponible para Trabajar</span
-            ></a
-          >
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/marcos-zingaretti/"
-            class="inline-block bg-acento text-claro text-xs lg:text-base font-medium px-6 py-3 rounded-full hover:bg-medio transition-colors duration-300 shadow-md animate-pulse"
-          >
-            <span class="flex items-center justify-center gap-2"
-              >Descargar CV</span
-            ></a
+          <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf"
+            >Descargar CV</Button
           >
         </div>
       </div>

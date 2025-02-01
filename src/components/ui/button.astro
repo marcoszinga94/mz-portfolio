@@ -1,0 +1,18 @@
+---
+export interface Props {
+  url: string;
+  target: string;
+}
+
+const { url, target } = Astro.props;
+---
+
+<a
+  target=`${target}`
+  href=`${url}`
+  class="inline-block bg-acento text-claro text-xs lg:text-base font-medium px-6 py-3 rounded-full hover:bg-medio transition-colors duration-300 shadow-md animate-pulse mx-auto"
+>
+  <p class="flex items-center justify-center gap-2">
+    <slot />
+  </p>
+</a>
