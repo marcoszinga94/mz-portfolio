@@ -8,7 +8,7 @@ const PROYECTOS = [
     enlace: "https://argentista.vercel.app",
     imagen: "argentista",
     descripcion:
-      "Aplicación interactiva que utiliza APIs para mostrar datos económicos.",
+      "Aplicación interactiva que utiliza APIs para mostrar datos económicos de Argentina.",
     tecnologias: ["Astro", "React", "TailwindCSS", "JavaScript"],
     caracteristicas: [
       "Integración con APIs",
@@ -21,14 +21,12 @@ const PROYECTOS = [
     nombre: "El Socorro SRL",
     enlace: "https://elsocorrosrl.com/",
     imagen: "elsocorro",
-    descripcion:
-      "Landing page con enfoque en el sector agrícola, optimizada para conversión.",
+    descripcion: "Landing page con enfoque en el sector agrícola",
     tecnologias: ["Astro", "TailwindCSS", "JavaScript"],
     repositorio: "https://github.com/marcoszinga94/LandingAgro",
     caracteristicas: [
-      "Diseño minimalista y elegante",
-      "Formulario de contacto funcional e integrado",
-      "Galería de imágenes interactiva y atractiva",
+      "Diseño tradicional y elegante",
+      "Diseño responsivo para diferentes dispositivos",
     ],
     categoria: "Landing Page",
   },
@@ -61,6 +59,7 @@ const HISTORIAL = [
   description="Desarrollador y Programador web de Páginas Web Personalizadas"
 >
   <main class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12 mt-20">
+    <!-- Inicio -->
     <section
       id="inicio"
       class="flex flex-col lg:flex-row items-center gap-8 m-auto min-h-[75vh]"
@@ -109,9 +108,68 @@ const HISTORIAL = [
       </div>
     </section>
 
+    <!-- Proyectos -->
+    <section id="proyectos" class="max-w-screen-md mx-auto">
+      <h3 class="text-4xl font-bold text-center mb-12 text-acento">
+        Proyectos Destacados
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          PROYECTOS.map((proyecto) => (
+            <a href={proyecto.enlace} target="_blank" class="group">
+              <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                <Image
+                  src={`/Images/paginas/${proyecto.imagen}.webp`}
+                  alt={proyecto.descripcion}
+                  width={1920}
+                  height={940}
+                  class="w-full h-48 object-cover"
+                />
+                <div class=" flex flex-col p-6 gap-8">
+                  <div class="flex flex-col gap-1">
+                    <h4 class="font-bold text-2xl text-acento">
+                      {proyecto.nombre}
+                    </h4>
+                    <p class="text-claro">{proyecto.descripcion}</p>
+                  </div>
+
+                  <div class="flex flex-col gap-1">
+                    <p class="font-semibold text-medio">
+                      Características destacadas:
+                    </p>
+                    <ul class="list-disc list-inside text-claro">
+                      {proyecto.caracteristicas.map((caracteristica) => (
+                        <li>{caracteristica}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class="flex flex-col gap-1">
+                    <p class="text-sm text-medio">Tecnologías usadas:</p>
+                    <div class="flex flex-wrap gap-3">
+                      {proyecto.tecnologias.map((stack) => (
+                        <Image
+                          src={`/Images/stacks/${stack}.svg`}
+                          alt={`Icono de ${stack}`}
+                          width={40}
+                          height={40}
+                          class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Sobre mi -->
     <section
       id="sobre-mi"
-      class="bg-gradient-to-br from-fondo to-oscuro rounded-3xl p-8 shadow-2xl"
+      class="bg-gradient-to-br from-fondo to-oscuro rounded-3xl p-8 shadow-2xl max-w-screen-md mx-auto"
     >
       <h3 class="text-4xl font-bold text-center mb-8 text-acento">Sobre mí</h3>
       <div
@@ -137,60 +195,8 @@ const HISTORIAL = [
       </div>
     </section>
 
-    <section id="proyectos">
-      <h3 class="text-4xl font-bold text-center mb-12 text-acento">
-        Proyectos Destacados
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {
-          PROYECTOS.map((proyecto) => (
-            <a href={proyecto.enlace} target="_blank" class="group">
-              <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
-                <Image
-                  src={`/Images/paginas/${proyecto.imagen}.webp`}
-                  alt={proyecto.descripcion}
-                  width={1920}
-                  height={940}
-                  class="w-full h-48 object-content"
-                />
-                <div class="p-6">
-                  <h4 class="font-bold text-2xl text-acento mb-2">
-                    {proyecto.nombre}
-                  </h4>
-                  <p class="text-claro mb-4">{proyecto.descripcion}</p>
-                  <div class="mb-4">
-                    <p class="font-semibold text-medio mb-2">
-                      Características destacadas:
-                    </p>
-                    <ul class="list-disc list-inside text-claro">
-                      {proyecto.caracteristicas.map((caracteristica) => (
-                        <li>{caracteristica}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <p class="text-sm text-medio mb-4">
-                    Categoría: {proyecto.categoria}
-                  </p>
-                  <div class="flex flex-wrap gap-3">
-                    {proyecto.tecnologias.map((stack) => (
-                      <Image
-                        src={`/Images/stacks/${stack}.svg`}
-                        alt={`Icono de ${stack}`}
-                        width={40}
-                        height={40}
-                        class="w-8 h-8 hover:scale-110 transition-transform duration-300"
-                      />
-                    ))}
-                  </div>
-                </div>
-              </article>
-            </a>
-          ))
-        }
-      </div>
-    </section>
-
-    <section id="trayectoria">
+    <!-- Trayectoria -->
+    <section id="trayectoria" class="max-w-screen-md mx-auto">
       <h3 class="text-4xl font-bold text-center mb-12 text-acento">
         Mi Trayectoria
       </h3>
