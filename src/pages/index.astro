@@ -20,12 +20,13 @@ const PROYECTOS = [
   },
   {
     nombre: "Tasador de Propiedades",
-    enlace: "https://cotizador-bottos.vercel.app/",
+    enlace: "https://argensador.vercel.app/",
     imagen: "tasador",
     descripcion:
       "Aplicación interactiva que se usa para cotizar/tasar propiedades.",
     tecnologias: ["Astro", "React", "Tailwind", "JavaScript"],
     caracteristicas: [
+      "Servicio privado para inmobiliaria con autenticación",
       "Calcular valor de propiedades con depreciacion",
       "Opción para guardar y gestionar tasaciones previas",
     ],
@@ -72,22 +73,22 @@ const HISTORIAL = [
   title="Marcos Zingaretti - Desarrollador Web Full-Stack"
   description="Desarrollador y Programador web de Páginas Web Personalizadas"
 >
-  <main
+  <mains
     class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12 mt-20 min-h-[75vh]"
   >
     <!-- Inicio -->
     <section
       id="inicio"
-      class="flex flex-col lg:flex-row items-center gap-8 m-auto min-h-[75vh]"
+      class="flex flex-col justify-center lg:flex-row items-center gap-8 m-auto min-h-[75vh]"
     >
       <Image
-        title="Foto de Marcos"
-        alt="Foto de Marcos Zingaretti"
-        src="/Images/selfie.webp"
+        title="Foto de Marcos Hover"
+        alt="Foto de Marcos Zingaretti, con estilo anime"
+        src="/Images/selfie-anime.webp"
         width={540}
         height={720}
         loading="eager"
-        class="rounded-full h-72 lg:h-96 w-auto object-cover"
+        class="rounded-full h-52 lg:h-60 w-auto object-cover"
       />
       <div class="flex flex-col gap-6 text-center lg:text-left">
         <div>
@@ -184,20 +185,30 @@ const HISTORIAL = [
         <p>
           Desde pequeño, la tecnología captó mi atención, y a los 15 años
           descubrí que escribir código era mucho más interesante que cualquier
-          otra cosa.
+          otra cosa, excepto por los videojuegos.
         </p>
 
         <p>
-          Comencé con pequeños proyectos, desentrañando cada línea como si fuera
-          un enigma. Con el tiempo, comprendí que la programación no es solo
-          sobre código, sino sobre crear soluciones.
+          Comencé con pequeños proyectos, intentando entender que hacía cada
+          línea. Con el tiempo, comprendí que la programación no es solo sobre
+          código, sino sobre crear soluciones.
         </p>
 
         <p>
           Hoy, con una sólida experiencia, desarrollo proyectos desde cero,
-          aplicando lo aprendido y evitando —en la medida de lo posible— los
-          errores que alguna vez me hicieron replantearme mi carrera.
+          aplicando lo aprendido y evitando —en lo posible— los errores.
         </p>
+        <p>Si te interesa trabajar conmigo:</p>
+        <div class="flex flex-row gap-4 m-auto">
+          <Button
+            target="_blank"
+            url="https://www.linkedin.com/in/marcos-zingaretti/"
+            >Disponible para trabajar</Button
+          >
+          <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf"
+            >Descargar CV</Button
+          >
+        </div>
       </div>
     </section>
 
@@ -225,5 +236,5 @@ const HISTORIAL = [
         }
       </ol>
     </section>
-  </main>
+  </mains>
 </Layout>
