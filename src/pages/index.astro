@@ -92,12 +92,14 @@ const HISTORIAL = [
       />
       <div class="flex flex-col gap-6 text-center lg:text-left">
         <div>
-          <h1 class="text-4xl lg:text-5xl text-acento font-bold mb-2">
+          <h1
+            class="flex flex-col text-4xl lg:text-5xl text-acento font-bold mb-2"
+          >
             Marcos Federico
+            <span class="text-6xl lg:text-7xl text-acento font-black"
+              >Zingaretti</span
+            >
           </h1>
-          <h2 class="text-6xl lg:text-7xl text-acento font-black">
-            Zingaretti
-          </h2>
         </div>
         <h3 class="text-xl lg:text-2xl text-claro font-semibold">
           Desarrollador Web Full-Stack
@@ -121,8 +123,65 @@ const HISTORIAL = [
         Proyectos Destacados
       </h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Primer proyecto destacado (horizontal) */}
         {
-          PROYECTOS.map((proyecto) => (
+          PROYECTOS.length > 0 && (
+            <a
+              href={PROYECTOS[0].enlace}
+              target="_blank"
+              class="group col-span-1 md:col-span-2 lg:col-span-2"
+            >
+              <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col md:flex-row min-h-96">
+                <Image
+                  src={`/Images/paginas/${PROYECTOS[0].imagen}.webp`}
+                  alt={PROYECTOS[0].descripcion}
+                  width={533}
+                  height={830}
+                  class="w-full md:w-1/2 object-contain object-center m-auto"
+                />
+
+                <div class=" flex flex-col p-6 gap-8 md:w-1/2 m-auto">
+                  <div class="flex flex-col gap-1">
+                    <h4 class="font-bold text-2xl text-acento">
+                      {PROYECTOS[0].nombre}
+                    </h4>
+                    <p class="text-claro">{PROYECTOS[0].descripcion}</p>
+                  </div>
+
+                  <div class="flex flex-col gap-1">
+                    <p class="font-semibold text-medio">
+                      Características destacadas:
+                    </p>
+                    <ul class="list-disc list-inside text-claro">
+                      {PROYECTOS[0].caracteristicas.map((caracteristica) => (
+                        <li>{caracteristica}</li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div class="flex flex-col gap-1">
+                    <p class="text-sm text-medio">Tecnologías usadas:</p>
+                    <div class="flex flex-wrap gap-3">
+                      {PROYECTOS[0].tecnologias.map((stack) => (
+                        <Image
+                          src={`/Images/stacks/${stack}.svg`}
+                          alt={`Icono de ${stack}`}
+                          width={40}
+                          height={40}
+                          class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </a>
+          )
+        }
+
+        {/* Resto de los proyectos */}
+        {
+          PROYECTOS.slice(1).map((proyecto) => (
             <a href={proyecto.enlace} target="_blank" class="group">
               <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
                 <Image
@@ -132,7 +191,7 @@ const HISTORIAL = [
                   height={830}
                   class="w-full h-52 object-cover object-top"
                 />
-                <div class=" flex flex-col p-6 gap-8">
+                <div class=" flex flex-col p-6 gap-8 m-auto">
                   <div class="flex flex-col gap-1">
                     <h4 class="font-bold text-2xl text-acento">
                       {proyecto.nombre}
