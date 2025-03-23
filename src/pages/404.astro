@@ -7,67 +7,59 @@ import Layout from "../layouts/Layout.astro";
   title="Página no encontrada"
   description="No encontramos la página que buscaste, intenta volver :)"
 >
-  <main
-    class="flex flex-col items-center justify-center relative overflow-hidden min-h-[75vh]"
+  <span
+    class="absolute w-[500px] h-[500px] bg-acento/10 rounded-full -top-32 -left-32 blur-xl animate-pulse"
   >
-    <span
-      class="absolute w-[500px] h-[500px] bg-acento/10 rounded-full -top-32 -left-32 blur-xl animate-pulse"
-    >
-    </span>
-    <span
-      class="absolute w-[400px] h-[400px] bg-acento/5 rounded-full -bottom-48 -right-48 blur-xl"
-    >
-    </span>
+  </span>
+  <span
+    class="absolute w-[400px] h-[400px] bg-acento/5 rounded-full -bottom-48 -right-48 blur-xl"
+  >
+  </span>
 
-    <div class="relative flex flex-col items-center gap-8 z-10">
-      <div class="relative">
-        <h1
-          class="text-acento text-9xl font-bold drop-shadow-lg animate-bounce"
-        >
-          404
-        </h1>
-        <div
-          class="absolute inset-0 bg-gradient-to-b from-acento/30 to-transparent mix-blend-overlay"
-        >
-        </div>
-      </div>
-
-      <div class="flex flex-col gap-6 text-center">
-        <p class="text-3xl font-medium text-gray-300 mx-auto">
-          ¡Ups! Navegando en territorio desconocido
-        </p>
-        <p class="text-lg text-gray-400 max-w-xl mx-auto">
-          La página que buscas se ha esfumado o quizás nunca existió.
-          <br />
-          ¿Por qué no volvemos a un lugar seguro?
-        </p>
-
-        <Button url="/" target="_self">Regresar al inicio</Button>
+  <div class="relative flex flex-col items-center gap-8 z-10">
+    <div class="relative">
+      <h1
+        class="text-acento text-9xl font-bold drop-shadow-lg animate-bounce py-1 px-2"
+      >
+        404
+      </h1>
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-acento/30 to-transparent mix-blend-overlay"
+      >
       </div>
     </div>
 
-    <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-      {
-        Array.from({ length: 45 }).map((_, i) => {
-          const duration = Math.random() * 3 + 2;
-          const delay = Math.random() * 5;
-          const startX = Math.random() * 100;
-          const startY = Math.random() * 100;
+    <div class="flex flex-col gap-6 text-center">
+      <p class="text-3xl font-medium text-gray-300 mx-auto">
+        ¡Ups! Navegando en territorio desconocido
+      </p>
+      <p class="text-lg text-gray-400 max-w-xl mx-auto text-pretty">
+        La página que buscas se ha esfumado o quizás nunca existió.
+      </p>
+    </div>
+  </div>
 
-          return (
-            <div
-              class="absolute h-0.5 w-12 bg-gradient-to-tl from-acento/90 to-transparent opacity-0 animate-meteor"
-              style={`
+  <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+    {
+      Array.from({ length: 45 }).map((_, i) => {
+        const duration = Math.random() * 3 + 2;
+        const delay = Math.random() * 5;
+        const startX = Math.random() * 100;
+        const startY = Math.random() * 100;
+
+        return (
+          <div
+            class="absolute h-0.5 w-12 bg-gradient-to-tl from-acento/90 to-transparent opacity-0 animate-meteor"
+            style={`
                 rotate: 42deg;
                 top: ${startY}%;
                 left: ${startX}%;
                 animation-delay: ${delay}s;
                 animation-duration: ${duration}s;
               `}
-            />
-          );
-        })
-      }
-    </div>
-  </main>
+          />
+        );
+      })
+    }
+  </div>
 </Layout>

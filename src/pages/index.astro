@@ -67,244 +67,239 @@ const HISTORIAL = [
       "Mi pasión por la programación comenzó en 2015, cuando inicié mi aprendizaje autodidacta. A través de plataformas como Stack Overflow, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
   },
 ];
-
-const isClient = Astro.request.headers.get("sec-fetch-mode") === "navigate";
 ---
 
 <Layout
   title="Marcos Zingaretti - Desarrollador Web"
   description="Desarrollador y Programador web de Páginas Web Personalizadas"
 >
-  <mains
-    class="flex flex-col gap-16 max-w-screen-xl mx-auto px-4 py-12 mt-20 min-h-[75vh]"
+  <!-- Inicio -->
+  <section
+    id="inicio"
+    class="section flex flex-col justify-center lg:flex-row items-center gap-8 m-auto min-h-[75vh] opacity-0 transform translate-y-20 transition-all duration-500"
   >
-    <!-- Inicio -->
-    <section
-      id="inicio"
-      class="section flex flex-col justify-center lg:flex-row items-center gap-8 m-auto min-h-[75vh] opacity-0 transform translate-y-20 transition-all duration-500"
-    >
-      <Image
-        title="Foto de Marcos Hover"
-        alt="Foto de Marcos Zingaretti, con estilo anime"
-        src="/Images/selfie.png"
-        width={540}
-        height={720}
-        loading="eager"
-        class="rounded-full h-64 lg:h-96 w-auto object-cover"
-      />
-      <div class="flex flex-col gap-6 text-center lg:text-left">
-        <div>
-          <h1
-            class="flex flex-col text-4xl lg:text-5xl text-acento font-bold mb-2"
+    <Image
+      title="Foto de Marcos Hover"
+      alt="Foto de Marcos Zingaretti, con estilo anime"
+      src="/Images/selfie.png"
+      width={540}
+      height={720}
+      loading="eager"
+      class="rounded-full h-64 lg:h-96 w-auto object-cover"
+    />
+    <div class="flex flex-col gap-6 text-center lg:text-left">
+      <div>
+        <h1
+          class="flex flex-col text-4xl lg:text-5xl text-acento font-bold mb-2"
+        >
+          Marcos Federico
+          <span class="text-6xl lg:text-7xl text-acento font-black"
+            >Zingaretti</span
           >
-            Marcos Federico
-            <span class="text-6xl lg:text-7xl text-acento font-black"
-              >Zingaretti</span
-            >
-          </h1>
-        </div>
-        <h2 class="text-xl lg:text-2xl text-claro font-semibold">
-          Desarrollador Web Full-Stack
-        </h2>
-        <div class="flex flex-row gap-4">
-          <Button
-            target="_blank"
-            url="https://www.linkedin.com/in/marcos-zingaretti/"
-            >Disponible para trabajar</Button
-          >
-          <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf"
-            >Descargar CV</Button
-          >
-        </div>
+        </h1>
       </div>
-    </section>
+      <h2 class="text-xl lg:text-2xl text-claro font-semibold">
+        Desarrollador Web Full-Stack
+      </h2>
+      <div class="flex flex-row gap-4 justify-center lg:justify-start">
+        <Button
+          target="_blank"
+          url="https://www.linkedin.com/in/marcos-zingaretti/"
+          >Disponible para trabajar</Button
+        >
+        <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf"
+          >Descargar CV</Button
+        >
+      </div>
+    </div>
+  </section>
 
-    <!-- Proyectos -->
-    <section
-      id="proyectos"
-      class="section max-w-screen-md mx-auto opacity-0 transform translate-y-20 transition-all duration-500"
-    >
-      <h3 class="text-4xl font-bold text-center mb-12 text-acento">
-        Proyectos Destacados
-      </h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {
-          PROYECTOS.length > 0 && (
-            <a
-              href={PROYECTOS[0].enlace}
-              target="_blank"
-              class="group col-span-1 md:col-span-2 lg:col-span-2"
-            >
-              <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col md:flex-row min-h-96">
-                <Image
-                  src={`/Images/paginas/${PROYECTOS[0].imagen}.webp`}
-                  alt={PROYECTOS[0].descripcion}
-                  width={533}
-                  height={830}
-                  class="w-full md:w-1/2 object-contain object-center m-auto"
-                />
+  <!-- Proyectos -->
+  <section
+    id="proyectos"
+    class="section max-w-screen-md mx-auto opacity-0 transform translate-y-20 transition-all duration-500"
+  >
+    <h3 class="text-4xl font-bold text-center mb-12 text-acento">
+      Proyectos Destacados
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        PROYECTOS.length > 0 && (
+          <a
+            href={PROYECTOS[0].enlace}
+            target="_blank"
+            class="group col-span-1 md:col-span-2 lg:col-span-2"
+          >
+            <article class="bg-fondo rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col md:flex-row min-h-96">
+              <Image
+                src={`/Images/paginas/${PROYECTOS[0].imagen}.webp`}
+                alt={PROYECTOS[0].descripcion}
+                width={533}
+                height={830}
+                class="w-full md:w-1/2 object-contain object-center m-auto rounded-l-3xl"
+              />
 
-                <div class=" flex flex-col p-6 gap-8 md:w-1/2 m-auto">
-                  <div class="flex flex-col gap-1">
-                    <h4 class="font-bold text-2xl text-acento">
-                      {PROYECTOS[0].nombre}
-                    </h4>
-                    <p class="text-claro">{PROYECTOS[0].descripcion}</p>
-                  </div>
+              <div class=" flex flex-col p-6 gap-8 md:w-1/2 m-auto">
+                <div class="flex flex-col gap-1">
+                  <h4 class="font-bold text-2xl text-acento">
+                    {PROYECTOS[0].nombre}
+                  </h4>
+                  <p class="text-claro">{PROYECTOS[0].descripcion}</p>
+                </div>
 
-                  <div class="flex flex-col gap-1">
-                    <p class="font-semibold text-medio">
-                      Características destacadas:
-                    </p>
-                    <ul class="list-disc list-inside text-claro">
-                      {PROYECTOS[0].caracteristicas.map((caracteristica) => (
-                        <li>{caracteristica}</li>
-                      ))}
-                    </ul>
-                  </div>
+                <div class="flex flex-col gap-1">
+                  <p class="font-semibold text-medio">
+                    Características destacadas:
+                  </p>
+                  <ul class="list-disc list-inside text-claro">
+                    {PROYECTOS[0].caracteristicas.map((caracteristica) => (
+                      <li>{caracteristica}</li>
+                    ))}
+                  </ul>
+                </div>
 
-                  <div class="flex flex-col gap-1">
-                    <p class="text-sm text-medio">Tecnologías usadas:</p>
-                    <div class="flex flex-wrap gap-3">
-                      {PROYECTOS[0].tecnologias.map((stack) => (
-                        <Image
-                          src={`/Images/stacks/${stack}.svg`}
-                          alt={`Icono de ${stack}`}
-                          width={40}
-                          height={40}
-                          class="w-8 h-8 hover:scale-110 transition-transform duration-300"
-                        />
-                      ))}
-                    </div>
+                <div class="flex flex-col gap-1">
+                  <p class="text-sm text-medio">Tecnologías usadas:</p>
+                  <div class="flex flex-wrap gap-3">
+                    {PROYECTOS[0].tecnologias.map((stack) => (
+                      <Image
+                        src={`/Images/stacks/${stack}.svg`}
+                        alt={`Icono de ${stack}`}
+                        width={40}
+                        height={40}
+                        class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+                      />
+                    ))}
                   </div>
                 </div>
-              </article>
-            </a>
-          )
-        }
+              </div>
+            </article>
+          </a>
+        )
+      }
 
-        {
-          PROYECTOS.slice(1).map((proyecto) => (
-            <a href={proyecto.enlace} target="_blank" class="group">
-              <article class="bg-fondo rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ease-out md:min-h-[650px] md:max-h-[700px]">
-                <Image
-                  src={`/Images/paginas/${proyecto.imagen}.webp`}
-                  alt={proyecto.descripcion}
-                  width={533}
-                  height={830}
-                  class="w-full h-52 object-cover object-top"
-                />
-                <div class=" flex flex-col p-6 gap-8 m-auto">
-                  <div class="flex flex-col gap-1">
-                    <h4 class="font-bold text-2xl text-acento">
-                      {proyecto.nombre}
-                    </h4>
-                    <p class="text-claro">{proyecto.descripcion}</p>
-                  </div>
+      {
+        PROYECTOS.slice(1).map((proyecto) => (
+          <a href={proyecto.enlace} target="_blank" class="group">
+            <article class="bg-fondo rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ease-out md:min-h-[650px] md:max-h-[700px]">
+              <Image
+                src={`/Images/paginas/${proyecto.imagen}.webp`}
+                alt={proyecto.descripcion}
+                width={533}
+                height={830}
+                class="w-full h-52 object-cover object-top rounded-t-3xl"
+              />
+              <div class=" flex flex-col p-6 gap-8 m-auto">
+                <div class="flex flex-col gap-1">
+                  <h4 class="font-bold text-2xl text-acento">
+                    {proyecto.nombre}
+                  </h4>
+                  <p class="text-claro">{proyecto.descripcion}</p>
+                </div>
 
-                  <div class="flex flex-col gap-1">
-                    <p class="font-semibold text-medio">
-                      Características destacadas:
-                    </p>
-                    <ul class="list-disc list-inside text-claro">
-                      {proyecto.caracteristicas.map((caracteristica) => (
-                        <li>{caracteristica}</li>
-                      ))}
-                    </ul>
-                  </div>
+                <div class="flex flex-col gap-1">
+                  <p class="font-semibold text-medio">
+                    Características destacadas:
+                  </p>
+                  <ul class="list-disc list-inside text-claro">
+                    {proyecto.caracteristicas.map((caracteristica) => (
+                      <li>{caracteristica}</li>
+                    ))}
+                  </ul>
+                </div>
 
-                  <div class="flex flex-col gap-1">
-                    <p class="text-sm text-medio">Tecnologías usadas:</p>
-                    <div class="flex flex-wrap gap-3">
-                      {proyecto.tecnologias.map((stack) => (
-                        <Image
-                          src={`/Images/stacks/${stack}.svg`}
-                          alt={`Icono de ${stack}`}
-                          width={40}
-                          height={40}
-                          class="w-8 h-8 hover:scale-110 transition-transform duration-300"
-                        />
-                      ))}
-                    </div>
+                <div class="flex flex-col gap-1">
+                  <p class="text-sm text-medio">Tecnologías usadas:</p>
+                  <div class="flex flex-wrap gap-3">
+                    {proyecto.tecnologias.map((stack) => (
+                      <Image
+                        src={`/Images/stacks/${stack}.svg`}
+                        alt={`Icono de ${stack}`}
+                        width={40}
+                        height={40}
+                        class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+                      />
+                    ))}
                   </div>
                 </div>
-              </article>
-            </a>
-          ))
-        }
-      </div>
-    </section>
+              </div>
+            </article>
+          </a>
+        ))
+      }
+    </div>
+  </section>
 
-    <!-- Sobre mi -->
-    <section
-      id="sobre-mi"
-      class="section max-w-screen-md mx-auto opacity-0 transform translate-y-20 transition-all duration-500"
+  <!-- Sobre mi -->
+  <section
+    id="sobre-mi"
+    class="section max-w-screen-md mx-auto opacity-0 transform translate-y-20 transition-all duration-500"
+  >
+    <h3 class="text-4xl font-bold text-center mb-8 text-acento">Sobre mí</h3>
+    <div
+      class="bg-gradient-to-br from-fondo to-oscuro rounded-3xl p-8 shadow-2xl flex flex-col gap-6 text-lg text-claro text-center text-pretty max-w-3xl mx-auto"
     >
-      <h3 class="text-4xl font-bold text-center mb-8 text-acento">Sobre mí</h3>
-      <div
-        class="bg-gradient-to-br from-fondo to-oscuro rounded-3xl p-8 shadow-2xl flex flex-col gap-6 text-lg text-claro text-center max-w-3xl mx-auto"
-      >
-        <p>
-          Desde pequeño, la tecnología captó mi atención, y a los 15 años
-          descubrí que escribir código era mucho más interesante que cualquier
-          otra cosa, excepto por los videojuegos.
-        </p>
+      <p>
+        Desde pequeño, la tecnología captó mi atención, y a los 15 años descubrí
+        que escribir código era mucho más interesante que cualquier otra cosa,
+        excepto por los videojuegos.
+      </p>
 
-        <p>
-          Comencé con pequeños proyectos, intentando entender que hacía cada
-          línea. Con el tiempo, comprendí que la programación no es solo sobre
-          código, sino sobre crear soluciones.
-        </p>
+      <p>
+        Comencé con pequeños proyectos, intentando entender que hacía cada
+        línea. Con el tiempo, comprendí que la programación no es solo sobre
+        código, sino sobre crear soluciones.
+      </p>
 
-        <p>
-          Hoy, con una sólida experiencia, desarrollo proyectos desde cero,
-          aplicando lo aprendido y evitando —en lo posible— los errores.
-        </p>
-        <p>Si te interesa trabajar conmigo:</p>
-        <div class="flex flex-row gap-4 m-auto">
-          <Button
-            target="_blank"
-            url="https://www.linkedin.com/in/marcos-zingaretti/"
-            >Disponible para trabajar</Button
-          >
-          <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf"
-            >Descargar CV</Button
-          >
-        </div>
+      <p>
+        Hoy, con una sólida experiencia, desarrollo proyectos desde cero,
+        aplicando lo aprendido y evitando —en lo posible— los errores.
+      </p>
+      <p>Si te interesa trabajar conmigo:</p>
+      <div class="flex flex-row gap-4 m-auto">
+        <Button
+          target="_blank"
+          url="https://www.linkedin.com/in/marcos-zingaretti/"
+          >Disponible para trabajar</Button
+        >
+        <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf"
+          >Descargar CV</Button
+        >
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Trayectoria -->
-    <section
-      id="trayectoria"
-      class="section max-w-screen-md mx-auto opacity-0 transform translate-y-20 transition-all duration-500"
-    >
-      <h3 class="text-4xl font-bold text-center mb-12 text-acento">
-        Mi Trayectoria
-      </h3>
-      <ol class="relative border-l-2 border-acento">
-        {
-          HISTORIAL.map((historial) => (
-            <li class="mb-10 ml-6">
-              <span class="absolute flex items-center justify-center size-6 bg-acento rounded-full -left-3" />
-              <time class="block mb-2 text-sm font-normal leading-none text-medio">
-                {historial.fecha}
-              </time>
-              <h4 class="text-lg font-semibold text-acento mb-2">
-                {historial.titulo}
-              </h4>
-              <p class="mb-4 text-base font-normal text-claro">
-                {historial.descripcion}
-              </p>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-  </mains>
+  <!-- Trayectoria -->
+  <section
+    id="trayectoria"
+    class="section max-w-screen-md mx-auto opacity-0 transform translate-y-20 transition-all duration-500"
+  >
+    <h3 class="text-4xl font-bold text-center mb-12 text-acento">
+      Mi Trayectoria
+    </h3>
+    <ol class="relative border-l-2 border-acento">
+      {
+        HISTORIAL.map((historial) => (
+          <li class="mb-10 ml-6">
+            <span class="absolute flex items-center justify-center size-6 bg-acento rounded-full -left-3" />
+            <time class="block mb-2 text-sm font-normal leading-none text-medio">
+              {historial.fecha}
+            </time>
+            <h4 class="text-lg font-semibold text-acento mb-2">
+              {historial.titulo}
+            </h4>
+            <p class="mb-4 text-base font-normal text-claro">
+              {historial.descripcion}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
 </Layout>
 
 <style>
+  /* Estilos para la animación de aparición */
   .section.is-visible {
     opacity: 1;
     transform: translateY(0);
