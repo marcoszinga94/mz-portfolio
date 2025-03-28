@@ -1,5 +1,4 @@
 ---
-import ClientRouter from "astro/components/ClientRouter.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
@@ -35,47 +34,43 @@ const { title, description } = Astro.props;
     <meta name="twitter:title" content=`${title}` />
     <meta name="twitter:description" content=`${description}` />
     <meta name="twitter:image" content="/Images/og-image.png" />
-
-    <ClientRouter />
   </head>
-  <body>
-    <div class="grid grid-rows-[auto_1fr_auto]">
-      <Header />
-      <main
-        class="flex flex-col items-center justify-center relative overflow-hidden min-h-[75vh] mt-16 gap-32 px-4"
-      >
-        <slot />
-      </main>
-      <Footer />
-    </div>
-
-    <style is:global>
-      ::-webkit-scrollbar {
-        width: 6px;
-        background-color: #000;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        background-color: #bb0000;
-      }
-
-      html {
-        font-family: "Fira Code", monospace;
-        scroll-behavior: smooth;
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-      }
-
-      body {
-        overflow-x: hidden;
-        background-image: linear-gradient(to top, #000000 0%, #1e2533 100%);
-        background-attachment: fixed;
-      }
-    </style>
+  <body class="grid grid-rows-[auto_1fr_auto]">
+    <Header />
+    <main
+      class="flex flex-col items-center justify-center relative overflow-hidden min-h-[75vh] mt-16 gap-32 px-4"
+    >
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
+
+<style is:global>
+  ::-webkit-scrollbar {
+    width: 6px;
+    background-color: #000;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: #bb0000;
+  }
+
+  html {
+    font-family: "Fira Code", monospace;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    overflow-x: hidden;
+    background-image: linear-gradient(to top, #000000 0%, #1e2533 100%);
+    background-attachment: fixed;
+  }
+</style>
