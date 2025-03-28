@@ -1,0 +1,14 @@
+---
+import Button from "./button.astro";
+
+const { class: additionalClasses = "" } = Astro.props; // Ejemplo Astro
+---
+
+<div class:list={["flex flex-row gap-4", additionalClasses]}>
+  <Button target="_blank" url="https://www.linkedin.com/in/marcos-zingaretti/">
+    Disponible para trabajar
+  </Button>
+  <Button target="_blank" url="/CV_Marcos_Zingaretti.pdf">
+    Descargar CV
+  </Button>
+</div>

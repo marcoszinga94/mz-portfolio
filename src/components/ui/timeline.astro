@@ -1,0 +1,19 @@
+---
+const { item } = Astro.props;
+---
+
+<li class="mb-10 ml-4">
+  <span
+    class="absolute flex items-center justify-center size-6 bg-acento rounded-full -left-3 ring-4 ring-white dark:ring-gray-900"
+  >
+  </span>
+  <time class="block mb-1 text-sm font-normal leading-none text-medio">
+    {item.fecha}
+  </time>
+  <h4 class="text-lg font-semibold text-acento mb-1.5">
+    {item.titulo}
+  </h4>
+  <p class="text-base font-normal text-claro">
+    {item.descripcion}
+  </p>
+</li>

@@ -1,0 +1,76 @@
+---
+const { proyecto, isFeatured } = Astro.props;
+
+const linkClass = isFeatured ? "col-span-1 md:col-span-2" : "";
+const articleClass = isFeatured
+  ? "md:flex-row min-h-96"
+  : "md:min-h-[650px] md:max-h-[700px]";
+const imageContainerClass = isFeatured ? "md:w-1/2 md:h-auto" : "h-52";
+const imageClass = "w-full h-full object-cover object-top";
+const contentClass = isFeatured ? "md:w-1/2" : "";
+---
+
+<a
+  href={proyecto.enlace}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={["group block", linkClass]}
+>
+  <article
+    class:list={[
+      "bg-fondo rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 ease-out flex flex-col",
+      articleClass,
+    ]}
+  >
+    <div class:list={["w-full overflow-hidden", imageContainerClass]}>
+      <img
+        src={`/Images/paginas/${proyecto.imagen}.webp`}
+        alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
+        width={isFeatured ? 533 : 533}
+        height={isFeatured ? 830 : 830}
+        loading="lazy"
+        class={imageClass}
+      />
+    </div>
+
+    <div class:list={["flex flex-col p-6 gap-8 flex-grow", contentClass]}>
+      <div class="flex flex-col gap-1">
+        <h4 class="font-bold text-2xl text-acento">{proyecto.nombre}</h4>
+        <p class="text-claro">{proyecto.descripcion}</p>
+      </div>
+
+      {
+        proyecto.caracteristicas && proyecto.caracteristicas.length > 0 && (
+          <div class="flex flex-col gap-1">
+            <p class="font-semibold text-medio">Características destacadas:</p>
+            <ul class="list-disc list-inside text-claro space-y-1">
+              {proyecto.caracteristicas.map((caracteristica: string) => (
+                <li>{caracteristica}</li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+
+      {
+        proyecto.tecnologias && proyecto.tecnologias.length > 0 && (
+          <div class="flex flex-col gap-2 mt-auto pt-4">
+            <p class="text-sm text-medio">Tecnologías usadas:</p>
+            <div class="flex flex-wrap gap-3">
+              {proyecto.tecnologias.map((stack: string) => (
+                <img
+                  src={`/Images/stacks/${stack}.svg`}
+                  alt={`Icono de ${stack}`}
+                  width={32}
+                  height={32}
+                  loading="lazy"
+                  class="w-8 h-8 hover:scale-110 transition-transform duration-300"
+                />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </article>
+</a>
