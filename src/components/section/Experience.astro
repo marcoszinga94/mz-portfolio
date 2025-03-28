@@ -1,0 +1,41 @@
+---
+import TimelineItem from "../ui/timeline.astro";
+
+const HISTORIAL = [
+  {
+    fecha: "...Actualidad",
+    titulo: "Desarrollador Web Full-Stack",
+    descripcion:
+      "Comprometido con la mejora continua mediante proyectos independientes, me esfuerzo a diario por ofrecer soluciones innovadoras y de calidad en el dinámico entorno del desarrollo web.",
+  },
+  {
+    fecha: "2020 - 2021",
+    titulo: "Argentina Programa 2.0 - Formalización de Estudios",
+    descripcion:
+      "Avancé en mi trayectoria profesional formalizando mis estudios en programación a través del programa Argentina Programa 2.0. Durante esta etapa, adquirí competencias avanzadas trabajando con frameworks como Angular y optimizando el uso de diversas tecnologías.",
+  },
+  {
+    fecha: "2009 - 2020",
+    titulo: "Autodidacta en Programación",
+    descripcion:
+      "Mi pasión por la programación comenzó en 2015, cuando inicié mi aprendizaje autodidacta. A través de plataformas como Stack Overflow, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
+  },
+];
+---
+
+<section id="trayectoria" class="max-w-screen-md mx-auto">
+  <h3 class="text-4xl font-bold text-center mb-12 text-acento">
+    Mi Trayectoria
+  </h3>
+  {
+    HISTORIAL && HISTORIAL.length > 0 ? (
+      <ol class="relative border-l-2 border-acento ml-3 pl-3">
+        {HISTORIAL.map((item: any) => (
+          <TimelineItem item={item} key={item.id || item.titulo} />
+        ))}
+      </ol>
+    ) : (
+      <p class="text-center text-claro">Mi historial se está actualizando.</p>
+    )
+  }
+</section>
