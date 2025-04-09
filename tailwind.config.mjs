@@ -19,7 +19,7 @@ export default {
 				claro: '#FFF0F0', // Fair pink
 
 				//NEGROS
-				oscuro: '#000000', // Negro
+				oscuro: '#121212', // Negro
 
 				//AZULADOS
 				fondo: "#31415B", // Rhino
