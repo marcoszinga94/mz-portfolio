@@ -1,4 +1,6 @@
 ---
+import Image from "astro/components/Image.astro";
+
 const { proyecto, isFeatured } = Astro.props;
 
 const linkClass = isFeatured ? "col-span-1 md:col-span-2" : "";
@@ -23,7 +25,7 @@ const contentClass = isFeatured ? "md:w-1/2" : "";
     ]}
   >
     <div class:list={["w-full overflow-hidden", imageContainerClass]}>
-      <img
+      <Image
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
         width={isFeatured ? 533 : 533}

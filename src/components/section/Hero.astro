@@ -1,4 +1,5 @@
 ---
+import Image from "astro/components/Image.astro";
 import CallToActionButtons from "../ui/CallToActionButtons.astro";
 ---
 
@@ -6,7 +7,7 @@ import CallToActionButtons from "../ui/CallToActionButtons.astro";
   id="inicio"
   class="flex flex-col justify-center lg:flex-row items-center gap-8 m-auto min-h-[75vh]"
 >
-  <img
+  <Image
     alt="Foto de Marcos Zingaretti, con estilo anime"
     src={"/Images/selfie.png"}
     width={540}
@@ -14,12 +15,10 @@ import CallToActionButtons from "../ui/CallToActionButtons.astro";
     loading="eager"
     class="rounded-full h-64 lg:h-96 w-auto object-cover flex-shrink-0"
   />
-  <div class="flex flex-col gap-6 text-center lg:text-left">
-    <h1 class="flex flex-col text-4xl lg:text-5xl text-acento font-bold mb-2">
-      Marcos Federico
-      <span class="text-6xl lg:text-7xl text-acento font-black">
-        Zingaretti
-      </span>
+  <div class="flex flex-col gap-4 text-center lg:text-left">
+    <h1 class="flex flex-col text-acento">
+      <span class="text-4xl lg:text-5xl font-bold mb-2">Marcos Federico</span>
+      <span class="text-6xl lg:text-7xl font-black">Zingaretti</span>
     </h1>
     <h2 class="text-xl lg:text-2xl text-claro font-semibold">
       Desarrollador Web Full-Stack
