@@ -1,41 +1,62 @@
 ---
-import TimelineItem from "../ui/timeline.astro";
-
-const HISTORIAL = [
-  {
-    fecha: "...Actualidad",
-    titulo: "Desarrollador Web Full-Stack",
-    descripcion:
-      "Comprometido con la mejora continua mediante proyectos independientes, me esfuerzo a diario por ofrecer soluciones innovadoras y de calidad en el dinámico entorno del desarrollo web.",
-  },
-  {
-    fecha: "2020 - 2021",
-    titulo: "Argentina Programa 2.0 - Formalización de Estudios",
-    descripcion:
-      "Avancé en mi trayectoria profesional formalizando mis estudios en programación a través del programa Argentina Programa 2.0. Durante esta etapa, adquirí competencias avanzadas trabajando con frameworks como Angular y optimizando el uso de diversas tecnologías.",
-  },
-  {
-    fecha: "2009 - 2020",
-    titulo: "Autodidacta en Programación",
-    descripcion:
-      "Mi pasión por la programación comenzó en 2015, cuando inicié mi aprendizaje autodidacta. A través de plataformas como Stack Overflow, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
-  },
-];
+import Timeline from "../ui/timeline.astro";
+import data from "../../data/cv";
 ---
 
-<section id="trayectoria" class="max-w-screen-md mx-auto">
-  <h3 class="text-4xl font-bold text-center mb-12 text-acento">
-    Mi Trayectoria
-  </h3>
-  {
-    HISTORIAL && HISTORIAL.length > 0 ? (
-      <ol class="relative border-l-2 border-acento ml-3 pl-3">
-        {HISTORIAL.map((item: any) => (
-          <TimelineItem item={item} key={item.id || item.titulo} />
-        ))}
-      </ol>
-    ) : (
-      <p class="text-center text-claro">Mi historial se está actualizando.</p>
-    )
-  }
+<section id="trayectoria" class="relative py-20 overflow-hidden">
+  <div class="container mx-auto px-6 relative">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2
+          class="text-4xl font-bold inline-block bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
+        >
+          Mi Trayectoria
+        </h2>
+        <p class="mt-4 text-claro/70">
+          Un recorrido por mi experiencia profesional y formación académica
+        </p>
+      </div>
+
+      <div class="relative">
+        <!-- Decorative line -->
+        <div
+          class="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-acento via-medio to-transparent"
+        >
+        </div>
+
+        <ul class="relative space-y-8">
+          {
+            data.experiencias.map((experiencia) => (
+              <Timeline item={experiencia} />
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-20 text-center">
+      <a
+        href="/CV_Marcos_Zingaretti.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 text-claro bg-gradient-to-r from-acento to-medio rounded-full transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-acento/20"
+      >
+        <span>Descargar CV</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+          ></path>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>

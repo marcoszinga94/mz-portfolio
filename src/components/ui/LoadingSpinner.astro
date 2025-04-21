@@ -1,0 +1,58 @@
+---
+interface Props {
+  size?: "sm" | "md" | "lg";
+  color?: string;
+  thickness?: number;
+  speed?: number;
+  label?: string;
+  class?: string;
+}
+
+const {
+  size = "md",
+  color = "currentColor",
+  thickness = 2,
+  speed = 0.75,
+  label = "Cargando...",
+  class: className,
+} = Astro.props;
+
+const sizes: Record<Required<Props>["size"], string> = {
+  sm: "w-4 h-4",
+  md: "w-8 h-8",
+  lg: "w-12 h-12",
+};
+---
+
+<div class:list={["relative", className]} role="status" aria-label={label}>
+  <div
+    class:list={["animate-spin rounded-full border-t-transparent", sizes[size]]}
+    style={{
+      borderWidth: `${thickness}px`,
+      borderStyle: "solid",
+      borderColor: `${color}40`,
+      borderTopColor: color,
+      animationDuration: `${speed}s`,
+    }}
+  >
+  </div>
+
+  {label && <span class="sr-only">{label}</span>}
+</div>
+
+<style>
+  @media (prefers-reduced-motion: reduce) {
+    .animate-spin {
+      animation: none !important;
+    }
+
+    /* Alternativa accesible cuando las animaciones están desactivadas */
+    div[role="status"]::after {
+      content: "⋯";
+      display: block;
+      text-align: center;
+      font-size: 1.5em;
+      line-height: 1;
+    }
+  }
+</style>

@@ -1,85 +1,186 @@
-<header class="fixed top-0 right-0 left-0 bg-oscuro z-50">
+---
+import type { MenuItem } from "../types";
+
+const menuItems: MenuItem[] = [
+  { name: "Inicio", url: "#inicio" },
+  { name: "Proyectos", url: "#proyectos" },
+  { name: "Sobre mí", url: "#sobre-mi" },
+  { name: "Trayectoria", url: "#trayectoria" },
+];
+---
+
+<header class="fixed top-0 right-0 left-0 z-50 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center py-4">
-      <div class="text-center flex flex-col">
-        <span class="text-xl text-acento">Marcos F. Zingaretti</span>
-        <span class="hidden lg:block text-lg font-semibold text-acento">
-          Desarrollador Web
-        </span>
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="relative z-10">
+        <a href="#inicio" class="group flex flex-col">
+          <span
+            class="text-xl text-acento font-bold tracking-tight group-hover:text-medio transition-colors"
+          >
+            Marcos F. Zingaretti
+          </span>
+          <span
+            class="hidden lg:block text-sm font-medium text-claro/70 group-hover:text-claro transition-colors"
+          >
+            Desarrollador Web
+          </span>
+        </a>
       </div>
 
-      <nav>
-        <div class="flex lg:hidden">
-          <button
-            id="menuButton"
-            aria-label="Abrir menú"
-            class="text-acento hover:text-medio focus:outline-none"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              class="size-6"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
+      <!-- Mobile menu button -->
+      <div class="lg:hidden">
+        <button
+          id="menuButton"
+          aria-label="Menú de navegación"
+          class="relative z-10 p-2 text-acento hover:text-medio focus:outline-none transition-colors"
+        >
+          <div class="w-6 h-5 flex flex-col justify-between">
+            <span
+              class="w-full h-0.5 bg-current transform transition-all duration-300"
+              id="line1"></span>
+            <span
+              class="w-full h-0.5 bg-current transform transition-all duration-300"
+              id="line2"></span>
+            <span
+              class="w-full h-0.5 bg-current transform transition-all duration-300"
+              id="line3"></span>
+          </div>
+        </button>
+      </div>
 
-        <ul id="menuItems" class="hidden lg:flex lg:flex-row gap-4">
-          <a
-            class="p-2 text-acento hover:text-medio font-medium transition-colors duration-300"
-            href="#inicio">Inicio</a
-          >
-          <a
-            class="p-2 text-acento hover:text-medio font-medium transition-colors duration-300"
-            href="#proyectos">Proyectos</a
-          >
-          <a
-            class="p-2 text-acento hover:text-medio font-medium transition-colors duration-300"
-            href="#sobre-mi">Sobre mí</a
-          >
-          <a
-            class="p-2 text-acento hover:text-medio font-medium transition-colors duration-300"
-            href="#trayectoria">Trayectoria</a
-          >
+      <!-- Desktop navigation -->
+      <nav class="hidden lg:block">
+        <ul class="flex items-center gap-6">
+          {
+            menuItems.map(({ name, url }) => (
+              <li>
+                <a
+                  href={url}
+                  class="relative py-2 text-claro/70 hover:text-acento transition-colors duration-300 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-acento before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100"
+                >
+                  {name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Mobile navigation -->
+      <nav
+        id="mobileMenu"
+        class="fixed inset-0 bg-fondo/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 lg:hidden"
+      >
+        <ul
+          class="h-full flex flex-col items-center justify-center gap-8 text-xl"
+        >
+          {
+            menuItems.map(({ name, url }) => (
+              <li>
+                <a
+                  href={url}
+                  class="text-claro hover:text-acento transition-colors duration-300"
+                >
+                  {name}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
     </div>
   </div>
 </header>
 
-<script>
-  const menuButton = document.getElementById("menuButton");
-  const menuItems = document.getElementById("menuItems");
-
-  if (menuButton && menuItems) {
-    menuButton.addEventListener("click", () => {
-      menuItems.classList.toggle("hidden");
-      menuItems.classList.toggle("flex");
-      menuItems.classList.toggle("flex-col");
-      menuItems.classList.toggle("absolute");
-      menuItems.classList.toggle("top-16");
-      menuItems.classList.toggle("right-0");
-      menuItems.classList.toggle("bg-black");
-      menuItems.classList.toggle("p-4");
-      menuItems.classList.toggle("rounded-lg");
-    });
-  }
-</script>
-
 <style>
-  @media (max-width: 50%) {
-    #menuItems {
-      width: 100%;
-    }
-    #menuItems.flex {
-      display: flex;
-    }
+  header {
+    transition:
+      transform 0.3s ease-in-out,
+      background-color 0.3s ease-in-out;
+  }
+
+  header.scrolled {
+    @apply shadow-lg shadow-fondo/10;
+    background-color: rgba(26, 26, 46, 0.8);
+  }
+
+  header.hidden {
+    transform: translateY(-100%);
   }
 </style>
+
+<script>
+  interface HeaderElements {
+    menuButton: HTMLElement | null;
+    mobileMenu: HTMLElement | null;
+    line1: HTMLElement | null;
+    line2: HTMLElement | null;
+    line3: HTMLElement | null;
+  }
+
+  const elements: HeaderElements = {
+    menuButton: document.getElementById("menuButton"),
+    mobileMenu: document.getElementById("mobileMenu"),
+    line1: document.getElementById("line1"),
+    line2: document.getElementById("line2"),
+    line3: document.getElementById("line3"),
+  };
+
+  let isOpen = false;
+
+  function toggleMenu() {
+    isOpen = !isOpen;
+    const { mobileMenu, line1, line2, line3 } = elements;
+
+    if (isOpen) {
+      mobileMenu?.classList.remove("translate-x-full");
+      line1?.classList.add("rotate-45", "translate-y-2");
+      line2?.classList.add("opacity-0");
+      line3?.classList.add("-rotate-45", "-translate-y-2");
+      document.body.style.overflow = "hidden";
+    } else {
+      mobileMenu?.classList.add("translate-x-full");
+      line1?.classList.remove("rotate-45", "translate-y-2");
+      line2?.classList.remove("opacity-0");
+      line3?.classList.remove("-rotate-45", "-translate-y-2");
+      document.body.style.overflow = "";
+    }
+  }
+
+  elements.menuButton?.addEventListener("click", toggleMenu);
+
+  // Cerrar menú al hacer click en un enlace
+  document.querySelectorAll("#mobileMenu a").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isOpen) toggleMenu();
+    });
+  });
+
+  // Ajustar header al hacer scroll
+  let lastScroll = 0;
+  const header = document.querySelector("header");
+  const scrollThreshold = 100;
+
+  function handleScroll() {
+    const currentScroll = window.pageYOffset;
+
+    // Añadir/remover clase scrolled
+    if (currentScroll > 0) {
+      header?.classList.add("scrolled");
+    } else {
+      header?.classList.remove("scrolled");
+    }
+
+    // Ocultar/mostrar header
+    if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+      header?.classList.add("hidden");
+    } else {
+      header?.classList.remove("hidden");
+    }
+
+    lastScroll = currentScroll;
+  }
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+</script>

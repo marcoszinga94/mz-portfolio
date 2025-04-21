@@ -1,70 +1,101 @@
 ---
 import Card from "../ui/card.astro";
-
-const PROYECTOS = [
-  {
-    nombre: "Argentista",
-    enlace: "https://argentista.vercel.app",
-    imagen: "argentista",
-    descripcion:
-      "Aplicación interactiva que utiliza APIs para mostrar datos económicos de Argentina.",
-    tecnologias: ["Astro", "React", "Tailwind", "JavaScript"],
-    caracteristicas: [
-      "Integración con APIs",
-      "Visualización de datos mediante gráficas",
-      "Diseño responsivo adaptado a diversos dispositivos",
-    ],
-    categoria: "Economía",
-  },
-  {
-    nombre: "Tasador de Propiedades",
-    enlace: "https://argensador.vercel.app/",
-    imagen: "tasador",
-    descripcion:
-      "Aplicación interactiva que se usa para cotizar/tasar propiedades, de uso privado.",
-    tecnologias: ["Astro", "React", "Tailwind", "JavaScript"],
-    caracteristicas: [
-      "Servicio privado para inmobiliaria con autenticación",
-      "Calcular valor de propiedades con depreciacion",
-      "Opción para guardar y gestionar tasaciones previas",
-    ],
-    categoria: "Herramientas",
-  },
-  {
-    nombre: "El Socorro SRL",
-    enlace: "https://elsocorrosrl.com/",
-    imagen: "elsocorro",
-    descripcion:
-      "Landing page diseñada para una empresa de servicios agrícolas. Destinada a presentar la empresa y contactar.",
-    tecnologias: ["Astro", "Tailwind", "JavaScript"],
-    repositorio: "https://github.com/marcoszinga94/LandingAgro",
-    caracteristicas: [
-      "Diseño tradicional y elegante",
-      "Diseño responsivo para diferentes dispositivos",
-      "Formulario de contacto para consultas",
-    ],
-    categoria: "Landing Page",
-  },
-];
+import data from "../../data/cv";
 ---
 
-<section id="proyectos" class="max-w-screen-md mx-auto">
-  <h3 class="text-4xl font-bold text-center mb-12 text-acento">
-    Proyectos Destacados
-  </h3>
-  {
-    PROYECTOS && PROYECTOS.length > 0 ? (
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {PROYECTOS.map((proyecto: any, index: any) => (
-          <Card
-            proyecto={proyecto}
-            isFeatured={index === 0}
-            key={proyecto.nombre}
-          />
-        ))}
-      </div>
-    ) : (
-      <p class="text-center text-claro">No hay proyectos para mostrar.</p>
-    )
-  }
+<section id="proyectos" class="relative py-20 overflow-hidden">
+  <div class="container mx-auto px-6 relative">
+    <div class="text-center mb-16">
+      <h2
+        class="text-4xl font-bold inline-block bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
+      >
+        Proyectos Destacados
+      </h2>
+      <p class="mt-4 text-claro/70 max-w-2xl mx-auto">
+        Explora algunos de mis trabajos más recientes donde combino diseño
+        moderno con funcionalidad
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      {
+        data.proyectos.map((proyecto, index) => (
+          <div data-aos="fade-up" data-aos-delay={index * 100}>
+            <Card proyecto={proyecto} />
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="text-center mt-16">
+      <a
+        href="https://github.com/tu-usuario"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 text-claro/70 hover:text-acento transition-colors duration-300"
+      >
+        <span>Ver más proyectos en GitHub</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
 </section>
+
+<style>
+  [data-aos] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  [data-aos].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  [data-aos][data-aos-delay] {
+    transition-delay: 0s;
+  }
+
+  [data-aos][data-aos-delay].aos-animate {
+    transition-delay: var(--aos-delay);
+  }
+</style>
+
+<script>
+  // Intersection Observer for animation on scroll
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("aos-animate");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll("[data-aos]").forEach((element) => {
+    const delay = element.getAttribute("data-aos-delay");
+    if (delay) {
+      (element as HTMLElement).style.setProperty("--aos-delay", `${delay}ms`);
+    }
+    observer.observe(element);
+  });
+</script>

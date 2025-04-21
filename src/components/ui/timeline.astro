@@ -1,19 +1,127 @@
 ---
+import type { TimelineItem } from "../../types";
+
+interface Props {
+  item: TimelineItem;
+}
+
 const { item } = Astro.props;
 ---
 
-<li class="mb-10 ml-4">
-  <span
-    class="absolute flex items-center justify-center size-6 bg-acento rounded-full -left-3 ring-4 ring-white dark:ring-gray-900"
+<li class="relative pl-8 group" data-aos="fade-up">
+  <!-- Line connector -->
+  <div class="absolute left-0 top-0 -translate-x-1/2 h-full">
+    <div
+      class="h-full w-0.5 bg-gradient-to-b from-acento via-medio/50 to-transparent"
+    >
+    </div>
+  </div>
+
+  <!-- Dot indicator -->
+  <div
+    class="absolute left-0 top-7 -translate-x-1/2 transform transition-all duration-500 group-hover:scale-110"
   >
-  </span>
-  <time class="block mb-1 text-sm font-normal leading-none text-medio">
-    {item.fecha}
-  </time>
-  <h4 class="text-lg font-semibold text-acento mb-1.5">
-    {item.titulo}
-  </h4>
-  <p class="text-base font-normal text-claro">
-    {item.descripcion}
-  </p>
+    <div class="relative w-4 h-4">
+      <!-- Outer ring -->
+      <div
+        class="absolute inset-0 rounded-full bg-gradient-to-r from-acento to-medio opacity-30 animate-pulse"
+      >
+      </div>
+
+      <!-- Inner dot -->
+      <div
+        class="absolute inset-1 rounded-full bg-acento group-hover:bg-medio transition-colors duration-300"
+      >
+      </div>
+
+      <!-- Ping animation -->
+      <div
+        class="absolute inset-0 rounded-full bg-acento animate-ping opacity-20"
+      >
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="py-6 pl-6 group-hover:pl-8 transition-all duration-300">
+    <time
+      class="block mb-2 text-sm font-medium tracking-wider bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
+    >
+      {item.fecha}
+    </time>
+
+    <h3
+      class="text-xl font-bold text-claro mb-3 group-hover:text-acento transition-colors duration-300"
+    >
+      {item.titulo}
+    </h3>
+
+    <p
+      class="text-claro/70 leading-relaxed group-hover:text-claro/90 transition-colors duration-300"
+    >
+      {item.descripcion}
+    </p>
+  </div>
 </li>
+
+<style>
+  @keyframes ping {
+    75%,
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse {
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .animate-ping {
+    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  [data-aos="fade-up"] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s ease-out;
+  }
+
+  [data-aos="fade-up"].aos-animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  interface IntersectionObserverEntry {
+    isIntersecting: boolean;
+    target: Element;
+  }
+
+  // Intersection Observer para animación al scroll
+  const observer = new IntersectionObserver(
+    (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("aos-animate");
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  document.querySelectorAll("[data-aos]").forEach((element) => {
+    observer.observe(element);
+  });
+</script>

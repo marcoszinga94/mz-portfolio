@@ -1,28 +1,50 @@
 ---
-import Image from "astro/components/Image.astro";
 import CallToActionButtons from "../ui/CallToActionButtons.astro";
 ---
 
 <section
   id="inicio"
-  class="flex flex-col justify-center lg:flex-row items-center gap-8 m-auto min-h-[75vh]"
+  class="relative flex min-h-[85vh] w-full items-center justify-center overflow-hidden"
 >
-  <Image
-    alt="Foto de Marcos Zingaretti, con estilo anime"
-    src={"/Images/selfie.png"}
-    width={540}
-    height={720}
-    loading="eager"
-    class="rounded-full h-64 lg:h-96 w-auto object-cover flex-shrink-0"
-  />
-  <div class="flex flex-col gap-4 text-center lg:text-left">
-    <h1 class="flex flex-col text-acento">
-      <span class="text-4xl lg:text-5xl font-bold mb-2">Marcos Federico</span>
-      <span class="text-6xl lg:text-7xl font-black">Zingaretti</span>
-    </h1>
-    <h2 class="text-xl lg:text-2xl text-claro font-semibold">
-      Desarrollador Web Full-Stack
-    </h2>
-    <CallToActionButtons class="justify-center lg:justify-start" />
+  <div
+    class="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-center gap-12 px-6 max-w-7xl mx-auto"
+  >
+    <div class="flex flex-col gap-6 text-center lg:text-left lg:w-1/2">
+      <div class="space-y-3">
+        <h1
+          class="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
+        >
+          Marcos Federico
+          <span class="block text-5xl lg:text-7xl mt-2">Zingaretti</span>
+        </h1>
+        <h2 class="text-xl lg:text-2xl text-claro/80 font-medium">
+          Desarrollador Web Full-Stack
+        </h2>
+      </div>
+
+      <p class="text-claro/70 text-lg max-w-xl mx-auto lg:mx-0">
+        Creando experiencias web únicas y funcionales con pasión por el código
+        limpio y el diseño moderno.
+      </p>
+
+      <CallToActionButtons class="justify-center lg:justify-start" />
+    </div>
+
+    <div class="lg:w-1/2 flex justify-center items-center">
+      <div class="relative">
+        <div
+          class="absolute inset-0 bg-gradient-radial from-acento/20 to-transparent rounded-full blur-xl"
+        >
+        </div>
+        <img
+          alt="Foto de Marcos Zingaretti, con estilo anime"
+          src="/Images/selfie.png"
+          width={540}
+          height={720}
+          loading="eager"
+          class="relative w-48 h-48 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-acento/30"
+        />
+      </div>
+    </div>
   </div>
 </section>

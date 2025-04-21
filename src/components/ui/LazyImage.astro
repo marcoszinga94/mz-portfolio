@@ -1,0 +1,58 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+}
+
+const { src, alt, width, height, class: className } = Astro.props;
+---
+
+<div class="relative overflow-hidden group">
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-acento/10 to-medio/10 animate-pulse"
+  >
+  </div>
+
+  <img
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    loading="lazy"
+    class:list={[
+      "relative z-10 transition-all duration-700 ease-out",
+      "opacity-0 scale-[1.02] blur-sm",
+      "group-hover:scale-105",
+      className,
+    ]}
+    onload="this.classList.remove('opacity-0', 'scale-[1.02]', 'blur-sm')"
+  />
+</div>
+
+<style>
+  img {
+    view-transition-name: lazy-image;
+  }
+</style>
+
+<script>
+  // Inicializar IntersectionObserver para carga perezosa
+  const images = document.querySelectorAll('img[loading="lazy"]');
+  const imageObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const img = entry.target as HTMLImageElement;
+        const src = img.getAttribute("src");
+        if (src) {
+          img.src = src;
+          imageObserver.unobserve(img);
+        }
+      }
+    });
+  });
+
+  images.forEach((img) => imageObserver.observe(img));
+</script>

@@ -3,62 +3,78 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Página no encontrada"
-  description="No encontramos la página que buscaste, intenta volver :)"
+  title="404: Página no encontrada"
+  description="Lo sentimos, la página que buscas no existe. Pero no te preocupes, puedes volver al inicio."
 >
-  <span
-    class="absolute w-[500px] h-[500px] bg-acento/10 rounded-full -top-32 -left-32 blur-xl animate-pulse"
+  <main
+    class="min-h-screen flex items-center justify-center relative overflow-hidden"
   >
-  </span>
-  <span
-    class="absolute w-[400px] h-[400px] bg-acento/5 rounded-full -bottom-48 -right-48 blur-xl"
-  >
-  </span>
+    <!-- Background decoration -->
+    <div
+      class="absolute inset-0 bg-gradient-radial from-acento/5 to-transparent opacity-50"
+    >
+    </div>
+    <div
+      class="absolute right-0 top-1/4 w-96 h-96 bg-acento/10 rounded-full blur-[100px] animate-pulse"
+    >
+    </div>
+    <div
+      class="absolute left-0 bottom-1/4 w-96 h-96 bg-medio/10 rounded-full blur-[100px] animate-float"
+    >
+    </div>
 
-  <div class="relative flex flex-col items-center gap-8 z-10">
-    <div class="relative">
+    <div class="relative z-10 text-center px-6 max-w-2xl mx-auto">
       <h1
-        class="text-acento text-9xl font-bold drop-shadow-lg animate-bounce py-1 px-2"
+        class="text-9xl font-bold bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent mb-4"
       >
         404
       </h1>
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-acento/30 to-transparent mix-blend-overlay"
+
+      <h2 class="text-2xl md:text-3xl font-medium text-claro mb-6">
+        ¡Ups! Página no encontrada
+      </h2>
+
+      <p class="text-claro/70 text-lg mb-12">
+        Parece que te has perdido en el espacio digital. No te preocupes, te
+        ayudo a volver al camino correcto.
+      </p>
+
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-8 py-3 text-lg font-medium text-claro bg-gradient-to-r from-acento to-medio rounded-full transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-acento/20"
       >
-      </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+          ></path>
+        </svg>
+        Volver al inicio
+      </a>
     </div>
-
-    <div class="flex flex-col gap-6 text-center">
-      <p class="text-3xl font-medium text-gray-300 mx-auto">
-        ¡Ups! Navegando en territorio desconocido
-      </p>
-      <p class="text-lg text-gray-400 max-w-xl mx-auto text-pretty">
-        La página que buscas se ha esfumado o quizás nunca existió.
-      </p>
-    </div>
-  </div>
-
-  <div class="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-    {
-      Array.from({ length: 45 }).map((_, i) => {
-        const duration = Math.random() * 3 + 2;
-        const delay = Math.random() * 5;
-        const startX = Math.random() * 100;
-        const startY = Math.random() * 100;
-
-        return (
-          <div
-            class="absolute h-0.5 w-12 bg-gradient-to-tl from-acento/90 to-transparent opacity-0 animate-meteor"
-            style={`
-                rotate: 42deg;
-                top: ${startY}%;
-                left: ${startX}%;
-                animation-delay: ${delay}s;
-                animation-duration: ${duration}s;
-              `}
-          />
-        );
-      })
-    }
-  </div>
+  </main>
 </Layout>
+
+<style>
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+</style>
