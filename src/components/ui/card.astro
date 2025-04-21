@@ -1,6 +1,6 @@
 ---
+import { Image } from "astro:assets";
 import type { Proyecto } from "../../types/index.ts";
-import LazyImage from "./LazyImage.astro";
 
 interface Props {
   proyecto: Proyecto;
@@ -25,7 +25,7 @@ const { proyecto } = Astro.props;
     ]}
   >
     <div class:list={["relative overflow-hidden", "h-full"]}>
-      <LazyImage
+      <Image
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
         width={533}

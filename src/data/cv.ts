@@ -25,7 +25,6 @@ export default {
     "Hoy, con una sólida experiencia, desarrollo proyectos desde cero, aplicando lo aprendido y evitando —en lo posible— los errores del pasado.",
   ],
   habilidades: [
-    { nombre: "JavaScript", icon: "JavaScript" },
     { nombre: "React", icon: "React" },
     { nombre: "Astro", icon: "Astro" },
     { nombre: "Tailwind", icon: "Tailwind" },

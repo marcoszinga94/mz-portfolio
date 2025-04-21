@@ -16,7 +16,7 @@ import data from "../../data/cv";
       <div class="space-y-6 text-claro/80" data-aos="fade-up">
         {
           data.sobreMi.map((parrafo) => (
-            <p class="leading-relaxed text-lg transition-all duration-300 hover:text-claro">
+            <p class="leading-relaxed text-lg transition-all duration-300 hover:text-claro text-pretty">
               {parrafo}
             </p>
           ))
@@ -31,7 +31,7 @@ import data from "../../data/cv";
         {
           data.habilidades.map((habilidad) => (
             <div class="group text-center">
-              <div class="w-16 h-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-acento/20 to-medio/20 p-3 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+              <div class="size-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-acento/20 to-medio/20 p-3 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                 <img
                   src={`/Images/stacks/${habilidad.icon}.svg`}
                   alt={`Icono de ${habilidad.nombre}`}

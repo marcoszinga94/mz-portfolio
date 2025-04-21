@@ -9,21 +9,23 @@ const menuItems: MenuItem[] = [
 ];
 ---
 
-<header class="fixed top-0 right-0 left-0 z-50 backdrop-blur-md">
+<header
+  class="fixed top-0 right-0 left-0 z-50 backdrop-blur-sm bg-gradient-to-b from-black to-transparent"
+>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="relative z-10">
-        <a href="#inicio" class="group flex flex-col">
+        <a href="#inicio" class="group flex flex-row gap-2 items-center">
           <span
-            class="text-xl text-acento font-bold tracking-tight group-hover:text-medio transition-colors"
+            class="text-lg text-acento font-bold tracking-tight group-hover:text-medio transition-colors"
           >
             Marcos F. Zingaretti
           </span>
           <span
             class="hidden lg:block text-sm font-medium text-claro/70 group-hover:text-claro transition-colors"
           >
-            Desarrollador Web
+            (Desarrollador Web)
           </span>
         </a>
       </div>
@@ -70,10 +72,10 @@ const menuItems: MenuItem[] = [
       <!-- Mobile navigation -->
       <nav
         id="mobileMenu"
-        class="fixed inset-0 bg-fondo/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 lg:hidden"
+        class="fixed top-16 inset-x-0 bottom-0 bg-fondo/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 lg:hidden"
       >
         <ul
-          class="h-full flex flex-col items-center justify-center gap-8 text-xl"
+          class="h-full flex flex-col items-center justify-center gap-8 text-xl pb-16"
         >
           {
             menuItems.map(({ name, url }) => (
@@ -107,6 +109,18 @@ const menuItems: MenuItem[] = [
 
   header.hidden {
     transform: translateY(-100%);
+  }
+
+  @media (max-width: 1024px) {
+    nav ul {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    nav ul li a {
+      font-size: 1rem;
+      padding: 0.5rem;
+    }
   }
 </style>
 
@@ -156,31 +170,4 @@ const menuItems: MenuItem[] = [
       if (isOpen) toggleMenu();
     });
   });
-
-  // Ajustar header al hacer scroll
-  let lastScroll = 0;
-  const header = document.querySelector("header");
-  const scrollThreshold = 100;
-
-  function handleScroll() {
-    const currentScroll = window.pageYOffset;
-
-    // Añadir/remover clase scrolled
-    if (currentScroll > 0) {
-      header?.classList.add("scrolled");
-    } else {
-      header?.classList.remove("scrolled");
-    }
-
-    // Ocultar/mostrar header
-    if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
-      header?.classList.add("hidden");
-    } else {
-      header?.classList.remove("hidden");
-    }
-
-    lastScroll = currentScroll;
-  }
-
-  window.addEventListener("scroll", handleScroll, { passive: true });
 </script>
