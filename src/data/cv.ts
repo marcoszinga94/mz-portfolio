@@ -53,7 +53,7 @@ export default {
     {
       nombre: "Argentista",
       descripcion:
-        "Plataforma de comercio electrónico especializada en fotografía analógica",
+        "Plataforma diseñada para conocer datos economicos de Argentina",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
       caracteristicas: [
