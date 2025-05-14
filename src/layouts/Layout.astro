@@ -1,7 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import LoadingSpinner from "../components/ui/LoadingSpinner.astro";
+import "../styles/global.css";
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ const { title, description } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -45,23 +45,11 @@ const { title, description } = Astro.props;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/Images/og-image.png" />
-
-    <meta name="view-transition" content="same-origin" />
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#1a1a2e" />
   </head>
 
   <body
     class="grid grid-rows-[auto_1fr_auto] bg-gradient-to-b from-fondo to-oscuro text-claro overflow-x-hidden"
   >
-    <!-- Loading overlay -->
-    <div
-      id="loading-overlay"
-      class="fixed inset-0 z-50 bg-fondo/80 backdrop-blur-md flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
-    >
-      <LoadingSpinner />
-    </div>
-
     <Header />
     <main class="relative pt-20 min-h-screen">
       <div
@@ -82,7 +70,7 @@ const { title, description } = Astro.props;
   }
 
   html {
-    scroll-behavior: auto;
+    scroll-behavior: smooth;
     scrollbar-width: none;
     font-family: "Fira Code", monospace;
   }
