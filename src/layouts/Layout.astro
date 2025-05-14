@@ -75,52 +75,22 @@ const { title, description } = Astro.props;
 </html>
 
 <style is:global>
-  html {
-    scroll-behavior: auto;
-    scroll-width: none;
-  }
-
   @font-face {
     font-family: "Fira Code";
     src: url("/Fonts/FiraCode.ttf") format("truetype");
     font-display: swap;
   }
 
-  :root {
-    --scrollbar-thumb: #ff3b3b;
-    --scrollbar-track: rgba(255, 59, 59, 0.05);
-  }
-
-  /* Scrollbar personalizado */
-  ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--scrollbar-track);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, var(--scrollbar-thumb), #ff7676);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #ff7676, var(--scrollbar-thumb));
+  html {
+    scroll-behavior: auto;
+    scrollbar-width: none;
+    font-family: "Fira Code", monospace;
   }
 
   /* Estilos base */
   ::selection {
     background-color: rgba(255, 59, 59, 0.2);
     color: #fff5f5;
-  }
-
-  html {
-    font-family: "Fira Code", monospace;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,8 @@
 ---
 import type { MenuItem } from "../types";
 
+const developer = "<Desarrollador Web>";
+
 const menuItems: MenuItem[] = [
   { name: "Inicio", url: "#inicio" },
   { name: "Proyectos", url: "#proyectos" },
@@ -16,16 +18,12 @@ const menuItems: MenuItem[] = [
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
       <div class="relative z-10">
-        <a href="#inicio" class="group flex flex-row gap-2 items-center">
-          <span
-            class="text-lg text-acento font-bold tracking-tight group-hover:text-medio transition-colors"
-          >
+        <a href="/" class="flex flex-row gap-2 items-center">
+          <span class="text-lg text-acento font-bold tracking-tight">
             Marcos F. Zingaretti
           </span>
-          <span
-            class="hidden lg:block text-sm font-medium text-claro/70 group-hover:text-claro transition-colors"
-          >
-            (Desarrollador Web)
+          <span class="hidden lg:flex text-sm font-medium text-claro/70">
+            {developer}
           </span>
         </a>
       </div>
@@ -59,7 +57,7 @@ const menuItems: MenuItem[] = [
               <li>
                 <a
                   href={url}
-                  class="relative py-2 text-claro/70 hover:text-acento transition-colors duration-300 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-acento before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100"
+                  class="relative py-2 text-claro/70 hover:text-acento transition-colors duration-300"
                 >
                   {name}
                 </a>
@@ -72,17 +70,17 @@ const menuItems: MenuItem[] = [
       <!-- Mobile navigation -->
       <nav
         id="mobileMenu"
-        class="fixed top-16 inset-x-0 bottom-0 bg-fondo/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 lg:hidden"
+        class="fixed top-16 inset-x-0 bottom-0 bg-fondo/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 lg:hidden bg-[#181828] min-h-[calc(100vh-4rem)] flex items-center justify-center z-[100] shadow-[0_8px_32px_0_rgba(0,0,0,0.25)]"
       >
         <ul
-          class="h-full flex flex-col items-center justify-center gap-8 text-xl pb-16"
+          class="h-full flex flex-col items-center justify-center gap-6 text-xl pb-16 px-4 w-full p-0 m-0"
         >
           {
             menuItems.map(({ name, url }) => (
               <li>
                 <a
                   href={url}
-                  class="text-claro hover:text-acento transition-colors duration-300"
+                  class="text-claro hover:text-acento transition-all duration-300 text-base p-2 rounded-md bg-[rgba(26,26,46,0.97)] w-[90%] text-center max-w-[90%] tracking-[0.02em] font-medium shadow-[0_2px_8px_0_rgba(0,0,0,0.1)] my-1 mx-auto hover:bg-[rgba(255,255,255,0.08)] hover:translate-x-[2px] hover:scale-[1.02]"
                 >
                   {name}
                 </a>
@@ -95,35 +93,6 @@ const menuItems: MenuItem[] = [
   </div>
 </header>
 
-<style>
-  header {
-    transition:
-      transform 0.3s ease-in-out,
-      background-color 0.3s ease-in-out;
-  }
-
-  header.scrolled {
-    @apply shadow-lg shadow-fondo/10;
-    background-color: rgba(26, 26, 46, 0.8);
-  }
-
-  header.hidden {
-    transform: translateY(-100%);
-  }
-
-  @media (max-width: 1024px) {
-    nav ul {
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    nav ul li a {
-      font-size: 1rem;
-      padding: 0.5rem;
-    }
-  }
-</style>
-
 <script>
   interface HeaderElements {
     menuButton: HTMLElement | null;
@@ -131,6 +100,7 @@ const menuItems: MenuItem[] = [
     line1: HTMLElement | null;
     line2: HTMLElement | null;
     line3: HTMLElement | null;
+    closeMenuButton: HTMLElement | null;
   }
 
   const elements: HeaderElements = {
@@ -139,6 +109,7 @@ const menuItems: MenuItem[] = [
     line1: document.getElementById("line1"),
     line2: document.getElementById("line2"),
     line3: document.getElementById("line3"),
+    closeMenuButton: document.getElementById("closeMenuButton"),
   };
 
   let isOpen = false;
@@ -163,6 +134,9 @@ const menuItems: MenuItem[] = [
   }
 
   elements.menuButton?.addEventListener("click", toggleMenu);
+  elements.closeMenuButton?.addEventListener("click", function () {
+    if (isOpen) toggleMenu();
+  });
 
   // Cerrar menú al hacer click en un enlace
   document.querySelectorAll("#mobileMenu a").forEach((link) => {

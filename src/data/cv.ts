@@ -25,11 +25,11 @@ export default {
     "Hoy, con una sólida experiencia, desarrollo proyectos desde cero, aplicando lo aprendido y evitando —en lo posible— los errores del pasado.",
   ],
   habilidades: [
-    { nombre: "React", icon: "React" },
-    { nombre: "Astro", icon: "Astro" },
-    { nombre: "Angular", icon: "Angular" },
     { nombre: "Node.js", icon: "Node" },
     { nombre: "MongoDB", icon: "MongoDB" },
+    { nombre: "Angular", icon: "Angular" },
+    { nombre: "React", icon: "React" },
+    { nombre: "Astro", icon: "Astro" },
   ],
   experiencias: [
     {

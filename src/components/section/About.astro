@@ -24,20 +24,18 @@ import data from "../../data/cv";
       </div>
 
       <div
-        class="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8"
+        class="mt-16 grid grid-cols-3 md:grid-cols-5 gap-8"
         data-aos="fade-up"
         data-aos-delay="200"
       >
         {
           data.habilidades.map((habilidad) => (
-            <div class="group text-center">
-              <div class="size-16 mx-auto mb-4 rounded-xl bg-gradient-to-br from-acento/20 to-medio/20 p-3 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
-                <img
-                  src={`/Images/stacks/${habilidad.icon}.svg`}
-                  alt={`Icono de ${habilidad.nombre}`}
-                  class="w-full h-full object-contain transition-transform duration-300 group-hover:-rotate-6"
-                />
-              </div>
+            <div class="flex flex-col group text-center gap-4">
+              <img
+                src={`/Images/stacks/${habilidad.icon}.svg`}
+                alt={`Icono de ${habilidad.nombre}`}
+                class="size-16 m-auto object-contain transition-transform duration-300 group-hover:-rotate-6"
+              />
               <h3 class="text-claro font-medium group-hover:text-acento transition-colors duration-300">
                 {habilidad.nombre}
               </h3>
