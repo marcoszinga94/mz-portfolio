@@ -15,33 +15,31 @@ const { proyecto } = Astro.props;
   rel="noopener noreferrer"
   class:list={[
     "group block relative overflow-hidden",
-    "col-span-1 lg:col-span-2",
+    "p-2",
+    "h-full"
   ]}
 >
   <article
     class:list={[
       "relative bg-gradient-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg transition-all duration-500",
-      "hover:shadow-2xl hover:shadow-acento/20 hover:translate-y-[-4px] hover:scale-[1.01] hover:bg-gradient-to-br hover:from-gray-custom/90 hover:to-fondo/90",
-      "lg:grid lg:grid-cols-2 flex flex-col h-full min-h-[400px] md:min-h-[500px]",
+      "hover:translate-y-[-4px] hover:scale-[1.01] hover:bg-gradient-to-br hover:from-gray-custom/90 hover:to-fondo/90",
+      "flex flex-col h-full min-h-[400px] md:min-h-[500px]",
       "transform-gpu will-change-transform",
+      "w-full",
     ]}
   >
-    <div class:list={["relative overflow-hidden", "h-full md:h-auto"]}>
+    <div class:list={["relative overflow-hidden", "h-[200px] md:h-[220px] lg:h-[240px]"]}>
       <Image
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
         width={533}
         height={830}
-        class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105 md:object-center"
+        class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
       />
-      <div
-        class="absolute inset-0 bg-gradient-to-t from-fondo/90 via-fondo/50 to-transparent opacity-0 group-hover:opacity-90 transition-all duration-500 group-hover:bg-gradient-to-t group-hover:from-acento/20 group-hover:via-medio/30 group-hover:to-transparent"
-      >
-      </div>
     </div>
 
     <div
-      class="flex flex-col p-6 gap-6 flex-grow bg-gradient-to-br from-gray-custom/50 to-fondo/50 backdrop-blur-sm"
+      class="flex flex-col p-6 gap-4 flex-grow bg-gradient-to-br from-gray-custom/50 to-fondo/50 backdrop-blur-sm h-[calc(100%-200px)] md:h-[calc(100%-220px)] lg:h-[calc(100%-240px)]"
     >
       <div class="flex flex-col gap-3">
         <h3
@@ -50,7 +48,7 @@ const { proyecto } = Astro.props;
           {proyecto.nombre}
         </h3>
         <p
-          class="text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300"
+          class="text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300 line-clamp-3 min-h-[4.5rem]"
         >
           {proyecto.descripcion}
         </p>
@@ -60,7 +58,7 @@ const { proyecto } = Astro.props;
         proyecto.caracteristicas && (
           <div class="flex flex-col gap-3">
             <p class="font-semibold text-medio">Características:</p>
-            <ul class="space-y-2">
+            <ul class="space-y-2 min-h-[100px] max-h-[150px] overflow-y-auto">
               {proyecto.caracteristicas.map((caracteristica: string) => (
                 <li class="flex items-center gap-2 text-claro/70 group-hover:text-claro/90 transition-colors duration-300">
                   <span class="text-acento group-hover:text-medio transition-colors duration-300">
@@ -76,7 +74,7 @@ const { proyecto } = Astro.props;
 
       {
         proyecto.tecnologias && (
-          <div class="flex flex-col gap-3 mt-auto pt-4 border-t border-acento/20">
+          <div class="flex flex-col gap-3 mt-auto pt-4 border-t border-acento/20 min-h-[80px]">
             <p class="text-sm text-medio/80">Tecnologías:</p>
             <div class="flex flex-wrap gap-4">
               {proyecto.tecnologias.map((stack: string) => (

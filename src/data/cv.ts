@@ -1,23 +1,3 @@
-interface Proyecto {
-  nombre: string;
-  descripcion: string;
-  imagen: string;
-  enlace: string;
-  caracteristicas?: string[];
-  tecnologias?: string[];
-}
-
-interface Experiencia {
-  fecha: string;
-  titulo: string;
-  descripcion: string;
-}
-
-interface Habilidad {
-  nombre: string;
-  icon: string;
-}
-
 export default {
   sobreMi: [
     "Desde pequeño, la tecnología me llamó la atención, y a los 15 años descubrí que escribir código era mucho más interesante que cualquier otra cosa.",
@@ -27,7 +7,7 @@ export default {
   habilidades: [
     { nombre: "Node.js", icon: "Node" },
     { nombre: "MongoDB", icon: "MongoDB" },
-    { nombre: "Angular", icon: "Angular" },
+    // { nombre: "Angular", icon: "Angular" },
     { nombre: "React", icon: "React" },
     { nombre: "Astro", icon: "Astro" },
   ],
@@ -55,7 +35,7 @@ export default {
     {
       nombre: "Argentista",
       descripcion:
-        "Proyecto personal diseñado para conocer datos economicos de Argentina",
+        "Proyecto personal para mostrar la economía de Argentina",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
       caracteristicas: [
@@ -63,7 +43,7 @@ export default {
         "Optimización SEO",
         "Solicitudes a APIs",
       ],
-      tecnologias: ["Node", "React", "Astro"],
+      tecnologias: ["Node", "Astro", "React"],
     },
     {
       nombre: "El Socorro",
@@ -77,5 +57,17 @@ export default {
       ],
       tecnologias: ["Node", "Astro"],
     },
+    {
+      nombre: "Digitaliza",
+      descripcion: "Sitio web para una empresa de desarrollo web",
+      imagen: "digitaliza",
+      enlace:"https://digitalizacomp.vercel.app/",
+      caracteristicas: [
+        "Diseño responsive",
+        "Optimización SEO",
+        "Formulario de contacto",
+      ],
+      tecnologias: ["Node", "Astro", "React" ],
+    }
   ],
 };
