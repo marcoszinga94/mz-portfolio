@@ -7,10 +7,21 @@ import CallToActionButtons from "../ui/CallToActionButtons.astro";
   id="inicio"
   class="relative flex min-h-[85vh] w-full items-center justify-center overflow-hidden"
 >
+  <!-- Elementos decorativos -->
+  <div
+    class="absolute top-20 left-10 w-24 h-24 bg-acento/10 rounded-full blur-lg"
+  >
+  </div>
+  <div
+    class="absolute bottom-20 right-10 w-32 h-32 bg-acento/5 rounded-full blur-xl"
+  >
+  </div>
   <div
     class="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-center gap-12 px-6 max-w-7xl mx-auto"
   >
-    <div class="flex flex-col gap-6 text-center lg:text-left lg:w-1/2">
+    <div
+      class="relative flex flex-col gap-6 text-center lg:text-left lg:w-1/2 z-10"
+    >
       <div class="space-y-3">
         <h1
           class="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
@@ -32,20 +43,14 @@ import CallToActionButtons from "../ui/CallToActionButtons.astro";
     </div>
 
     <div class="lg:w-1/2 flex justify-center items-center">
-      <div class="relative">
-        <div
-          class="absolute inset-0 bg-gradient-radial from-acento/20 to-transparent rounded-full blur-xl"
-        >
-        </div>
-        <Image
-          alt="Foto de Marcos Zingaretti, con estilo anime"
-          src="/Images/selfie.png"
-          width={540}
-          height={720}
-          loading="eager"
-          class="relative w-48 h-48 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-acento/30"
-        />
-      </div>
+      <Image
+        alt="Foto de Marcos Zingaretti, con estilo anime"
+        src="/Images/selfie.png"
+        width={540}
+        height={720}
+        loading="eager"
+        class="relative w-48 h-48 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-acento/30"
+      />
     </div>
   </div>
 </section>

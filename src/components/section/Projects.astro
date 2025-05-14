@@ -20,35 +20,17 @@ import data from "../../data/cv";
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
       {
         data.proyectos.map((proyecto, index) => (
-          <div data-aos="fade-up" data-aos-delay={index * 100}>
+          <div
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+            data-aos-duration="800"
+            data-aos-easing="ease-out-back"
+            class="hover:z-10 transition-all duration-300 hover:scale-[1.02]"
+          >
             <Card proyecto={proyecto} />
           </div>
         ))
       }
-    </div>
-
-    <div class="text-center mt-16">
-      <a
-        href="https://github.com/marcoszinga94"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 text-claro/70 hover:text-acento transition-colors duration-300"
-      >
-        <span>Ver más proyectos en GitHub</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-      </a>
     </div>
   </div>
 </section>

@@ -27,7 +27,9 @@ export default {
   habilidades: [
     { nombre: "React", icon: "React" },
     { nombre: "Astro", icon: "Astro" },
-    { nombre: "Tailwind", icon: "Tailwind" },
+    { nombre: "Angular", icon: "Angular" },
+    { nombre: "Node.js", icon: "Node" },
+    { nombre: "MongoDB", icon: "MongoDB" },
   ],
   experiencias: [
     {
@@ -46,36 +48,34 @@ export default {
       fecha: "...2020",
       titulo: "Autodidacta en Programación",
       descripcion:
-        "Mi pasión por la programación comenzó con aprendizaje autodidacta. A través de plataformas como Stack Overflow, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
+        "Mi pasión por la programación comenzó con aprendizaje autodidacta. A través de peuqeños proyectos, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
     },
   ],
   proyectos: [
     {
       nombre: "Argentista",
       descripcion:
-        "Plataforma diseñada para conocer datos economicos de Argentina",
+        "Proyecto personal diseñado para conocer datos economicos de Argentina",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
       caracteristicas: [
-        "Catálogo de productos dinámico",
-        "Sistema de autenticación",
-        "Carrito de compras",
-        "Panel de administración",
+        "Diseño responsive",
+        "Optimización SEO",
+        "Solicitudes a APIs",
       ],
-      tecnologias: ["Astro", "React", "Tailwind"],
+      tecnologias: ["Node", "React", "Astro"],
     },
     {
       nombre: "El Socorro",
       descripcion: "Sitio web institucional para una empresa agrícola",
       imagen: "elsocorro",
-      enlace: "https://elsocorro.vercel.app",
+      enlace: "https://elsocorrosrl.com",
       caracteristicas: [
         "Diseño responsive",
         "Optimización SEO",
-        "Galería de imágenes",
         "Formulario de contacto",
       ],
-      tecnologias: ["Astro", "Tailwind"],
+      tecnologias: ["Node", "Astro"],
     },
   ],
 };
