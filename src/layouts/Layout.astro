@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import initAOS from "../utils/aos";
 
 interface Props {
   title: string;
@@ -223,7 +224,10 @@ const { title, description } = Astro.props;
   });
 
   // Gestionar eventos de carga
-  document.addEventListener("DOMContentLoaded", hideLoading);
+  document.addEventListener("DOMContentLoaded", () => {
+    hideLoading();
+    initAOS();
+  });
   window.addEventListener("load", hideLoading);
 
   // Precarga de imágenes críticas
