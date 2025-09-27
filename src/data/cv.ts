@@ -34,8 +34,7 @@ export default {
   proyectos: [
     {
       nombre: "Argentista",
-      descripcion:
-        "Proyecto personal para mostrar la economía de Argentina",
+      descripcion: "Proyecto personal para mostrar la economía de Argentina",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
       caracteristicas: [
@@ -43,7 +42,7 @@ export default {
         "Optimización SEO",
         "Solicitudes a APIs",
       ],
-      tecnologias: ["Node", "Astro", "React"],
+      tecnologias: ["Astro", "React"],
     },
     {
       nombre: "El Socorro",
@@ -55,19 +54,7 @@ export default {
         "Optimización SEO",
         "Formulario de contacto",
       ],
-      tecnologias: ["Node", "Astro"],
+      tecnologias: ["Astro"],
     },
-    {
-      nombre: "Digitaliza",
-      descripcion: "Sitio web para una empresa de desarrollo web",
-      imagen: "digitaliza",
-      enlace:"https://digitalizacomp.vercel.app/",
-      caracteristicas: [
-        "Diseño responsive",
-        "Optimización SEO",
-        "Formulario de contacto",
-      ],
-      tecnologias: ["Node", "Astro", "React" ],
-    }
   ],
 };
