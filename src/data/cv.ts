@@ -5,9 +5,9 @@ export default {
     "Hoy, con una sólida experiencia, desarrollo proyectos desde cero, aplicando lo aprendido y evitando —en lo posible— los errores del pasado.",
   ],
   habilidades: [
-    { nombre: "Node.js", icon: "Node" },
     { nombre: "MongoDB", icon: "MongoDB" },
-    // { nombre: "Angular", icon: "Angular" },
+    { nombre: "Angular", icon: "Angular" },
+    { nombre: "Node.js", icon: "Node" },
     { nombre: "React", icon: "React" },
     { nombre: "Astro", icon: "Astro" },
   ],
