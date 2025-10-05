@@ -51,12 +51,10 @@ const { title, description } = Astro.props;
     class="grid grid-rows-[auto_1fr_auto] bg-gradient-to-b from-fondo to-oscuro text-claro overflow-x-hidden"
   >
     <Header />
-    <main class="relative pt-20 min-h-screen">
-      <div
-        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 page-content"
-      >
-        <slot />
-      </div>
+    <main
+      class="relative pt-20 min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 page-content"
+    >
+      <slot />
     </main>
     <Footer />
   </body>
