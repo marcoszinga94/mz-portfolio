@@ -29,7 +29,7 @@ const { title, description } = Astro.props;
       type="font/ttf"
       crossorigin
     />
-    <link rel="preload" href="/Images/selfie.png" as="image" />
+    <link rel="preload" href="/Images/selfie.webp" as="image" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -227,7 +227,7 @@ const { title, description } = Astro.props;
   window.addEventListener("load", hideLoading);
 
   // Precarga de imágenes críticas
-  const preloadImages = ["/Images/selfie.png", "/Images/og-image.png"];
+  const preloadImages = ["/Images/selfie.webp", "/Images/og-image.png"];
   preloadImages.forEach((src) => {
     const img = new Image();
     img.src = src;
