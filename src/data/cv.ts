@@ -14,9 +14,15 @@ export default {
   experiencias: [
     {
       fecha: "...Actualidad",
-      titulo: "Desarrollador Web Full-Stack",
+      titulo:  "Desarrollador Web Full-Stack",
       descripcion:
         "Desarrollo de aplicaciones web modernas utilizando React, Node.js y tecnologías relacionadas. Implementación de arquitecturas escalables y mantenibles.",
+    },
+    {
+      fecha: "2025 - 2028",
+      titulo: "Tecnicatura Superior en Desarrollo de Software", 
+      descripcion:
+        "Formalizando mis conocimiento a grado técnico y generalizando mis conocimientos de desarrollo web hacia un abanico más grande aún, todo tipo de software.",
     },
     {
       fecha: "2020 - 2021",
