@@ -11,7 +11,7 @@ export default {
     { nombre: "React", icon: "React" },
     { nombre: "Astro", icon: "Astro" },
     { nombre: "TailwindCSS" , icon: "TailwindCSS " }, 
-    { nombre: "typeScript" , icon: "TypeScript " }, 
+    { nombre: "TypeScript" , icon: "TypeScript " }, 
 
   ],
   experiencias: [
