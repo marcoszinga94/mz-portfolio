@@ -69,7 +69,7 @@ export default {
       imagen: "valuapro",
       enlace: "https://valuapro.vercel.app",
       caracteristicas: ["Diseño responsive", "Optimización SEO"],
-      tecnologias: ["Astro. React. TailwindCSS. TypeScript. Supabase"],
+      tecnologias: ["Astro","React","TailwindCSS","TypeScript","Supabase"],
     },
     {
       nombre: "POSaaS",
@@ -81,7 +81,7 @@ export default {
         "Optimización SEO",
         "Solicitudes a APIs",
       ],
-      tecnologias: ["Astro. React. TailwindCSS. TypeScript. Supabase"],
+      tecnologias: ["Astro","React","TailwindCSS","TypeScript","Supabase"],
     },
   ],
   socialLinks: [
