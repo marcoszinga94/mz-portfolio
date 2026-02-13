@@ -10,6 +10,9 @@ export default {
     { nombre: "Node.js", icon: "Node" },
     { nombre: "React", icon: "React" },
     { nombre: "Astro", icon: "Astro" },
+    { nombre: "TailwindCSS" , icon: "TailwindCSS " }, 
+    { nombre: "typeScript" , icon: "TypeScript " }, 
+
   ],
   experiencias: [
     {
