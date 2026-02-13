@@ -14,13 +14,13 @@ export default {
   experiencias: [
     {
       fecha: "...Actualidad",
-      titulo:  "Desarrollador Web Full-Stack",
+      titulo: "Desarrollador Web Full-Stack",
       descripcion:
         "Desarrollo de aplicaciones web modernas utilizando React, Node.js y tecnologías relacionadas. Implementación de arquitecturas escalables y mantenibles.",
     },
     {
       fecha: "2025 - 2028",
-      titulo: "Tecnicatura Superior en Desarrollo de Software", 
+      titulo: "Tecnicatura Superior en Desarrollo de Software",
       descripcion:
         "Formalizando mis conocimiento a grado técnico y generalizando mis conocimientos de desarrollo web hacia un abanico más grande aún, todo tipo de software.",
     },
@@ -62,6 +62,26 @@ export default {
         "Formulario de contacto",
       ],
       tecnologias: ["Astro"],
+    },
+    {
+      nombre: "ValuaPro",
+      descripcion: "Proyecto personal para la tasacion de inmuebles",
+      imagen: "valuapro",
+      enlace: "https://valuapro.vercel.app",
+      caracteristicas: ["Diseño responsive", "Optimización SEO"],
+      tecnologias: ["Astro. React. TailwindCSS. TypeScript. Supabase"],
+    },
+    {
+      nombre: "POSaaS",
+      descripcion: "Proyecto personal para manejar una tienda fisica",
+      imagen: "posaas",
+      enlace: "https://posaas.vercel.app/",
+      caracteristicas: [
+        "Diseño responsive",
+        "Optimización SEO",
+        "Solicitudes a APIs",
+      ],
+      tecnologias: ["Astro. React. TailwindCSS. TypeScript. Supabase"],
     },
   ],
   socialLinks: [
