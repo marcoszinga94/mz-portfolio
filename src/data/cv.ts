@@ -49,19 +49,7 @@ export default {
         "Optimización SEO",
         "Solicitudes a APIs",
       ],
-      tecnologias: ["Astro", "React"],
-    },
-    {
-      nombre: "El Socorro",
-      descripcion: "Sitio web institucional para una empresa agrícola zonal",
-      imagen: "elsocorro",
-      enlace: "https://elsocorrosrl.com",
-      caracteristicas: [
-        "Diseño responsive",
-        "Optimización SEO",
-        "Formulario de contacto",
-      ],
-      tecnologias: ["Astro"],
+      tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
       nombre: "ValuaPro",
@@ -82,6 +70,18 @@ export default {
         "Solicitudes a APIs",
       ],
       tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
+    },
+    {
+      nombre: "El Socorro",
+      descripcion: "Sitio web institucional para una empresa agrícola zonal",
+      imagen: "elsocorro",
+      enlace: "https://elsocorrosrl.com",
+      caracteristicas: [
+        "Diseño responsive",
+        "Optimización SEO",
+        "Formulario de contacto",
+      ],
+      tecnologias: ["Astro", "TailwindCSS"],
     },
   ],
   socialLinks: [
