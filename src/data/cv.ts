@@ -54,6 +54,16 @@ export default {
       tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
+      nombre: "Kura",
+      descripcion:
+        "Sistema de gestion de historias clinicas para medicos particulares",
+      imagen: "kura",
+      enlace: "https://hckura.vercel.app",
+      caracteristicas: ["Diseño responsive", "Optimización SEO"],
+      tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
+    },
+    ,
+    {
       nombre: "ValuaPro",
       descripcion: "Proyecto personal para la tasacion de inmuebles",
       imagen: "valuapro",
