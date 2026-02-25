@@ -1,16 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-acento: #FF3B3B;
-  --color-medio: #FF7676;
-  --color-claro: #FFF5F5;
-  --color-oscuro: #0A0A0A;
-  --color-fondo: #1A1A2E;
-  --color-gray-custom: #2A2A3E;
+  --color-acento: #ff3b3b;
+  --color-medio: #ff7676;
+  --color-claro: #fff5f5;
+  --color-oscuro: #0a0a0a;
+  --color-fondo: #1a1a2e;
+  --color-gray-custom: #2a2a3e;
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     opacity: 0.4;
@@ -22,7 +21,6 @@
 }
 
 @keyframes float {
-
   0%,
   100% {
     transform: translateY(0);
@@ -76,7 +74,7 @@
 }
 
 .animate-typing {
-  animation: typing 2s steps(20) infinite alternate, blink .7s infinite;
+  animation: typing 2s steps(20) infinite alternate, blink 0.7s infinite;
 }
 
 .bg-gradient-radial {

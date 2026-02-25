@@ -59,10 +59,13 @@ export default {
         "Sistema de gestion de historias clinicas para medicos particulares",
       imagen: "kura",
       enlace: "https://hckura.vercel.app",
-      caracteristicas: ["Diseño responsive", "Optimización SEO"],
+      caracteristicas: [
+        "Diseño responsive",
+        "Optimización SEO",
+        "Base de datos incorporada",
+      ],
       tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
     },
-    ,
     {
       nombre: "ValuaPro",
       descripcion: "Proyecto personal para la tasacion de inmuebles",

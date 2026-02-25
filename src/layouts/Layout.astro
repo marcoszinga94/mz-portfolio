@@ -45,10 +45,12 @@ const { title, description } = Astro.props;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/Images/og-image.png" />
-    <elevenlabs-convai agent-id="agent_5601kf6tydjzettr6hqcw87ayj8z"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
-  
-  </head>
+  </head><elevenlabs-convai agent-id="agent_5601kf6tydjzettr6hqcw87ayj8z"
+  ></elevenlabs-convai>
+  <script
+    src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+    async
+    type="text/javascript"></script>
 
   <body
     class="grid grid-rows-[auto_1fr_auto] bg-linear-to-b from-fondo to-oscuro text-claro overflow-x-hidden"
@@ -61,176 +63,177 @@ const { title, description } = Astro.props;
     </main>
     <Footer />
   </body>
-</html>
 
-<style is:global>
-  @font-face {
-    font-family: "Fira Code";
-    src: url("/Fonts/FiraCode.ttf") format("truetype");
-    font-display: swap;
-  }
 
-  html {
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    font-family: "Fira Code", monospace;
-  }
-
-  /* Estilos base */
-  ::selection {
-    background-color: rgba(255, 59, 59, 0.2);
-    color: #fff5f5;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
+  <style is:global>
+    @font-face {
+      font-family: "Fira Code";
+      src: url("/Fonts/FiraCode.ttf") format("truetype");
+      font-display: swap;
     }
-  }
 
-  /* Animaciones */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      font-family: "Fira Code", monospace;
     }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+
+    /* Estilos base */
+    ::selection {
+      background-color: rgba(255, 59, 59, 0.2);
+      color: #fff5f5;
     }
-  }
 
-  .page-content {
-    animation: fadeIn 0.6s ease-out forwards;
-  }
-
-  /* View Transitions API */
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
-  }
-
-  ::view-transition-old(root) {
-    z-index: 1;
-  }
-  ::view-transition-new(root) {
-    z-index: 2;
-  }
-
-  /* Animación para las secciones que entran */
-  ::view-transition-new(root) {
-    animation: slideIn 0.6s ease-out;
-  }
-
-  /* Animación para las secciones que salen */
-  ::view-transition-old(root) {
-    animation: slideOut 0.6s ease-in;
-  }
-
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes slideOut {
-    from {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    to {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-  }
-
-  /* Utilidades de accesibilidad */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  .focus-visible:focus-visible {
-    outline: 2px solid var(--scrollbar-thumb);
-    outline-offset: 2px;
-  }
-</style>
-
-<script>
-  // Gestión de carga y transiciones
-  const loadingOverlay = document.getElementById("loading-overlay");
-
-  function showLoading() {
-    if (loadingOverlay) {
-      loadingOverlay.style.opacity = "1";
-      loadingOverlay.style.pointerEvents = "auto";
-    }
-  }
-
-  function hideLoading() {
-    if (loadingOverlay) {
-      loadingOverlay.style.opacity = "0";
-      loadingOverlay.style.pointerEvents = "none";
-    }
-  }
-
-  // Smooth scroll mejorado para los enlaces internos
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener(
-      "click",
-      function (this: HTMLAnchorElement, e: Event) {
-        e.preventDefault();
-        const targetId = this.getAttribute("href");
-        if (!targetId) return;
-
-        const target = document.querySelector(targetId);
-        if (!target) return;
-
-        showLoading();
-
-        setTimeout(() => {
-          const headerOffset = 80;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition =
-            elementPosition + window.pageYOffset - headerOffset;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-
-          setTimeout(hideLoading, 300);
-        }, 150);
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
       }
-    );
-  });
+    }
 
-  // Gestionar eventos de carga
-  document.addEventListener("DOMContentLoaded", hideLoading);
-  window.addEventListener("load", hideLoading);
+    /* Animaciones */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-  // Precarga de imágenes críticas
-  const preloadImages = ["/Images/selfie.webp", "/Images/og-image.png"];
-  preloadImages.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-</script>
+    .page-content {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    /* View Transitions API */
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+      animation: none;
+      mix-blend-mode: normal;
+    }
+
+    ::view-transition-old(root) {
+      z-index: 1;
+    }
+    ::view-transition-new(root) {
+      z-index: 2;
+    }
+
+    /* Animación para las secciones que entran */
+    ::view-transition-new(root) {
+      animation: slideIn 0.6s ease-out;
+    }
+
+    /* Animación para las secciones que salen */
+    ::view-transition-old(root) {
+      animation: slideOut 0.6s ease-in;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+
+    /* Utilidades de accesibilidad */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .focus-visible:focus-visible {
+      outline: 2px solid var(--scrollbar-thumb);
+      outline-offset: 2px;
+    }
+  </style>
+
+  <script>
+    // Gestión de carga y transiciones
+    const loadingOverlay = document.getElementById("loading-overlay");
+
+    function showLoading() {
+      if (loadingOverlay) {
+        loadingOverlay.style.opacity = "1";
+        loadingOverlay.style.pointerEvents = "auto";
+      }
+    }
+
+    function hideLoading() {
+      if (loadingOverlay) {
+        loadingOverlay.style.opacity = "0";
+        loadingOverlay.style.pointerEvents = "none";
+      }
+    }
+
+    // Smooth scroll mejorado para los enlaces internos
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener(
+        "click",
+        function (this: HTMLAnchorElement, e: Event) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (!targetId) return;
+
+          const target = document.querySelector(targetId);
+          if (!target) return;
+
+          showLoading();
+
+          setTimeout(() => {
+            const headerOffset = 80;
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            setTimeout(hideLoading, 300);
+          }, 150);
+        },
+      );
+    });
+
+    // Gestionar eventos de carga
+    document.addEventListener("DOMContentLoaded", hideLoading);
+    window.addEventListener("load", hideLoading);
+
+    // Precarga de imágenes críticas
+    const preloadImages = ["/Images/selfie.webp", "/Images/og-image.png"];
+    preloadImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  </script>
+</html>
