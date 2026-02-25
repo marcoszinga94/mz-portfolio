@@ -12,6 +12,7 @@ export default {
     { nombre: "Astro", icon: "Astro" },
     { nombre: "TailwindCSS", icon: "TailwindCSS" },
     { nombre: "TypeScript", icon: "TypeScript" },
+    { nombre: "Supabase", icon: "Supabase" },
   ],
   experiencias: [
     {
@@ -56,36 +57,34 @@ export default {
     {
       nombre: "Kura",
       descripcion:
-        "Sistema de gestion de historias clinicas para medicos particulares",
+        "Plataforma de gestión de historias clinicas con Supabase e IA.",
       imagen: "kura",
       enlace: "https://hckura.vercel.app",
-      caracteristicas: [
-        "Diseño responsive",
-        "Optimización SEO",
-        "Base de datos incorporada",
-      ],
-      tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
+      caracteristicas: ["Diseño responsive", "Optimización SEO", "Uso de IA"],
+      tecnologias: ["React", "TailwindCSS", "TypeScript", "Supabase"],
     },
     {
       nombre: "ValuaPro",
-      descripcion: "Proyecto personal para la tasacion de inmuebles",
+      descripcion:
+        "Plataforma profesional de tasación inmobiliaria técnica. Basada en normas TTN y algoritmos Ross-Heidecke para el mercado argentino",
       imagen: "valuapro",
       enlace: "https://valuapro.vercel.app",
-      caracteristicas: ["Diseño responsive", "Optimización SEO"],
-      tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
+      caracteristicas: ["Diseño responsive", "Optimización SEO", "Uso de IA"],
+      tecnologias: ["React", "TailwindCSS", "TypeScript", "Supabase"],
     },
-    {
-      nombre: "POSaaS",
-      descripcion: "Proyecto personal para manejar una tienda fisica",
-      imagen: "posaas",
-      enlace: "https://posaas.vercel.app/",
-      caracteristicas: [
-        "Diseño responsive",
-        "Optimización SEO",
-        "Solicitudes a APIs",
-      ],
-      tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
-    },
+    // {
+    //   nombre: "POSaaS",
+    //   descripcion:
+    //     "Plataforma de gestión de ventas y inventario para tiendas físicas",
+    //   imagen: "posaas",
+    //   enlace: "https://posaas.vercel.app/",
+    //   caracteristicas: [
+    //     "Diseño responsive",
+    //     "Optimización SEO",
+    //     "Solicitudes a APIs",
+    //   ],
+    //   tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
+    // },
     {
       nombre: "El Socorro",
       descripcion: "Sitio web institucional para una empresa agrícola zonal",
