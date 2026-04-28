@@ -55,36 +55,39 @@ export default {
       tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
-      nombre: "Kura",
+      nombre: "TurnoMaster",
       descripcion:
-        "Plataforma de gestión de historias clinicas con Supabase e IA.",
+        "Plataforma integral para la gestión de turnos y citas con paneles para propietarios y una interfaz pública para clientes",
+      imagen: "turnomaster",
+      enlace: "https://www.turnomaster.com.ar/",
+      caracteristicas: "",
+      tecnologias: ["Astro", "React", "TailwindCSS"],
+    },
+    {
+      nombre: "EspartaGym",
+      descripcion: "Sistema de gimnasio online para un gimnasio local",
+      imagen: "espartagym",
+      enlace: "https://www.espartagym.com",
+      caracteristicas: "",
+      tecnologias: ["Astro", "React", "TailwindCSS"],
+    },
+    {
+      nombre: "Kura Medical",
+      descripcion: "Plataforma de gestión de historias clinicas.",
       imagen: "kura",
-      enlace: "https://hckura.vercel.app",
+      enlace: "https://kuramedical.com.ar",
       caracteristicas: ["Diseño responsive", "Optimización SEO", "Uso de IA"],
       tecnologias: ["React", "TailwindCSS", "TypeScript", "Supabase"],
     },
     {
       nombre: "ValuaPro",
       descripcion:
-        "Plataforma profesional de tasación inmobiliaria técnica. Basada en normas TTN y algoritmos Ross-Heidecke para el mercado argentino",
+        "Plataforma profesional de tasación inmobiliaria técnica para el mercado argentino",
       imagen: "valuapro",
       enlace: "https://valuapro.vercel.app",
       caracteristicas: ["Diseño responsive", "Optimización SEO", "Uso de IA"],
       tecnologias: ["React", "TailwindCSS", "TypeScript", "Supabase"],
     },
-    // {
-    //   nombre: "POSaaS",
-    //   descripcion:
-    //     "Plataforma de gestión de ventas y inventario para tiendas físicas",
-    //   imagen: "posaas",
-    //   enlace: "https://posaas.vercel.app/",
-    //   caracteristicas: [
-    //     "Diseño responsive",
-    //     "Optimización SEO",
-    //     "Solicitudes a APIs",
-    //   ],
-    //   tecnologias: ["Astro", "React", "TailwindCSS", "TypeScript"],
-    // },
     {
       nombre: "El Socorro",
       descripcion: "Sitio web institucional para una empresa agrícola zonal",
