@@ -1,8 +1,10 @@
-# Portfolio — Marcos F. Zingaretti
+# Portfolio — Marcos F. Zingaretti 🚀
 
-Portfolio personal con展示 de proyectos, experiencia profesional y habilidades técnicas. Desarrollado con Astro, TailwindCSS v4 y TypeScript, desplegado en Vercel con SSR.
+Portfolio personal con exhibición de proyectos, experiencia profesional y habilidades técnicas. Construido con **Astro**, **TailwindCSS v4** y **TypeScript**, desplegado en **Vercel** con SSR.
 
-## Stack
+---
+
+## 🛠️ Stack
 
 | Tecnología | Uso |
 |---|---|
@@ -12,7 +14,9 @@ Portfolio personal con展示 de proyectos, experiencia profesional y habilidades
 | **@astrojs/vercel** | Adaptador de despliegue |
 | **Vercel Analytics** | Métricas de visitas |
 
-## Estructura
+---
+
+## 📁 Estructura
 
 ```
 src/
@@ -35,7 +39,9 @@ public/
   Images/           # Imágenes del portfolio (proyectos, stacks, avatar)
 ```
 
-## Desarrollo
+---
+
+## ⚡ Desarrollo
 
 ```bash
 npm run dev        # Iniciar servidor de desarrollo
@@ -43,7 +49,9 @@ npm run build      # Type-check + build de producción
 npm run preview    # Vista previa del build
 ```
 
-## Contenido
+---
+
+## 📄 Contenido
 
 Todo el contenido se centraliza en `src/data/cv.ts`:
 
@@ -53,23 +61,29 @@ Todo el contenido se centraliza en `src/data/cv.ts`:
 - **proyectos** — tarjetas con imagen, descripción y tecnologías
 - **socialLinks** — enlaces a GitHub y LinkedIn
 
-## Vistas de proyectos
+---
+
+## 👁️ Vistas de proyectos
 
 El portafolio incluye dos modos de visualización para los proyectos:
 
-- **Grid** — cuadrícula responsive de 1, 2 o 3 columnas
-- **Lista** — cards horizontales con imagen y contenido lado a lado
+- **Grid** 🟦 — cuadrícula responsive de 1, 2 o 3 columnas
+- **Lista** 📋 — cards horizontales con imagen y contenido lado a lado
 
 La transición entre vistas usa la Web Animations API para desplazar suavemente cada card de su posición anterior a la nueva (FLIP animation).
 
-## Personalización
+---
+
+## ✏️ Personalización
 
 1. Editar `src/data/cv.ts` con la información personal
 2. Agregar imágenes de proyectos en `public/Images/paginas/` en formato `.webp`
 3. Agregar iconos de tecnologías en `public/Images/stacks/` en formato `.svg`
 4. Ajustar colores del tema en `src/styles/global.css` (bloque `@theme`)
 
-## Despliegue
+---
+
+## 🌐 Despliegue
 
 El proyecto se despliega automáticamente en Vercel desde el repositorio de GitHub. Incluye analíticas web y speed insights.
 
