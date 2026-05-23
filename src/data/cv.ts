@@ -1,18 +1,25 @@
-export default {
+import type { Habilidad, TimelineItem, Proyecto, SocialLink } from "../types";
+
+interface PortfolioData {
+  sobreMi: string[];
+  habilidades: Habilidad[];
+  experiencias: TimelineItem[];
+  proyectos: Proyecto[];
+  socialLinks: SocialLink[];
+}
+
+const data: PortfolioData = {
   sobreMi: [
     "Desde pequeño, la tecnología me llamó la atención, y a los 15 años descubrí que escribir código era mucho más interesante que cualquier otra cosa.",
     "Comencé con pequeños proyectos, intentando entender qué hacía cada línea. Con el tiempo, comprendí que la programación no es solo sobre código, sino sobre crear soluciones.",
     "Hoy, con una sólida experiencia, desarrollo proyectos desde cero, aplicando lo aprendido y evitando —en lo posible— los errores del pasado.",
   ],
   habilidades: [
-    { nombre: "MongoDB", icon: "MongoDB" },
-    { nombre: "Angular", icon: "Angular" },
+    { nombre: "Astro", icon: "Astro" },
     { nombre: "Node.js", icon: "Node" },
     { nombre: "React", icon: "React" },
-    { nombre: "Astro", icon: "Astro" },
     { nombre: "TailwindCSS", icon: "TailwindCSS" },
     { nombre: "TypeScript", icon: "TypeScript" },
-    { nombre: "Supabase", icon: "Supabase" },
   ],
   experiencias: [
     {
@@ -42,33 +49,18 @@ export default {
   ],
   proyectos: [
     {
-      nombre: "Argentista",
-      descripcion:
-        "Proyecto personal para mostrar datos económicos de Argentina",
-      imagen: "argentista",
-      enlace: "https://argentista.vercel.app",
-      caracteristicas: [
-        "Diseño responsive",
-        "Optimización SEO",
-        "Solicitudes a APIs",
-      ],
-      tecnologias: ["Astro", "React", "TailwindCSS"],
-    },
-    {
       nombre: "TurnoMaster",
       descripcion:
-        "Plataforma integral para la gestión de turnos y citas con paneles para propietarios y una interfaz pública para clientes",
+        "Plataforma para la gestión de turnos y citas.",
       imagen: "turnomaster",
       enlace: "https://www.turnomaster.com.ar/",
-      caracteristicas: "",
       tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
       nombre: "EspartaGym",
-      descripcion: "Sistema de gimnasio online para un gimnasio local",
+      descripcion: "Sistema de gimnasio online para un gimnasio local.",
       imagen: "espartagym",
       enlace: "https://www.espartagym.com",
-      caracteristicas: "",
       tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
@@ -76,29 +68,38 @@ export default {
       descripcion: "Plataforma de gestión de historias clinicas.",
       imagen: "kura",
       enlace: "https://kuramedical.com.ar",
-      caracteristicas: ["Diseño responsive", "Optimización SEO", "Uso de IA"],
       tecnologias: ["React", "TailwindCSS", "TypeScript", "Supabase"],
+    },
+    {
+      nombre: "Argentista",
+      descripcion:
+        "Proyecto personal para mostrar datos económicos de Argentina.",
+      imagen: "argentista",
+      enlace: "https://argentista.vercel.app",
+      tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
       nombre: "ValuaPro",
       descripcion:
-        "Plataforma profesional de tasación inmobiliaria técnica para el mercado argentino",
+        "Plataforma profesional de tasación inmobiliaria técnica para el mercado argentino.",
       imagen: "valuapro",
       enlace: "https://valuapro.vercel.app",
-      caracteristicas: ["Diseño responsive", "Optimización SEO", "Uso de IA"],
       tecnologias: ["React", "TailwindCSS", "TypeScript", "Supabase"],
     },
     {
       nombre: "El Socorro",
-      descripcion: "Sitio web institucional para una empresa agrícola zonal",
+      descripcion: "Sitio web institucional para una empresa agrícola zonal.",
       imagen: "elsocorro",
       enlace: "https://elsocorrosrl.com",
-      caracteristicas: [
-        "Diseño responsive",
-        "Optimización SEO",
-        "Formulario de contacto",
-      ],
       tecnologias: ["Astro", "TailwindCSS"],
+    },
+    {
+      nombre: "MadMind",
+      descripcion:
+        "Aplicación web para ayudar a personas con depresión y ansiedad.",
+      imagen: "madmind",
+      enlace: "https://madmind.vercel.app",
+      tecnologias: ["React", "TailwindCSS", "TypeScript"],
     },
   ],
   socialLinks: [
@@ -114,3 +115,5 @@ export default {
     },
   ],
 };
+
+export default data;

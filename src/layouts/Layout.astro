@@ -45,17 +45,19 @@ const { title, description } = Astro.props;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/Images/og-image.png" />
-  </head><elevenlabs-convai agent-id="agent_5601kf6tydjzettr6hqcw87ayj8z"
-  ></elevenlabs-convai>
-  <script
-    is:inline
-    src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-    async
-    type="text/javascript"></script>
+  </head>
 
   <body
     class="grid grid-rows-[auto_1fr_auto] bg-linear-to-b from-fondo to-oscuro text-claro overflow-x-hidden"
   >
+    <elevenlabs-convai agent-id="agent_5601kf6tydjzettr6hqcw87ayj8z"
+    ></elevenlabs-convai>
+    <script
+      is:inline
+      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
+      async
+      type="text/javascript"
+    ></script>
     <Header />
     <main
       class="relative pt-20 min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 page-content"
@@ -96,68 +98,6 @@ const { title, description } = Astro.props;
       }
     }
 
-    /* Animaciones */
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .page-content {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-
-    /* View Transitions API */
-    ::view-transition-old(root),
-    ::view-transition-new(root) {
-      animation: none;
-      mix-blend-mode: normal;
-    }
-
-    ::view-transition-old(root) {
-      z-index: 1;
-    }
-    ::view-transition-new(root) {
-      z-index: 2;
-    }
-
-    /* Animación para las secciones que entran */
-    ::view-transition-new(root) {
-      animation: slideIn 0.6s ease-out;
-    }
-
-    /* Animación para las secciones que salen */
-    ::view-transition-old(root) {
-      animation: slideOut 0.6s ease-in;
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideOut {
-      from {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      to {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-    }
-
     /* Utilidades de accesibilidad */
     .sr-only {
       position: absolute;
@@ -178,63 +118,44 @@ const { title, description } = Astro.props;
   </style>
 
   <script>
-    // Gestión de carga y transiciones
-    const loadingOverlay = document.getElementById("loading-overlay");
-
-    function showLoading() {
-      if (loadingOverlay) {
-        loadingOverlay.style.opacity = "1";
-        loadingOverlay.style.pointerEvents = "auto";
-      }
-    }
-
-    function hideLoading() {
-      if (loadingOverlay) {
-        loadingOverlay.style.opacity = "0";
-        loadingOverlay.style.pointerEvents = "none";
-      }
-    }
-
-    // Smooth scroll mejorado para los enlaces internos
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener(
-        "click",
-        function (this: HTMLAnchorElement, e: Event) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href");
-          if (!targetId) return;
+      anchor.addEventListener("click", (e) => {
+        e.preventDefault();
+        const targetId = anchor.getAttribute("href");
+        if (!targetId) return;
 
-          const target = document.querySelector(targetId);
-          if (!target) return;
+        const target = document.querySelector(targetId);
+        if (!target) return;
 
-          showLoading();
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
 
-          setTimeout(() => {
-            const headerOffset = 80;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition =
-              elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: "smooth",
-            });
-
-            setTimeout(hideLoading, 300);
-          }, 150);
-        },
-      );
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      });
     });
 
-    // Gestionar eventos de carga
-    document.addEventListener("DOMContentLoaded", hideLoading);
-    window.addEventListener("load", hideLoading);
+    const aosObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("aos-animate");
+          }
+        });
+      },
+      { threshold: 0.1 },
+    );
 
-    // Precarga de imágenes críticas
-    const preloadImages = ["/Images/selfie.webp", "/Images/og-image.png"];
-    preloadImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
+    document.querySelectorAll("[data-aos]").forEach((el) => {
+      const delay = el.getAttribute("data-aos-delay");
+      if (delay) {
+        (el as HTMLElement).style.setProperty("--aos-delay", `${delay}ms`);
+      }
+      aosObserver.observe(el);
     });
   </script>
 </html>

@@ -15,10 +15,43 @@ import data from "../../data/cv";
         Explora algunos de mis trabajos más recientes donde combino diseño
         moderno con funcionalidad
       </p>
+
+      <div class="flex justify-center items-center gap-3 mt-6">
+        <button
+          id="viewGrid"
+          class="p-2 rounded-lg border border-claro/30 text-claro/70 hover:text-claro hover:border-acento transition-all duration-300 data-[active=true]:bg-acento/20 data-[active=true]:border-acento data-[active=true]:text-acento"
+          data-active="true"
+          aria-label="Vista cuadrícula"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1" />
+            <rect x="14" y="3" width="7" height="7" rx="1" />
+            <rect x="3" y="14" width="7" height="7" rx="1" />
+            <rect x="14" y="14" width="7" height="7" rx="1" />
+          </svg>
+        </button>
+        <button
+          id="viewList"
+          class="p-2 rounded-lg border border-claro/30 text-claro/70 hover:text-claro hover:border-acento transition-all duration-300 data-[active=true]:bg-acento/20 data-[active=true]:border-acento data-[active=true]:text-acento"
+          data-active="false"
+          aria-label="Vista lista"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6" />
+            <line x1="8" y1="12" x2="21" y2="12" />
+            <line x1="8" y1="18" x2="21" y2="18" />
+            <line x1="3" y1="6" x2="3.01" y2="6" />
+            <line x1="3" y1="12" x2="3.01" y2="12" />
+            <line x1="3" y1="18" x2="3.01" y2="18" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
+      id="projectsContainer"
+      class="max-w-7xl mx-auto"
+      data-view="grid"
     >
       {
         data.proyectos.map((proyecto, index) => (
@@ -27,7 +60,7 @@ import data from "../../data/cv";
             data-aos-delay={index * 100}
             data-aos-duration="800"
             data-aos-easing="ease-out-back"
-            class="hover:z-10 transition-all duration-300 hover:scale-[1.02] h-full flex flex-col"
+            class="hover:z-10 transition-all duration-300 hover:scale-[1.02] project-item"
           >
             <Card proyecto={proyecto} />
           </div>
@@ -38,48 +71,146 @@ import data from "../../data/cv";
 </section>
 
 <style>
-  [data-aos] {
-    opacity: 0;
-    transform: translateY(20px);
-    transition:
-      opacity 0.6s ease-out,
-      transform 0.6s ease-out;
+
+
+  #projectsContainer[data-view="grid"] {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
   }
 
-  [data-aos].aos-animate {
-    opacity: 1;
-    transform: translateY(0);
+  @media (min-width: 768px) {
+    #projectsContainer[data-view="grid"] {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  [data-aos][data-aos-delay] {
-    transition-delay: 0s;
+  @media (min-width: 1024px) {
+    #projectsContainer[data-view="grid"] {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
-  [data-aos][data-aos-delay].aos-animate {
-    transition-delay: var(--aos-delay);
+  #projectsContainer[data-view="list"] {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
+
+  #projectsContainer[data-view="list"] .project-item {
+    max-width: 100%;
+  }
+
+  #projectsContainer[data-view="grid"] .project-item,
+  #projectsContainer[data-view="bento"] .project-item {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+
+
+  :global([data-view="list"] article) {
+    flex-direction: row !important;
+    max-height: none !important;
+  }
+
+  :global([data-view="list"] article > div:first-child) {
+    width: 280px !important;
+    min-width: 280px;
+    height: auto !important;
+  }
+
+  :global([data-view="list"] article > div:first-child img) {
+    height: 100% !important;
+  }
+
+  :global([data-view="list"] article > div:last-child) {
+    padding: 1.25rem 1.5rem !important;
+    height: auto !important;
+    flex: 1;
+  }
+
+  :global([data-view="list"] .line-clamp-3) {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+
+  :global([data-view="list"] [class*="min-h-"]) {
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  :global([data-view="list"] article > div:last-child > div:last-child) {
+    margin-top: auto !important;
+    padding-top: 0.75rem;
+  }
+
+  :global([data-view="list"] article > div:last-child > div:last-child .flex-wrap) {
+    gap: 0.5rem !important;
+  }
+
+  @media (max-width: 640px) {
+    :global([data-view="list"] article) {
+      flex-direction: column !important;
+    }
+
+    :global([data-view="list"] article > div:first-child) {
+      width: 100% !important;
+      min-width: unset;
+      height: 200px !important;
+    }
+  }
+
+
 </style>
 
 <script>
-  // Intersection Observer for animation on scroll
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("aos-animate");
+  const container = document.getElementById("projectsContainer");
+  const gridBtn = document.getElementById("viewGrid");
+  const listBtn = document.getElementById("viewList");
+
+  function setView(view: string) {
+    if (!container || !gridBtn || !listBtn) return;
+    if (container.dataset.view === view) return;
+
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+
+    const oldRects = items.map((el) => el.getBoundingClientRect());
+
+    container.dataset.view = view;
+    gridBtn.dataset.active = String(view === "grid");
+    listBtn.dataset.active = String(view === "list");
+    localStorage.setItem("projectsView", view);
+
+    requestAnimationFrame(() => {
+      items.forEach((el, i) => {
+        const newRect = el.getBoundingClientRect();
+        const dx = oldRects[i].left - newRect.left;
+        const dy = oldRects[i].top - newRect.top;
+        if (dx !== 0 || dy !== 0) {
+          el.animate(
+            [
+              { transform: `translate(${dx}px, ${dy}px)` },
+              { transform: "translate(0, 0)" },
+            ],
+            { duration: 400, easing: "ease" },
+          );
         }
       });
-    },
-    {
-      threshold: 0.1,
-    },
-  );
+    });
+  }
 
-  document.querySelectorAll("[data-aos]").forEach((element) => {
-    const delay = element.getAttribute("data-aos-delay");
-    if (delay) {
-      (element as HTMLElement).style.setProperty("--aos-delay", `${delay}ms`);
-    }
-    observer.observe(element);
-  });
+  gridBtn?.addEventListener("click", () => setView("grid"));
+  listBtn?.addEventListener("click", () => setView("list"));
+
+  const saved = localStorage.getItem("projectsView");
+  if ((saved === "grid" || saved === "list") && container && gridBtn && listBtn) {
+    container.dataset.view = saved;
+    gridBtn.dataset.active = String(saved === "grid");
+    listBtn.dataset.active = String(saved === "list");
+  }
 </script>
+
+

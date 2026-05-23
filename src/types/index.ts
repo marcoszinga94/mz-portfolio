@@ -9,7 +9,6 @@ export interface Proyecto {
   descripcion: string;
   imagen: string;
   enlace: string;
-  caracteristicas?: string[];
   tecnologias?: string[];
 }
 

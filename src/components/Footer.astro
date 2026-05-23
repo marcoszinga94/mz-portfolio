@@ -1,5 +1,5 @@
 ---
-import SocialLinks from "../components/ui/socialLinks.astro";
+import SocialLinks from "./ui/socialLinks.astro";
 ---
 
 <footer class="relative mt-20">
@@ -58,32 +58,4 @@ import SocialLinks from "../components/ui/socialLinks.astro";
   </div>
 </footer>
 
-<style>
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-  }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%,
-    100% {
-      opacity: 0.5;
-    }
-    50% {
-      opacity: 0.2;
-    }
-  }
-
-  .animate-pulse {
-    animation: pulse 4s ease-in-out infinite;
-  }
-</style>
