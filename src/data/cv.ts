@@ -20,6 +20,16 @@ const data: PortfolioData = {
     { nombre: "React", icon: "React" },
     { nombre: "TailwindCSS", icon: "TailwindCSS" },
     { nombre: "TypeScript", icon: "TypeScript" },
+    { nombre: "JavaScript", icon: "JavaScript" },
+    { nombre: "HTML/CSS", icon: "HTML-CSS" },
+    { nombre: "Git", icon: "Git" },
+    { nombre: "SQL", icon: "SQL" },
+    { nombre: "Curiosidad Intelectual", icon: "Curiosidad" },
+    { nombre: "Resiliencia Técnica", icon: "Resiliencia" },
+    { nombre: "Mentalidad de Crecimiento", icon: "Crecimiento" },
+    { nombre: "Pensamiento Divergente", icon: "Divergente" },
+    { nombre: "Comunicación Asíncrona", icon: "Comunicacion" },
+    { nombre: "Capacidad de Abstracción", icon: "Abstraccion" },
   ],
   experiencias: [
     {
