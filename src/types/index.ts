@@ -7,6 +7,7 @@ export interface TimelineItem {
 export interface Proyecto {
   nombre: string;
   descripcion: string;
+  descripcionLarga?: string;
   imagen: string;
   enlace: string;
   tecnologias?: string[];

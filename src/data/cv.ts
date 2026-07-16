@@ -52,6 +52,8 @@ const data: PortfolioData = {
     {
       nombre: "TurnoMaster",
       descripcion: "Plataforma para la gestión de turnos y citas.",
+      descripcionLarga:
+        "Sistema completo de reservas online con panel de administración, recordatorios automáticos y sincronización con calendarios. Diseñado para optimizar la agenda de profesionales y simplificar la experiencia de los clientes.",
       imagen: "turnomaster",
       enlace: "https://www.turnomaster.com.ar/",
       tecnologias: ["Astro", "React", "TailwindCSS"],
@@ -73,6 +75,8 @@ const data: PortfolioData = {
     {
       nombre: "Argentista",
       descripcion: "Proyecto personal para mostrar datos económicos de Argentina.",
+      descripcionLarga:
+        "Visualizador interactivo de indicadores económicos argentinos con datos actualizados. Incluye gráficos dinámicos, comparativas históricas y filtros personalizados para seguir inflación, dólar, y más.",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
       tecnologias: ["Astro", "React", "TailwindCSS"],
@@ -88,6 +92,8 @@ const data: PortfolioData = {
     {
       nombre: "El Socorro",
       descripcion: "Sitio web institucional para una empresa agrícola zonal.",
+      descripcionLarga:
+        "Web corporativa moderna para una empresa del sector agropecuario. Catálogo de productos, galería de servicios y canales de contacto directo. Diseño responsivo y optimizado para SEO.",
       imagen: "elsocorro",
       enlace: "https://elsocorrosrl.com",
       tecnologias: ["Astro", "TailwindCSS"],

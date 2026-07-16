@@ -1,6 +1,8 @@
 ---
 import Card from "../ui/card.astro";
 import data from "../../data/cv";
+
+const BENTO_SIZES = ["large", "normal", "normal", "wide", "normal", "wide", "normal"] as const;
 ---
 
 <section id="proyectos" class="relative py-20 overflow-hidden">
@@ -92,7 +94,7 @@ import data from "../../data/cv";
             data-aos-easing="ease-out-back"
             class="hover:z-10 transition-all duration-300 hover:scale-[1.02] project-item"
           >
-            <Card proyecto={proyecto} />
+            <Card proyecto={proyecto} bentoSize={BENTO_SIZES[index]} />
           </div>
         ))
       }
