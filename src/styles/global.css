@@ -74,7 +74,9 @@
 }
 
 .animate-typing {
-  animation: typing 2s steps(20) infinite alternate, blink 0.7s infinite;
+  animation:
+    typing 2s steps(20) infinite alternate,
+    blink 0.7s infinite;
 }
 
 @keyframes ping {

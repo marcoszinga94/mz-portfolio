@@ -6,12 +6,12 @@ import vercel from "@astrojs/vercel";
 export default defineConfig({
   integrations: [],
   vite: {
-    plugins: [tailwindcss(),]
+    plugins: [tailwindcss()],
   },
   output: "server",
   adapter: vercel({
     webAnalytics: {
-      enabled: true
-    }
-  })
+      enabled: true,
+    },
+  }),
 });

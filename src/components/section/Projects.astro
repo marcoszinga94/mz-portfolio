@@ -12,8 +12,7 @@ import data from "../../data/cv";
         Proyectos Destacados
       </h2>
       <p class="mt-4 text-claro/70 max-w-2xl mx-auto">
-        Explora algunos de mis trabajos más recientes donde combino diseño
-        moderno con funcionalidad
+        Explora algunos de mis trabajos más recientes donde combino diseño moderno con funcionalidad
       </p>
 
       <div class="flex justify-center items-center gap-3 mt-6">
@@ -23,11 +22,18 @@ import data from "../../data/cv";
           data-active="true"
           aria-label="Vista cuadrícula"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="7" height="7" rx="1" />
-            <rect x="14" y="3" width="7" height="7" rx="1" />
-            <rect x="3" y="14" width="7" height="7" rx="1" />
-            <rect x="14" y="14" width="7" height="7" rx="1" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+            <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+            <rect x="14" y="14" width="7" height="7" rx="1"></rect>
           </svg>
         </button>
         <button
@@ -36,23 +42,26 @@ import data from "../../data/cv";
           data-active="false"
           aria-label="Vista lista"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="8" y1="6" x2="21" y2="6" />
-            <line x1="8" y1="12" x2="21" y2="12" />
-            <line x1="8" y1="18" x2="21" y2="18" />
-            <line x1="3" y1="6" x2="3.01" y2="6" />
-            <line x1="3" y1="12" x2="3.01" y2="12" />
-            <line x1="3" y1="18" x2="3.01" y2="18" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
           </svg>
         </button>
       </div>
     </div>
 
-    <div
-      id="projectsContainer"
-      class="max-w-7xl mx-auto"
-      data-view="grid"
-    >
+    <div id="projectsContainer" class="max-w-7xl mx-auto" data-view="grid">
       {
         data.proyectos.map((proyecto, index) => (
           <div
@@ -71,8 +80,6 @@ import data from "../../data/cv";
 </section>
 
 <style>
-
-
   #projectsContainer[data-view="grid"] {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -107,8 +114,6 @@ import data from "../../data/cv";
     display: flex;
     flex-direction: column;
   }
-
-
 
   :global([data-view="list"] article) {
     flex-direction: row !important;
@@ -162,8 +167,6 @@ import data from "../../data/cv";
       height: 200px !important;
     }
   }
-
-
 </style>
 
 <script>
@@ -191,10 +194,7 @@ import data from "../../data/cv";
         const dy = oldRects[i].top - newRect.top;
         if (dx !== 0 || dy !== 0) {
           el.animate(
-            [
-              { transform: `translate(${dx}px, ${dy}px)` },
-              { transform: "translate(0, 0)" },
-            ],
+            [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: "translate(0, 0)" }],
             { duration: 400, easing: "ease" },
           );
         }
@@ -212,5 +212,3 @@ import data from "../../data/cv";
     listBtn.dataset.active = String(saved === "list");
   }
 </script>
-
-

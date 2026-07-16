@@ -50,8 +50,7 @@ const data: PortfolioData = {
   proyectos: [
     {
       nombre: "TurnoMaster",
-      descripcion:
-        "Plataforma para la gestión de turnos y citas.",
+      descripcion: "Plataforma para la gestión de turnos y citas.",
       imagen: "turnomaster",
       enlace: "https://www.turnomaster.com.ar/",
       tecnologias: ["Astro", "React", "TailwindCSS"],
@@ -72,8 +71,7 @@ const data: PortfolioData = {
     },
     {
       nombre: "Argentista",
-      descripcion:
-        "Proyecto personal para mostrar datos económicos de Argentina.",
+      descripcion: "Proyecto personal para mostrar datos económicos de Argentina.",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
       tecnologias: ["Astro", "React", "TailwindCSS"],
@@ -95,8 +93,7 @@ const data: PortfolioData = {
     },
     {
       nombre: "MadMind",
-      descripcion:
-        "Aplicación web para ayudar a personas con depresión y ansiedad.",
+      descripcion: "Aplicación web para ayudar a personas con depresión y ansiedad.",
       imagen: "madmind",
       enlace: "https://madmind.vercel.app",
       tecnologias: ["React", "TailwindCSS", "TypeScript"],

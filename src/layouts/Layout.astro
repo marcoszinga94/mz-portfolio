@@ -22,13 +22,7 @@ const { title, description } = Astro.props;
       content="Desarrollador Web, Full-Stack Developer, JavaScript, React, Astro, TailwindCSS"
     />
     <!-- Preload critical assets -->
-    <link
-      rel="preload"
-      href="/Fonts/FiraCode.ttf"
-      as="font"
-      type="font/ttf"
-      crossorigin
-    />
+    <link rel="preload" href="/Fonts/FiraCode.ttf" as="font" type="font/ttf" crossorigin />
     <link rel="preload" href="/Images/selfie.webp" as="image" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -36,10 +30,7 @@ const { title, description } = Astro.props;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/Images/og-image.png" />
-    <meta
-      property="og:url"
-      content="https://portafoliozingaretti.vercel.app/"
-    />
+    <meta property="og:url" content="https://portafoliozingaretti.vercel.app/" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -50,14 +41,6 @@ const { title, description } = Astro.props;
   <body
     class="grid grid-rows-[auto_1fr_auto] bg-linear-to-b from-fondo to-oscuro text-claro overflow-x-hidden"
   >
-    <elevenlabs-convai agent-id="agent_5601kf6tydjzettr6hqcw87ayj8z"
-    ></elevenlabs-convai>
-    <script
-      is:inline
-      src="https://unpkg.com/@elevenlabs/convai-widget-embed"
-      async
-      type="text/javascript"
-    ></script>
     <Header />
     <main
       class="relative pt-20 min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 page-content"
@@ -66,7 +49,6 @@ const { title, description } = Astro.props;
     </main>
     <Footer />
   </body>
-
 
   <style is:global>
     @font-face {
@@ -129,8 +111,7 @@ const { title, description } = Astro.props;
 
         const headerOffset = 80;
         const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
         window.scrollTo({
           top: offsetPosition,

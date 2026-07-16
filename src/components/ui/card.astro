@@ -24,12 +24,7 @@ const { proyecto } = Astro.props;
       "w-full",
     ]}
   >
-    <div
-      class:list={[
-        "relative overflow-hidden",
-        "h-[200px] md:h-[220px] lg:h-[240px]",
-      ]}
-    >
+    <div class:list={["relative overflow-hidden", "h-[200px] md:h-[220px] lg:h-[240px]"]}>
       <Image
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}

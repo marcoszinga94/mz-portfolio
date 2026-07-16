@@ -98,6 +98,7 @@ interface Props {
 
 const { item } = Astro.props;
 ---
+
 <div>{item.name}</div>
 ```
 
@@ -146,6 +147,7 @@ const { item } = Astro.props;
 ## Content Management
 
 All portfolio content lives in `src/data/cv.ts` as a single default export object with these keys:
+
 - `sobreMi`: string[] - About me paragraphs
 - `habilidades`: Habilidad[] - Skills with icons
 - `experiencias`: TimelineItem[] - Work/education timeline

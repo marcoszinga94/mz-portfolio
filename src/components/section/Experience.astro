@@ -25,11 +25,7 @@ import data from "../../data/cv";
         </div>
 
         <ul class="relative space-y-8">
-          {
-            data.experiencias.map((experiencia) => (
-              <Timeline item={experiencia} />
-            ))
-          }
+          {data.experiencias.map((experiencia) => <Timeline item={experiencia} />)}
         </ul>
       </div>
     </div>

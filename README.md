@@ -6,13 +6,13 @@ Portfolio personal con exhibición de proyectos, experiencia profesional y habil
 
 ## 🛠️ Stack
 
-| Tecnología | Uso |
-|---|---|
-| **Astro 6** | Framework web con SSR |
-| **TailwindCSS v4** | Estilos utilitarios |
-| **TypeScript 5** | Tipado estricto |
-| **@astrojs/vercel** | Adaptador de despliegue |
-| **Vercel Analytics** | Métricas de visitas |
+| Tecnología           | Uso                     |
+| -------------------- | ----------------------- |
+| **Astro 6**          | Framework web con SSR   |
+| **TailwindCSS v4**   | Estilos utilitarios     |
+| **TypeScript 5**     | Tipado estricto         |
+| **@astrojs/vercel**  | Adaptador de despliegue |
+| **Vercel Analytics** | Métricas de visitas     |
 
 ---
 
