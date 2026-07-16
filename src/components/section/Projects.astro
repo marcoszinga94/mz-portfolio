@@ -268,6 +268,7 @@ import data from "../../data/cv";
 
   function removeBentoSizes() {
     if (!container) return;
+    bentoDnDSetup = false;
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
     items.forEach((el) => {
       el.classList.remove("bento-large", "bento-wide", "bento-tall", "dragging", "drag-over");
@@ -321,6 +322,7 @@ import data from "../../data/cv";
       } else {
         applyBentoSizes();
       }
+      setupBentoDnD();
     } else {
       removeBentoSizes();
     }
@@ -343,37 +345,54 @@ import data from "../../data/cv";
   }
 
   let dragSrcIndex: number | null = null;
+  let bentoDnDSetup = false;
 
-  function handleDragStart(this: HTMLElement, e: DragEvent) {
-    dragSrcIndex = Number(this.dataset.index);
-    this.classList.add("dragging");
-    if (e.dataTransfer) {
-      e.dataTransfer.effectAllowed = "move";
-      e.dataTransfer.setData("text/plain", String(dragSrcIndex));
+  function getItemFromEvent(e: Event): HTMLElement | null {
+    return (e.target as HTMLElement)?.closest(".project-item") as HTMLElement | null;
+  }
+
+  function handleDragStart(e: Event) {
+    const el = getItemFromEvent(e);
+    if (!el) return;
+    dragSrcIndex = Number(el.dataset.index);
+    el.classList.add("dragging");
+    const dt = (e as DragEvent).dataTransfer;
+    if (dt) {
+      dt.effectAllowed = "move";
+      dt.setData("text/plain", String(dragSrcIndex));
     }
   }
 
-  function handleDragEnd(this: HTMLElement) {
-    this.classList.remove("dragging");
-    const items = [...container!.querySelectorAll(".project-item")] as HTMLElement[];
-    items.forEach((el) => el.classList.remove("drag-over"));
+  function handleDragEnd(_e: Event) {
+    if (!container) return;
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+    items.forEach((el) => el.classList.remove("dragging", "drag-over"));
     dragSrcIndex = null;
   }
 
-  function handleDragOver(this: HTMLElement, e: DragEvent) {
+  function handleDragOver(e: Event) {
+    const el = getItemFromEvent(e);
+    if (!el) return;
     e.preventDefault();
-    if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
-    this.classList.add("drag-over");
+    const dt = (e as DragEvent).dataTransfer;
+    if (dt) dt.dropEffect = "move";
+    el.classList.add("drag-over");
   }
 
-  function handleDragLeave(this: HTMLElement) {
-    this.classList.remove("drag-over");
+  function handleDragLeave(e: Event) {
+    const el = getItemFromEvent(e);
+    if (!el) return;
+    el.classList.remove("drag-over");
   }
 
-  function handleDrop(this: HTMLElement, _e: DragEvent) {
-    this.classList.remove("drag-over");
-    const targetIndex = Number(this.dataset.index);
-    if (dragSrcIndex === null || dragSrcIndex === targetIndex || !container) return;
+  function handleDrop(e: Event) {
+    e.preventDefault();
+    const target = getItemFromEvent(e);
+    if (!target || !container) return;
+    target.classList.remove("drag-over");
+
+    const targetIndex = Number(target.dataset.index);
+    if (dragSrcIndex === null || dragSrcIndex === targetIndex) return;
 
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
     const order = items.map((el) => Number(el.dataset.index));
@@ -387,14 +406,13 @@ import data from "../../data/cv";
   }
 
   function setupBentoDnD() {
-    const items = [...container!.querySelectorAll(".project-item")] as HTMLElement[];
-    items.forEach((el) => {
-      el.addEventListener("dragstart", handleDragStart);
-      el.addEventListener("dragend", handleDragEnd);
-      el.addEventListener("dragover", handleDragOver);
-      el.addEventListener("dragleave", handleDragLeave);
-      el.addEventListener("drop", handleDrop);
-    });
+    if (bentoDnDSetup || !container) return;
+    bentoDnDSetup = true;
+    container.addEventListener("dragstart", handleDragStart);
+    container.addEventListener("dragend", handleDragEnd);
+    container.addEventListener("dragover", handleDragOver);
+    container.addEventListener("dragleave", handleDragLeave);
+    container.addEventListener("drop", handleDrop);
   }
 
   gridBtn?.addEventListener("click", () => setView("grid"));
@@ -419,14 +437,5 @@ import data from "../../data/cv";
         setupBentoDnD();
       }
     }
-  }
-
-  const observer = new MutationObserver(() => {
-    if (container?.dataset.view === "bento") {
-      setupBentoDnD();
-    }
-  });
-  if (container) {
-    observer.observe(container, { childList: true });
   }
 </script>
