@@ -58,6 +58,26 @@ import data from "../../data/cv";
             <line x1="3" y1="18" x2="3.01" y2="18"></line>
           </svg>
         </button>
+        <button
+          id="viewBento"
+          class="p-2 rounded-lg border border-claro/30 text-claro/70 hover:text-claro hover:border-acento transition-all duration-300 data-[active=true]:bg-acento/20 data-[active=true]:border-acento data-[active=true]:text-acento"
+          data-active="false"
+          aria-label="Vista bento"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="size-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="3" y="3" width="10" height="8" rx="1"></rect>
+            <rect x="15" y="3" width="6" height="4" rx="1"></rect>
+            <rect x="15" y="9" width="6" height="6" rx="1"></rect>
+            <rect x="3" y="13" width="10" height="8" rx="1"></rect>
+          </svg>
+        </button>
       </div>
     </div>
 
@@ -65,6 +85,7 @@ import data from "../../data/cv";
       {
         data.proyectos.map((proyecto, index) => (
           <div
+            data-index={index}
             data-aos="fade-up"
             data-aos-delay={index * 100}
             data-aos-duration="800"
@@ -108,11 +129,69 @@ import data from "../../data/cv";
     max-width: 100%;
   }
 
+  #projectsContainer[data-view="bento"] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    #projectsContainer[data-view="bento"] {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
   #projectsContainer[data-view="grid"] .project-item,
   #projectsContainer[data-view="bento"] .project-item {
     height: 100%;
     display: flex;
     flex-direction: column;
+  }
+
+  #projectsContainer[data-view="bento"] .project-item {
+    cursor: grab;
+    user-select: none;
+  }
+
+  #projectsContainer[data-view="bento"] .project-item.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+  }
+
+  #projectsContainer[data-view="bento"] .project-item.drag-over {
+    outline: 2px dashed #ff3b3b;
+    outline-offset: -4px;
+    border-radius: 16px;
+  }
+
+  @media (min-width: 768px) {
+    #projectsContainer[data-view="bento"] .project-item.bento-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    #projectsContainer[data-view="bento"] .project-item.bento-wide {
+      grid-column: span 2;
+    }
+
+    #projectsContainer[data-view="bento"] .project-item.bento-tall {
+      grid-row: span 2;
+    }
+  }
+
+  @media (max-width: 767px) {
+    #projectsContainer[data-view="bento"] {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    #projectsContainer[data-view="bento"] .project-item.bento-large,
+    #projectsContainer[data-view="bento"] .project-item.bento-wide,
+    #projectsContainer[data-view="bento"] .project-item.bento-tall {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
   }
 
   :global([data-view="list"] article) {
@@ -173,18 +252,79 @@ import data from "../../data/cv";
   const container = document.getElementById("projectsContainer");
   const gridBtn = document.getElementById("viewGrid");
   const listBtn = document.getElementById("viewList");
+  const bentoBtn = document.getElementById("viewBento");
+
+  const BENTO_SIZES = ["bento-large", "", "", "bento-wide", "", "bento-wide", ""];
+
+  function applyBentoSizes() {
+    if (!container) return;
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+    items.forEach((el, i) => {
+      el.classList.remove("bento-large", "bento-wide", "bento-tall");
+      el.draggable = true;
+      if (BENTO_SIZES[i]) el.classList.add(BENTO_SIZES[i]);
+    });
+  }
+
+  function removeBentoSizes() {
+    if (!container) return;
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+    items.forEach((el) => {
+      el.classList.remove("bento-large", "bento-wide", "bento-tall", "dragging", "drag-over");
+      el.draggable = false;
+    });
+  }
+
+  function getBentoOrder(): number[] {
+    try {
+      const stored = localStorage.getItem("bentoOrder");
+      if (stored) return JSON.parse(stored) as number[];
+    } catch { /* ignore */ }
+    return [];
+  }
+
+  function saveBentoOrder() {
+    if (!container) return;
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+    const order = items.map((el) => Number(el.dataset.index));
+    localStorage.setItem("bentoOrder", JSON.stringify(order));
+  }
+
+  function reorderItems(order: number[]) {
+    if (!container) return;
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+    const parent = container;
+    order.forEach((idx) => {
+      const el = items.find((item) => Number(item.dataset.index) === idx);
+      if (el) parent.appendChild(el);
+    });
+    saveBentoOrder();
+    applyBentoSizes();
+  }
 
   function setView(view: string) {
-    if (!container || !gridBtn || !listBtn) return;
+    if (!container || !gridBtn || !listBtn || !bentoBtn) return;
     if (container.dataset.view === view) return;
 
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
-
     const oldRects = items.map((el) => el.getBoundingClientRect());
 
     container.dataset.view = view;
     gridBtn.dataset.active = String(view === "grid");
     listBtn.dataset.active = String(view === "list");
+    bentoBtn.dataset.active = String(view === "bento");
+
+    if (view === "bento") {
+      const order = getBentoOrder();
+      if (order.length === items.length) {
+        reorderItems(order);
+      } else {
+        applyBentoSizes();
+      }
+    } else {
+      removeBentoSizes();
+    }
+
     localStorage.setItem("projectsView", view);
 
     requestAnimationFrame(() => {
@@ -202,13 +342,91 @@ import data from "../../data/cv";
     });
   }
 
+  let dragSrcIndex: number | null = null;
+
+  function handleDragStart(this: HTMLElement, e: DragEvent) {
+    dragSrcIndex = Number(this.dataset.index);
+    this.classList.add("dragging");
+    if (e.dataTransfer) {
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", String(dragSrcIndex));
+    }
+  }
+
+  function handleDragEnd(this: HTMLElement) {
+    this.classList.remove("dragging");
+    const items = [...container!.querySelectorAll(".project-item")] as HTMLElement[];
+    items.forEach((el) => el.classList.remove("drag-over"));
+    dragSrcIndex = null;
+  }
+
+  function handleDragOver(this: HTMLElement, e: DragEvent) {
+    e.preventDefault();
+    if (e.dataTransfer) e.dataTransfer.dropEffect = "move";
+    this.classList.add("drag-over");
+  }
+
+  function handleDragLeave(this: HTMLElement) {
+    this.classList.remove("drag-over");
+  }
+
+  function handleDrop(this: HTMLElement, _e: DragEvent) {
+    this.classList.remove("drag-over");
+    const targetIndex = Number(this.dataset.index);
+    if (dragSrcIndex === null || dragSrcIndex === targetIndex || !container) return;
+
+    const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+    const order = items.map((el) => Number(el.dataset.index));
+    const srcPos = order.indexOf(dragSrcIndex);
+    const tgtPos = order.indexOf(targetIndex);
+    if (srcPos === -1 || tgtPos === -1) return;
+
+    order.splice(srcPos, 1);
+    order.splice(tgtPos, 0, dragSrcIndex);
+    reorderItems(order);
+  }
+
+  function setupBentoDnD() {
+    const items = [...container!.querySelectorAll(".project-item")] as HTMLElement[];
+    items.forEach((el) => {
+      el.addEventListener("dragstart", handleDragStart);
+      el.addEventListener("dragend", handleDragEnd);
+      el.addEventListener("dragover", handleDragOver);
+      el.addEventListener("dragleave", handleDragLeave);
+      el.addEventListener("drop", handleDrop);
+    });
+  }
+
   gridBtn?.addEventListener("click", () => setView("grid"));
   listBtn?.addEventListener("click", () => setView("list"));
+  bentoBtn?.addEventListener("click", () => setView("bento"));
 
   const saved = localStorage.getItem("projectsView");
-  if ((saved === "grid" || saved === "list") && container && gridBtn && listBtn) {
-    container.dataset.view = saved;
-    gridBtn.dataset.active = String(saved === "grid");
-    listBtn.dataset.active = String(saved === "list");
+  if (container && gridBtn && listBtn && bentoBtn) {
+    if (saved === "grid" || saved === "list" || saved === "bento") {
+      container.dataset.view = saved;
+      gridBtn.dataset.active = String(saved === "grid");
+      listBtn.dataset.active = String(saved === "list");
+      bentoBtn.dataset.active = String(saved === "bento");
+      if (saved === "bento") {
+        const order = getBentoOrder();
+        const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
+        if (order.length === items.length) {
+          reorderItems(order);
+        } else {
+          applyBentoSizes();
+        }
+        setupBentoDnD();
+      }
+    }
+  }
+
+  const observer = new MutationObserver(() => {
+    if (container?.dataset.view === "bento") {
+      setupBentoDnD();
+    }
+  });
+  if (container) {
+    observer.observe(container, { childList: true });
   }
 </script>
