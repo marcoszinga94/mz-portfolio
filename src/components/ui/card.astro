@@ -8,10 +8,6 @@ interface Props {
 }
 
 const { proyecto, bentoSize = "normal" } = Astro.props;
-const isBentoEnhanced = bentoSize === "large" || bentoSize === "wide";
-const displayDescription = isBentoEnhanced && proyecto.descripcionLarga
-  ? proyecto.descripcionLarga
-  : proyecto.descripcion;
 ---
 
 <a
@@ -22,22 +18,22 @@ const displayDescription = isBentoEnhanced && proyecto.descripcionLarga
   class:list={["group block relative overflow-hidden", "p-2", "h-full"]}
 >
   <article
+    data-has-long={proyecto.descripcionLarga ? "" : undefined}
     class:list={[
       "relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg transition-all duration-500",
       "hover:translate-y-[-4px] hover:scale-[1.01] hover:bg-linear-to-br hover:from-gray-custom/90 hover:to-fondo/90",
       "flex flex-col h-full min-h-[400px] md:min-h-[500px]",
       "transform-gpu will-change-transform",
       "w-full",
-      bentoSize === "large" && "lg:flex-row lg:min-h-[400px]",
-      bentoSize === "wide" && "lg:flex-row lg:min-h-[320px]",
+      bentoSize === "large" && "md:min-h-[600px] lg:min-h-[750px]",
     ]}
   >
     <div
       class:list={[
-        "relative overflow-hidden",
+        "relative overflow-hidden shrink-0",
         "h-[200px] md:h-[220px] lg:h-[240px]",
-        bentoSize === "large" && "lg:h-full lg:w-1/2",
-        bentoSize === "wide" && "lg:h-full lg:w-2/5",
+        bentoSize === "wide" && "md:h-[260px] lg:h-[280px]",
+        bentoSize === "large" && "md:h-[340px] lg:h-[400px]",
       ]}
     >
       <Image
@@ -52,26 +48,27 @@ const displayDescription = isBentoEnhanced && proyecto.descripcionLarga
     <div
       class:list={[
         "flex flex-col p-6 gap-4 grow bg-linear-to-br from-gray-custom/50 to-fondo/50 backdrop-blur-sm",
-        "h-[calc(100%-200px)] md:h-[calc(100%-220px)] lg:h-[calc(100%-240px)]",
-        bentoSize === "large" && "lg:h-full lg:w-1/2 lg:justify-center",
-        bentoSize === "wide" && "lg:h-full lg:w-3/5 lg:justify-center",
       ]}
     >
-      <div class="flex flex-col gap-3">
-        <h3
-          class="font-bold text-xl md:text-2xl bg-linear-to-r from-acento to-medio bg-clip-text text-transparent group-hover:from-medio group-hover:to-acento transition-all duration-500"
-        >
-          {proyecto.nombre}
-        </h3>
-        <p
-          class:list={[
-            "text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300 min-h-18",
-            isBentoEnhanced ? "" : "line-clamp-3",
-          ]}
-        >
-          {displayDescription}
-        </p>
-      </div>
+      <div class="content-inner flex flex-col gap-4">
+        <div class="flex flex-col gap-3">
+          <h3
+            class="font-bold text-xl md:text-2xl bg-linear-to-r from-acento to-medio bg-clip-text text-transparent group-hover:from-medio group-hover:to-acento transition-all duration-500"
+          >
+            {proyecto.nombre}
+          </h3>
+
+          <div class="min-h-18 flex flex-col gap-1">
+            <p class="desc-short line-clamp-3 text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300">
+              {proyecto.descripcion}
+            </p>
+            {proyecto.descripcionLarga && (
+              <p class="desc-long hidden text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300">
+                {proyecto.descripcionLarga}
+              </p>
+            )}
+          </div>
+        </div>
 
       {
         proyecto.tecnologias && (
@@ -94,6 +91,7 @@ const displayDescription = isBentoEnhanced && proyecto.descripcionLarga
           </div>
         )
       }
+      </div>
     </div>
   </article>
 </a>

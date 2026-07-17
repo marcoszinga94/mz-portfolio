@@ -196,6 +196,26 @@ const BENTO_SIZES = ["large", "normal", "normal", "wide", "normal", "wide", "nor
     }
   }
 
+  :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .desc-long,
+         #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .desc-long) {
+    display: block !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .desc-short,
+         #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .desc-short) {
+    display: none !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .content-inner,
+         #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .content-inner) {
+    justify-content: center;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .content-inner .mt-auto,
+         #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .content-inner .mt-auto) {
+    margin-top: 0 !important;
+  }
+
   :global([data-view="list"] article) {
     flex-direction: row !important;
     max-height: none !important;
