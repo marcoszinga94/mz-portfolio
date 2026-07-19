@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import type { Proyecto } from "../../types/index.ts";
 
 interface Props {
@@ -14,23 +13,21 @@ const { proyecto } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   draggable="false"
-  class="group block relative overflow-hidden p-2 h-full"
+  class="group block relative p-2 h-full"
 >
   <article
     data-has-long={proyecto.descripcionLarga ? "" : undefined}
-    class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:translate-y-[-4px] hover:scale-[1.01] hover:bg-linear-to-br hover:from-gray-custom/90 hover:to-fondo/90 flex flex-col h-full min-h-[420px] transform-gpu will-change-transform w-full"
+    class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl shadow-lg transition-all duration-500 hover:translate-y-[-4px] hover:scale-[1.01] flex flex-col h-full min-h-[420px] w-full"
   >
-    <div class="relative overflow-hidden shrink-0 h-[200px]">
-      <Image
+    <div class="relative shrink-0 h-[200px]">
+      <img
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
-        width={533}
-        height={830}
         class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
       />
     </div>
 
-    <div class="flex flex-col p-6 gap-2 grow bg-linear-to-br from-gray-custom/50 to-fondo/50 backdrop-blur-sm overflow-hidden min-h-0">
+    <div class="flex flex-col p-6 gap-2 grow bg-linear-to-br from-gray-custom/50 to-fondo/50 min-h-0">
       <div class="content-inner flex flex-col gap-2 min-h-0 grow">
         <div class="flex flex-col gap-2">
           <h3 class="font-bold text-xl md:text-2xl bg-linear-to-r from-acento to-medio bg-clip-text text-transparent group-hover:from-medio group-hover:to-acento transition-all duration-500">
