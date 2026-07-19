@@ -23,6 +23,8 @@ const { proyecto } = Astro.props;
       <img
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
+        loading="lazy"
+        decoding="async"
         class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
       />
     </div>
