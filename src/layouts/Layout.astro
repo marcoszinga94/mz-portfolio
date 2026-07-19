@@ -60,12 +60,20 @@ const { title, description } = Astro.props;
     }
 
     html {
-      scroll-behavior: smooth;
       font-family: "Fira Code", monospace;
       -webkit-text-size-adjust: 100%;
       -moz-text-size-adjust: 100%;
       text-size-adjust: 100%;
-      overflow-x: hidden;
+    }
+
+    @media (max-width: 767px) {
+      html {
+        scrollbar-width: none;
+      }
+
+      html::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     @media (min-width: 768px) {
@@ -86,7 +94,6 @@ const { title, description } = Astro.props;
         background: var(--color-medio);
       }
 
-      /* Firefox */
       html {
         scrollbar-width: thin;
         scrollbar-color: var(--color-acento) var(--color-fondo);
