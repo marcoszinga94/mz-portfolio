@@ -569,7 +569,8 @@ import data from "../../data/cv";
   listBtn?.addEventListener("click", () => setView("list"));
   bentoBtn?.addEventListener("click", () => setView("bento"));
 
-  const saved = localStorage.getItem("projectsView");
+  const isMobile = window.innerWidth < 768;
+  const saved = !isMobile ? localStorage.getItem("projectsView") : null;
   if (container && gridBtn && listBtn && bentoBtn) {
     if (saved === "grid" || saved === "list" || saved === "bento") {
       container.dataset.view = saved;
