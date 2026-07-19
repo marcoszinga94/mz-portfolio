@@ -238,7 +238,6 @@ import data from "../../data/cv";
   @media (min-width: 1024px) {
     #projectsContainer[data-view="bento"] {
       aspect-ratio: 1;
-      grid-template-rows: repeat(4, 1fr);
     }
   }
 
@@ -248,9 +247,25 @@ import data from "../../data/cv";
     transform: none !important;
   }
 
+  /* Bento: give cards a minimum visual presence */
+  @media (min-width: 768px) {
+    #projectsContainer[data-view="bento"] .project-item {
+      min-height: 80px;
+    }
+
+    #projectsContainer[data-view="bento"] .project-item:not(.bento-text-card) {
+      outline: 1px solid rgba(255, 59, 59, 0.3);
+    }
+  }
+
   /* Remove card min-heights in bento mode */
   :global(#projectsContainer[data-view="bento"] article) {
     min-height: 0 !important;
+  }
+
+  /* Ensure project cards are visible in bento */
+  :global(#projectsContainer[data-view="bento"] article) {
+    background: linear-gradient(135deg, #2a2a3e, #1a1a2e) !important;
   }
 
   /* Images: taller but not distorted (object-cover handles aspect ratio) */
