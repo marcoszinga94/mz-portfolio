@@ -1,6 +1,5 @@
 ---
 import { Image } from "astro:assets";
-import SocialLinks from "../ui/socialLinks.astro";
 import CallToActionButtons from "../ui/CallToActionButtons.astro";
 ---
 
@@ -33,7 +32,6 @@ import CallToActionButtons from "../ui/CallToActionButtons.astro";
       </p>
 
       <CallToActionButtons />
-      <SocialLinks class="flex lg:hidden" />
     </div>
 
     <div class="lg:w-1/2 flex flex-col justify-center items-center">
@@ -45,7 +43,6 @@ import CallToActionButtons from "../ui/CallToActionButtons.astro";
         loading="eager"
         class="relative size-64 lg:size-96 rounded-full object-cover border-4 border-acento/30"
       />
-      <SocialLinks class="hidden lg:flex" />
     </div>
   </div>
 </section>
