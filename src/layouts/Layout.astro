@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import ScrollToTop from "../components/ui/ScrollToTop.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -48,6 +49,7 @@ const { title, description } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <ScrollToTop />
   </body>
 
   <style is:global>
@@ -59,8 +61,30 @@ const { title, description } = Astro.props;
 
     html {
       scroll-behavior: smooth;
-      scrollbar-width: none;
       font-family: "Fira Code", monospace;
+    }
+
+    html::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    html::-webkit-scrollbar-track {
+      background: var(--color-fondo);
+    }
+
+    html::-webkit-scrollbar-thumb {
+      background: var(--color-acento);
+      border-radius: 4px;
+    }
+
+    html::-webkit-scrollbar-thumb:hover {
+      background: var(--color-medio);
+    }
+
+    /* Firefox */
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-acento) var(--color-fondo);
     }
 
     /* Estilos base */

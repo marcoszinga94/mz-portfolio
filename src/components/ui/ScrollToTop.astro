@@ -1,0 +1,44 @@
+<button
+  id="scroll-to-top"
+  aria-label="Volver al inicio"
+  class="fixed bottom-8 right-8 z-50 p-3 rounded-full border-2 border-acento text-acento hover:bg-acento/10 transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-acento focus-visible:ring-offset-2 focus-visible:ring-offset-fondo transform hover:scale-110 active:scale-90 translate-y-20 opacity-0 pointer-events-none cursor-pointer"
+>
+  <svg
+    class="size-6"
+    fill="none"
+    height="24"
+    stroke="currentColor"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="2"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M18 15l-6-6-6 6" />
+  </svg>
+</button>
+
+<script>
+  const scrollBtn = document.getElementById("scroll-to-top");
+
+  if (scrollBtn) {
+    let isVisible = false;
+
+    window.addEventListener("scroll", () => {
+      const shouldShow = window.scrollY > 300;
+      if (shouldShow === isVisible) return;
+      isVisible = shouldShow;
+
+      scrollBtn.classList.toggle("translate-y-20", !shouldShow);
+      scrollBtn.classList.toggle("opacity-0", !shouldShow);
+      scrollBtn.classList.toggle("pointer-events-none", !shouldShow);
+      scrollBtn.classList.toggle("opacity-100", shouldShow);
+      scrollBtn.classList.toggle("pointer-events-auto", shouldShow);
+    });
+
+    scrollBtn.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
+</script>

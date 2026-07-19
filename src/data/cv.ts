@@ -10,9 +10,9 @@ interface PortfolioData {
 
 const data: PortfolioData = {
   sobreMi: [
-    "Desde pequeño, la tecnología me llamó la atención, y a los 15 años descubrí que escribir código era mucho más interesante que cualquier otra cosa.",
-    "Comencé con pequeños proyectos, intentando entender qué hacía cada línea. Con el tiempo, comprendí que la programación no es solo sobre código, sino sobre crear soluciones.",
-    "Hoy, con una sólida experiencia, desarrollo proyectos desde cero, aplicando lo aprendido y evitando —en lo posible— los errores del pasado.",
+    "Mi interés por la tecnología comenzó en la adolescencia, y a los 15 años descubrí en la programación una vocación que definiría mi carrera profesional.",
+    "Empecé con proyectos personales, explorando cada línea de código hasta comprender que el desarrollo de software va más allá de la sintaxis: se trata de resolver problemas y crear soluciones con impacto real.",
+    "Hoy, con experiencia en el desarrollo de aplicaciones completas, abordo cada proyecto aplicando buenas prácticas y aprendizajes acumulados, buscando siempre la mejor solución sin perder de vista la eficiencia y la calidad.",
   ],
   habilidades: [
     { nombre: "Astro", icon: "Astro" },
@@ -23,12 +23,6 @@ const data: PortfolioData = {
     { nombre: "JavaScript", icon: "JavaScript" },
   ],
   experiencias: [
-    {
-      fecha: "...Actualidad",
-      titulo: "Desarrollador Web Full-Stack",
-      descripcion:
-        "Desarrollo de aplicaciones web modernas utilizando React, Node.js y tecnologías relacionadas. Implementación de arquitecturas escalables y mantenibles.",
-    },
     {
       fecha: "2025 - 2028",
       titulo: "Tecnicatura Superior en Desarrollo de Software",
@@ -105,6 +99,16 @@ const data: PortfolioData = {
     },
   ],
   socialLinks: [
+    {
+      name: "Email",
+      url: "marcoszinga94@gmail.com",
+      icon: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22,6l-10,7L2,6",
+    },
+    {
+      name: "WhatsApp",
+      url: "https://wa.me/+5493584406950",
+      icon: "M16.8 5.7C14.4 2 9.5.9 5.7 3.2 2 5.5.8 10.5 3.2 14.2l.2.3-.8 3 3-.8.3.2c1.3.7 2.7 1.1 4.1 1.1 1.5 0 3-.4 4.3-1.2 3.7-2.4 4.8-7.3 2.5-11.1zm-2.1 7.7c-.4.6-.9 1-1.6 1.1-.4 0-.9.2-2.9-.6-1.7-.8-3.1-2.1-4.1-3.6-.6-.7-.9-1.6-1-2.5 0-.8.3-1.5.8-2 .2-.2.4-.3.6-.3H7c.2 0 .4 0 .5.4.2.5.7 1.7.7 1.8.1.1.1.3 0 .4.1.2 0 .4-.1.5-.1.1-.2.3-.3.4-.2.1-.3.3-.2.5.4.6.9 1.2 1.4 1.7.6.5 1.2.9 1.9 1.2.2.1.4.1.5-.1s.6-.7.8-.9c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.5.3.1.3.1.7-.1 1z",
+    },
     {
       name: "GitHub",
       url: "https://github.com/marcoszinga94",
