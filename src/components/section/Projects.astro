@@ -96,6 +96,23 @@ import data from "../../data/cv";
           </div>
         ))
       }
+
+      <div
+        data-index={data.proyectos.length}
+        data-aos="fade-up"
+        data-aos-delay={data.proyectos.length * 100}
+        data-aos-duration="800"
+        data-aos-easing="ease-out-back"
+        class="hover:z-10 transition-all duration-300 project-item bento-text-card hidden"
+      >
+        <div class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center h-full min-h-[250px] p-8 text-center border border-acento/20 hover:border-acento/50 transition-all duration-500">
+          <span class="text-6xl mb-4 opacity-30">✦</span>
+          <h3 class="text-3xl md:text-4xl font-bold bg-linear-to-r from-acento to-medio bg-clip-text text-transparent">
+            PROYECTOS DESTACADOS
+          </h3>
+          <p class="text-claro/50 mt-3 text-sm">Arrastra para reordenar</p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -143,15 +160,30 @@ import data from "../../data/cv";
   }
 
   #projectsContainer[data-view="grid"] .project-item,
-  #projectsContainer[data-view="bento"] .project-item {
+#projectsContainer[data-view="bento"] .project-item {
     height: 100%;
     display: flex;
     flex-direction: column;
   }
 
+  /* Hide text card in grid/list */
+  #projectsContainer[data-view="grid"] .bento-text-card,
+  #projectsContainer[data-view="list"] .bento-text-card {
+    display: none !important;
+  }
+
+  /* Show text card only in bento */
+  #projectsContainer[data-view="bento"] .bento-text-card {
+    display: flex;
+  }
+
   #projectsContainer[data-view="bento"] .project-item {
     cursor: grab;
     user-select: none;
+  }
+
+  #projectsContainer[data-view="bento"] .project-item.bento-text-card {
+    cursor: default;
   }
 
   #projectsContainer[data-view="bento"] .project-item.dragging {
@@ -194,6 +226,20 @@ import data from "../../data/cv";
     }
   }
 
+  /* Bento: bigger images for large/wide */
+  :global(#projectsContainer[data-view="bento"] .bento-large article > div:first-child) {
+    height: 300px !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-wide article > div:first-child) {
+    height: 250px !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-large article) {
+    min-height: 550px;
+  }
+
+  /* Bento: show long desc in large/wide */
   :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .desc-long,
          #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .desc-long) {
     display: block !important;
@@ -202,16 +248,6 @@ import data from "../../data/cv";
   :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .desc-short,
          #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .desc-short) {
     display: none !important;
-  }
-
-  :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .content-inner,
-         #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .content-inner) {
-    justify-content: center;
-  }
-
-  :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .content-inner .mt-auto,
-         #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .content-inner .mt-auto) {
-    margin-top: 0 !important;
   }
 
   :global([data-view="list"] article) {
@@ -281,7 +317,11 @@ import data from "../../data/cv";
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
     items.forEach((el, i) => {
       el.classList.remove("bento-large", "bento-wide", "bento-tall");
-      el.draggable = true;
+      if (el.classList.contains("bento-text-card")) {
+        el.draggable = false;
+      } else {
+        el.draggable = true;
+      }
       if (BENTO_SIZES[i]) el.classList.add(BENTO_SIZES[i]);
     });
   }
@@ -292,7 +332,9 @@ import data from "../../data/cv";
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
     items.forEach((el) => {
       el.classList.remove("bento-large", "bento-wide", "bento-tall", "dragging", "drag-over");
-      el.draggable = false;
+      if (!el.classList.contains("bento-text-card")) {
+        el.draggable = false;
+      }
     });
   }
 
