@@ -4,10 +4,9 @@ import type { Proyecto } from "../../types/index.ts";
 
 interface Props {
   proyecto: Proyecto;
-  bentoSize?: "normal" | "wide" | "large";
 }
 
-const { proyecto, bentoSize = "normal" } = Astro.props;
+const { proyecto } = Astro.props;
 ---
 
 <a
@@ -15,27 +14,13 @@ const { proyecto, bentoSize = "normal" } = Astro.props;
   target="_blank"
   rel="noopener noreferrer"
   draggable="false"
-  class:list={["group block relative overflow-hidden", "p-2", "h-full"]}
+  class="group block relative overflow-hidden p-2 h-full"
 >
   <article
     data-has-long={proyecto.descripcionLarga ? "" : undefined}
-    class:list={[
-      "relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg transition-all duration-500",
-      "hover:translate-y-[-4px] hover:scale-[1.01] hover:bg-linear-to-br hover:from-gray-custom/90 hover:to-fondo/90",
-      "flex flex-col h-full min-h-[400px] md:min-h-[500px]",
-      "transform-gpu will-change-transform",
-      "w-full",
-      bentoSize === "large" && "md:min-h-[600px] lg:min-h-[750px]",
-    ]}
+    class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:translate-y-[-4px] hover:scale-[1.01] hover:bg-linear-to-br hover:from-gray-custom/90 hover:to-fondo/90 flex flex-col h-full min-h-[450px] max-h-[560px] transform-gpu will-change-transform w-full"
   >
-    <div
-      class:list={[
-        "relative overflow-hidden shrink-0",
-        "h-[200px] md:h-[220px] lg:h-[240px]",
-        bentoSize === "wide" && "md:h-[260px] lg:h-[280px]",
-        bentoSize === "large" && "md:h-[340px] lg:h-[400px]",
-      ]}
-    >
+    <div class="relative overflow-hidden shrink-0 h-[200px]">
       <Image
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
@@ -45,21 +30,15 @@ const { proyecto, bentoSize = "normal" } = Astro.props;
       />
     </div>
 
-    <div
-      class:list={[
-        "flex flex-col p-6 gap-4 grow bg-linear-to-br from-gray-custom/50 to-fondo/50 backdrop-blur-sm",
-      ]}
-    >
-      <div class="content-inner flex flex-col gap-4">
-        <div class="flex flex-col gap-3">
-          <h3
-            class="font-bold text-xl md:text-2xl bg-linear-to-r from-acento to-medio bg-clip-text text-transparent group-hover:from-medio group-hover:to-acento transition-all duration-500"
-          >
+    <div class="flex flex-col p-6 gap-2 grow bg-linear-to-br from-gray-custom/50 to-fondo/50 backdrop-blur-sm overflow-hidden min-h-0">
+      <div class="content-inner flex flex-col gap-2 min-h-0 grow">
+        <div class="flex flex-col gap-2">
+          <h3 class="font-bold text-xl md:text-2xl bg-linear-to-r from-acento to-medio bg-clip-text text-transparent group-hover:from-medio group-hover:to-acento transition-all duration-500">
             {proyecto.nombre}
           </h3>
 
-          <div class="min-h-18 flex flex-col gap-1">
-            <p class="desc-short line-clamp-3 text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300">
+          <div class="flex flex-col gap-1">
+            <p class="desc-short line-clamp-2 text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300">
               {proyecto.descripcion}
             </p>
             {proyecto.descripcionLarga && (
@@ -70,27 +49,25 @@ const { proyecto, bentoSize = "normal" } = Astro.props;
           </div>
         </div>
 
-      {
-        proyecto.tecnologias && (
-          <div class="flex flex-col gap-3 mt-auto pt-4 border-t border-acento/20 min-h-[80px]">
-            <p class="text-sm text-medio/80">Tecnologías:</p>
-            <div class="flex flex-wrap gap-4">
-              {proyecto.tecnologias.map((stack: string) => (
-                <div class="group/icon">
-                  <img
-                    src={`/Images/stacks/${stack}.svg`}
-                    alt={`Icono de ${stack}`}
-                    width={32}
-                    height={32}
-                    loading="lazy"
-                    class="w-8 h-8 transition-all duration-300 group-hover/icon:scale-125 group-hover/icon:rotate-6 group-hover/icon:drop-shadow-[0_0_8px_rgba(255,59,59,0.5)]"
-                  />
-                </div>
-              ))}
-            </div>
+      {proyecto.tecnologias && (
+        <div class="flex flex-col gap-2 pt-3 border-t border-acento/20 mt-auto">
+          <p class="text-xs text-medio/70">Tecnologías:</p>
+          <div class="flex flex-wrap gap-3">
+            {proyecto.tecnologias.map((stack: string) => (
+              <div class="group/icon">
+                <img
+                  src={`/Images/stacks/${stack}.svg`}
+                  alt={`Icono de ${stack}`}
+                  width={28}
+                  height={28}
+                  loading="lazy"
+                  class="w-7 h-7 transition-all duration-300 group-hover/icon:scale-125 group-hover/icon:rotate-6 group-hover/icon:drop-shadow-[0_0_8px_rgba(255,59,59,0.5)]"
+                />
+              </div>
+            ))}
           </div>
-        )
-      }
+        </div>
+      )}
       </div>
     </div>
   </article>
