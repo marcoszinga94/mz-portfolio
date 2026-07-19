@@ -50,24 +50,6 @@ const data: PortfolioData = {
   ],
   proyectos: [
     {
-      nombre: "TurnoMaster",
-      descripcion: "Plataforma para la gestión de turnos y citas.",
-      descripcionLarga:
-        "Sistema completo de reservas online construido desde cero con Astro y React, diseñado para profesionales que necesitan optimizar su agenda sin complicaciones. Cuenta con un panel de administración intuitivo desde donde se gestionan horarios, servicios y profesionales de forma centralizada. Los clientes pueden reservar turnos en segundos, recibir recordatorios automáticos por correo electrónico y sincronizar sus citas con Google Calendar y otras plataformas. Además, incluye un sistema de notificaciones inteligentes que reduce las inasistencias y permite reprogramar sobre la marcha. Todo el flujo está optimizado para funcionar tanto en dispositivos móviles como en escritorio, garantizando una experiencia fluida sin importar desde dónde se acceda.",
-      imagen: "turnomaster",
-      enlace: "https://www.turnomaster.com.ar/",
-      tecnologias: ["Astro", "React", "TailwindCSS"],
-    },
-    {
-      nombre: "EspartaGym",
-      descripcion: "Sistema de gimnasio online para un gimnasio local.",
-      descripcionLarga:
-        "Plataforma integral para la administración de gimnasios desarrollada con Astro y React, pensada para simplificar la gestión diaria de centros deportivos. Permite registrar socios, asignar planes de entrenamiento personalizados y hacer seguimiento detallado del progreso físico de cada miembro. El panel administrativo centraliza el control de asistencias, la gestión de pagos y la comunicación directa con los socios a través de notificaciones push y correo electrónico. También incluye un módulo de reporting que genera estadísticas de retención, asistencia y rendimiento, facilitando la toma de decisiones para los dueños del gimnasio.",
-      imagen: "espartagym",
-      enlace: "https://www.espartagym.com",
-      tecnologias: ["Astro", "React", "TailwindCSS"],
-    },
-    {
       nombre: "Kura Medical",
       descripcion: "Plataforma de gestión de historias clínicas.",
       descripcionLarga:
@@ -83,6 +65,24 @@ const data: PortfolioData = {
         "Visualizador interactivo de indicadores económicos argentinos construido con Astro y React, diseñado para mantenerte al tanto de la compleja realidad económica del país con datos siempre actualizados. Consume múltiples APIs públicas en tiempo real para mostrar inflación, cotización del dólar oficial y blue, índices de riesgo país, tasas de interés y reservas del Banco Central. Los datos se presentan mediante gráficos dinámicos interactivos que permiten filtrar por rango de fechas, comparar indicadores entre sí y visualizar tendencias históricas. Incluye alertas personalizables para recibir notificaciones cuando ciertos indicadores alcanzan valores críticos, y un modo oscuro para facilitar la lectura nocturna.",
       imagen: "argentista",
       enlace: "https://argentista.vercel.app",
+      tecnologias: ["Astro", "React", "TailwindCSS"],
+    },
+    {
+      nombre: "EspartaGym",
+      descripcion: "Sistema de gimnasio online para un gimnasio local.",
+      descripcionLarga:
+        "Plataforma integral para la administración de gimnasios desarrollada con Astro y React, pensada para simplificar la gestión diaria de centros deportivos. Permite registrar socios, asignar planes de entrenamiento personalizados y hacer seguimiento detallado del progreso físico de cada miembro. El panel administrativo centraliza el control de asistencias, la gestión de pagos y la comunicación directa con los socios a través de notificaciones push y correo electrónico. También incluye un módulo de reporting que genera estadísticas de retención, asistencia y rendimiento, facilitando la toma de decisiones para los dueños del gimnasio.",
+      imagen: "espartagym",
+      enlace: "https://www.espartagym.com",
+      tecnologias: ["Astro", "React", "TailwindCSS"],
+    },
+    {
+      nombre: "TurnoMaster",
+      descripcion: "Plataforma para la gestión de turnos y citas.",
+      descripcionLarga:
+        "Sistema completo de reservas online construido desde cero con Astro y React, diseñado para profesionales que necesitan optimizar su agenda sin complicaciones. Cuenta con un panel de administración intuitivo desde donde se gestionan horarios, servicios y profesionales de forma centralizada. Los clientes pueden reservar turnos en segundos, recibir recordatorios automáticos por correo electrónico y sincronizar sus citas con Google Calendar y otras plataformas. Además, incluye un sistema de notificaciones inteligentes que reduce las inasistencias y permite reprogramar sobre la marcha. Todo el flujo está optimizado para funcionar tanto en dispositivos móviles como en escritorio, garantizando una experiencia fluida sin importar desde dónde se acceda.",
+      imagen: "turnomaster",
+      enlace: "https://www.turnomaster.com.ar/",
       tecnologias: ["Astro", "React", "TailwindCSS"],
     },
     {
