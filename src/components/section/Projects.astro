@@ -234,20 +234,66 @@ import data from "../../data/cv";
     }
   }
 
-  /* Bento: bigger images for large/wide */
-  :global(#projectsContainer[data-view="bento"] .bento-large article > div:first-child) {
-    height: 300px !important;
+  /* Bento: square grid */
+  @media (min-width: 1024px) {
+    #projectsContainer[data-view="bento"] {
+      aspect-ratio: 1;
+      grid-template-rows: repeat(4, 1fr);
+    }
+  }
+
+  /* Remove card min-heights in bento mode */
+  :global(#projectsContainer[data-view="bento"] article) {
+    min-height: 0 !important;
+  }
+
+  /* Images scale to fit within rows */
+  :global(#projectsContainer[data-view="bento"] article > div:first-child) {
+    height: 90px !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .bento-wide article > div:first-child) {
-    height: 250px !important;
+    height: 90px !important;
   }
 
-  :global(#projectsContainer[data-view="bento"] .bento-large article) {
-    min-height: 550px;
+  :global(#projectsContainer[data-view="bento"] .bento-large article > div:first-child) {
+    height: 160px !important;
   }
 
-  /* Bento: show long desc in large/wide */
+  /* Compact content padding in bento */
+  :global(#projectsContainer[data-view="bento"] article > div:last-child) {
+    padding: 0.75rem !important;
+    gap: 0.25rem !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .content-inner) {
+    gap: 0.25rem !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] article h3) {
+    font-size: 1rem !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .desc-short) {
+    font-size: 0.75rem !important;
+    -webkit-line-clamp: 1 !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .desc-long) {
+    font-size: 0.75rem !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-large h3) {
+    font-size: 1.25rem !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .bento-large .desc-short,
+         #projectsContainer[data-view="bento"] .bento-large .desc-long) {
+    -webkit-line-clamp: 3 !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Show long desc in large/wide */
   :global(#projectsContainer[data-view="bento"] .bento-large [data-has-long] .desc-long,
          #projectsContainer[data-view="bento"] .bento-wide [data-has-long] .desc-long) {
     display: block !important;
