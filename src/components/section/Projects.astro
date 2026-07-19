@@ -82,6 +82,22 @@ import data from "../../data/cv";
     </div>
 
     <div id="projectsContainer" class="max-w-7xl mx-auto" data-view="grid">
+      <div
+        data-index="-1"
+        data-aos="fade-up"
+        data-aos-delay="0"
+        data-aos-duration="800"
+        data-aos-easing="ease-out-back"
+        class="transition-all duration-300 project-item bento-text-card"
+      >
+        <div class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center h-full min-h-[200px] p-8 text-center border border-acento/20 hover:border-acento/50 transition-all duration-500">
+          <span class="text-6xl mb-4 opacity-30">✦</span>
+          <h3 class="text-3xl md:text-4xl font-bold bg-linear-to-r from-acento to-medio bg-clip-text text-transparent">
+            PROYECTOS DESTACADOS
+          </h3>
+          <p class="text-claro/50 mt-3 text-sm">Arrastra para reordenar</p>
+        </div>
+      </div>
       {
         data.proyectos.map((proyecto, index) => (
           <div
@@ -96,23 +112,6 @@ import data from "../../data/cv";
           </div>
         ))
       }
-
-      <div
-        data-index={data.proyectos.length}
-        data-aos="fade-up"
-        data-aos-delay={data.proyectos.length * 100}
-        data-aos-duration="800"
-        data-aos-easing="ease-out-back"
-        class="hover:z-10 transition-all duration-300 project-item bento-text-card hidden"
-      >
-        <div class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center h-full min-h-[250px] p-8 text-center border border-acento/20 hover:border-acento/50 transition-all duration-500">
-          <span class="text-6xl mb-4 opacity-30">✦</span>
-          <h3 class="text-3xl md:text-4xl font-bold bg-linear-to-r from-acento to-medio bg-clip-text text-transparent">
-            PROYECTOS DESTACADOS
-          </h3>
-          <p class="text-claro/50 mt-3 text-sm">Arrastra para reordenar</p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -207,8 +206,16 @@ import data from "../../data/cv";
       grid-column: span 2;
     }
 
+    #projectsContainer[data-view="bento"] .project-item.bento-full {
+      grid-column: 1 / -1;
+    }
+
     #projectsContainer[data-view="bento"] .project-item.bento-tall {
       grid-row: span 2;
+    }
+
+    #projectsContainer[data-view="bento"] .bento-text-card {
+      order: -1;
     }
   }
 
@@ -310,13 +317,13 @@ import data from "../../data/cv";
   const listBtn = document.getElementById("viewList");
   const bentoBtn = document.getElementById("viewBento");
 
-  const BENTO_SIZES = ["bento-large", "", "", "bento-wide", "", "bento-wide", ""];
+  const BENTO_SIZES = ["bento-full", "bento-large", "", "", "bento-wide", "", ""];
 
   function applyBentoSizes() {
     if (!container) return;
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
     items.forEach((el, i) => {
-      el.classList.remove("bento-large", "bento-wide", "bento-tall");
+      el.classList.remove("bento-large", "bento-wide", "bento-tall", "bento-full");
       if (el.classList.contains("bento-text-card")) {
         el.draggable = false;
       } else {
@@ -331,7 +338,7 @@ import data from "../../data/cv";
     bentoDnDSetup = false;
     const items = [...container.querySelectorAll(".project-item")] as HTMLElement[];
     items.forEach((el) => {
-      el.classList.remove("bento-large", "bento-wide", "bento-tall", "dragging", "drag-over");
+      el.classList.remove("bento-large", "bento-wide", "bento-tall", "bento-full", "dragging", "drag-over");
       if (!el.classList.contains("bento-text-card")) {
         el.draggable = false;
       }
