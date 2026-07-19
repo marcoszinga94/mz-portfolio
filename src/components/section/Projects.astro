@@ -90,12 +90,12 @@ import data from "../../data/cv";
         data-aos-easing="ease-out-back"
         class="transition-all duration-300 project-item bento-text-card"
       >
-        <div class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center h-full min-h-[300px] p-8 text-center border-2 border-acento/20 hover:border-acento/50 transition-all duration-500">
-          <span class="text-7xl mb-4 opacity-20">✦</span>
-          <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold bg-linear-to-r from-acento to-medio bg-clip-text text-transparent">
+        <div class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center h-full min-h-[180px] p-6 text-center border-2 border-acento/20 hover:border-acento/50 transition-all duration-500">
+          <span class="text-5xl mb-3 opacity-20">✦</span>
+          <h3 class="text-2xl md:text-3xl lg:text-4xl font-bold bg-linear-to-r from-acento to-medio bg-clip-text text-transparent">
             PROYECTOS<br/>DESTACADOS
           </h3>
-          <p class="text-claro/50 mt-4 text-sm">Arrastra para reordenar</p>
+          <p class="text-claro/50 mt-2 text-xs">Arrastra para reordenar</p>
         </div>
       </div>
       {
@@ -206,6 +206,10 @@ import data from "../../data/cv";
       grid-column: span 2;
     }
 
+    #projectsContainer[data-view="bento"] .project-item.bento-full {
+      grid-column: span 3;
+    }
+
     #projectsContainer[data-view="bento"] .project-item.bento-tall {
       grid-row: span 2;
     }
@@ -223,7 +227,8 @@ import data from "../../data/cv";
 
     #projectsContainer[data-view="bento"] .project-item.bento-large,
     #projectsContainer[data-view="bento"] .project-item.bento-wide,
-    #projectsContainer[data-view="bento"] .project-item.bento-tall {
+    #projectsContainer[data-view="bento"] .project-item.bento-tall,
+    #projectsContainer[data-view="bento"] .project-item.bento-full {
       grid-column: span 1;
       grid-row: span 1;
     }
@@ -313,7 +318,7 @@ import data from "../../data/cv";
   const listBtn = document.getElementById("viewList");
   const bentoBtn = document.getElementById("viewBento");
 
-  const BENTO_SIZES = ["bento-large", "bento-large", "", "", "bento-wide", "", ""];
+  const BENTO_SIZES = ["bento-full", "", "bento-large", "", "bento-wide", "bento-wide", "bento-wide"];
 
   function applyBentoSizes() {
     if (!container) return;
