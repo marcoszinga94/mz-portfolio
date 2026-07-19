@@ -242,6 +242,12 @@ import data from "../../data/cv";
     }
   }
 
+  /* Override AOS opacity so cards are visible by default */
+  #projectsContainer[data-view] .project-item {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   /* Remove card min-heights in bento mode */
   :global(#projectsContainer[data-view="bento"] article) {
     min-height: 0 !important;
