@@ -68,27 +68,29 @@ const { title, description } = Astro.props;
       overflow-x: hidden;
     }
 
-    html::-webkit-scrollbar {
-      width: 8px;
-    }
+    @media (min-width: 768px) {
+      html::-webkit-scrollbar {
+        width: 8px;
+      }
 
-    html::-webkit-scrollbar-track {
-      background: var(--color-fondo);
-    }
+      html::-webkit-scrollbar-track {
+        background: var(--color-fondo);
+      }
 
-    html::-webkit-scrollbar-thumb {
-      background: var(--color-acento);
-      border-radius: 4px;
-    }
+      html::-webkit-scrollbar-thumb {
+        background: var(--color-acento);
+        border-radius: 4px;
+      }
 
-    html::-webkit-scrollbar-thumb:hover {
-      background: var(--color-medio);
-    }
+      html::-webkit-scrollbar-thumb:hover {
+        background: var(--color-medio);
+      }
 
-    /* Firefox */
-    html {
-      scrollbar-width: thin;
-      scrollbar-color: var(--color-acento) var(--color-fondo);
+      /* Firefox */
+      html {
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-acento) var(--color-fondo);
+      }
     }
 
     /* Estilos base */
