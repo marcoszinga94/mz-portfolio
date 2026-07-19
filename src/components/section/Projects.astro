@@ -207,7 +207,7 @@ import data from "../../data/cv";
     }
 
     #projectsContainer[data-view="bento"] .project-item.bento-full {
-      grid-column: span 3;
+      grid-column: 1 / -1;
     }
 
     #projectsContainer[data-view="bento"] .project-item.bento-tall {
@@ -247,50 +247,69 @@ import data from "../../data/cv";
     min-height: 0 !important;
   }
 
-  /* Images scale to fit within rows */
+  /* Images: taller but not distorted (object-cover handles aspect ratio) */
   :global(#projectsContainer[data-view="bento"] article > div:first-child) {
-    height: 90px !important;
+    height: 120px !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .bento-wide article > div:first-child) {
-    height: 90px !important;
+    height: 120px !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .bento-large article > div:first-child) {
-    height: 160px !important;
+    height: 220px !important;
+  }
+
+  /* Image background to make cropping look intentional */
+  :global(#projectsContainer[data-view="bento"] article > div:first-child) {
+    background: linear-gradient(to bottom, #1a1a2e, #2a2a3e) !important;
   }
 
   /* Compact content padding in bento */
   :global(#projectsContainer[data-view="bento"] article > div:last-child) {
-    padding: 0.75rem !important;
-    gap: 0.25rem !important;
+    padding: 0.6rem 0.75rem !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .content-inner) {
-    gap: 0.25rem !important;
+    gap: 0.15rem !important;
   }
 
   :global(#projectsContainer[data-view="bento"] article h3) {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .desc-short) {
-    font-size: 0.75rem !important;
+    font-size: 0.7rem !important;
     -webkit-line-clamp: 1 !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .desc-long) {
-    font-size: 0.75rem !important;
+    font-size: 0.7rem !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .bento-large h3) {
-    font-size: 1.25rem !important;
+    font-size: 1.1rem !important;
   }
 
   :global(#projectsContainer[data-view="bento"] .bento-large .desc-short,
          #projectsContainer[data-view="bento"] .bento-large .desc-long) {
-    -webkit-line-clamp: 3 !important;
-    font-size: 0.8rem !important;
+    -webkit-line-clamp: 2 !important;
+    font-size: 0.75rem !important;
+  }
+
+  /* Tech icons smaller in bento */
+  :global(#projectsContainer[data-view="bento"] .group/icon img) {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] [class*="border-t"]) {
+    padding-top: 0.35rem !important;
+    margin-top: 0.15rem !important;
+  }
+
+  :global(#projectsContainer[data-view="bento"] .flex-wrap) {
+    gap: 0.35rem !important;
   }
 
   /* Show long desc in large/wide */
@@ -364,7 +383,7 @@ import data from "../../data/cv";
   const listBtn = document.getElementById("viewList");
   const bentoBtn = document.getElementById("viewBento");
 
-  const BENTO_SIZES = ["bento-full", "", "bento-large", "bento-wide", "bento-wide", "bento-wide", "bento-wide"];
+  const BENTO_SIZES = ["bento-full", "bento-large", "", "", "bento-wide", "bento-wide", "bento-wide"];
 
   function applyBentoSizes() {
     if (!container) return;
