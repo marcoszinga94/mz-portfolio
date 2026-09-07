@@ -23,6 +23,19 @@ export interface MenuItem {
   url: string;
 }
 
+export interface Servicio {
+  nombre: string;
+  descripcion: string;
+  caracteristicas: string[];
+  icono: string;
+}
+
+export interface ProcesoStep {
+  paso: string;
+  titulo: string;
+  descripcion: string;
+}
+
 export interface SocialLink {
   name: string;
   url: string;

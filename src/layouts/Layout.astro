@@ -2,6 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollToTop from "../components/ui/ScrollToTop.astro";
+import WhatsAppFloat from "../components/ui/WhatsAppFloat.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -50,6 +51,7 @@ const { title, description } = Astro.props;
     </main>
     <Footer />
     <ScrollToTop />
+    <WhatsAppFloat />
   </body>
 
   <style is:global>

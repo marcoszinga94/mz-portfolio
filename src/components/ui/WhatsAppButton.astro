@@ -1,0 +1,30 @@
+---
+import data from "../../data/cv";
+
+interface Props {
+  message?: string;
+  label?: string;
+  className?: string;
+}
+
+const {
+  message = "Hola Marcos, quiero un presupuesto para mi proyecto.",
+  label = "Pedir presupuesto",
+  className = "",
+} = Astro.props;
+
+const whatsapp = data.socialLinks.find((s) => s.name === "WhatsApp")!;
+const url = `${whatsapp.url}?text=${encodeURIComponent(message)}`;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  class={`px-6 py-3 text-base inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-acento focus-visible:ring-offset-2 focus-visible:ring-offset-fondo disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-r from-acento to-medio text-claro hover:from-medio hover:to-acento ${className}`}
+>
+  <svg class="size-5 mr-2 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path d={whatsapp.icon}></path>
+  </svg>
+  {label}
+</a>

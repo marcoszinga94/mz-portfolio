@@ -1,0 +1,25 @@
+---
+import data from "../../data/cv";
+
+const whatsapp = data.socialLinks.find((s) => s.name === "WhatsApp")!;
+const url = `${whatsapp.url}?text=${encodeURIComponent(
+  "Hola Marcos, quiero un presupuesto para mi proyecto.",
+)}`;
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Contactar por WhatsApp"
+  class="group fixed bottom-6 right-6 z-50"
+>
+  <span class="absolute inset-0 rounded-full bg-acento/40 animate-ping"></span>
+  <span
+    class="relative flex size-14 items-center justify-center rounded-full bg-gradient-to-br from-acento to-medio text-claro shadow-lg shadow-acento/30 transition-transform duration-300 group-hover:scale-110"
+  >
+    <svg class="size-7 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path d={whatsapp.icon}></path>
+    </svg>
+  </span>
+</a>
