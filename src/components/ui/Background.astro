@@ -1,0 +1,253 @@
+---
+// Capa de fondo: aurora parallax + grilla con foco (canvas) + tipografía fantasma.
+// Es puramente decorativa y no intercepta eventos.
+---
+
+<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <!-- Aurora parallax -->
+  <div
+    data-aurora
+    data-speed="0.10"
+    class="absolute -top-[10%] -left-40 size-[42rem] rounded-full bg-acento/10 blur-3xl"
+  ></div>
+  <div
+    data-aurora
+    data-speed="-0.06"
+    class="absolute top-1/3 -right-48 size-[38rem] rounded-full bg-medio/10 blur-3xl"
+  ></div>
+  <div
+    data-aurora
+    data-speed="0.16"
+    class="absolute bottom-[-15%] left-1/4 size-[34rem] rounded-full bg-acento/10 blur-3xl"
+  ></div>
+
+  <!-- Grilla con foco -->
+  <canvas data-grid-canvas class="absolute inset-0 size-full opacity-80"></canvas>
+
+  <!-- Tipografía fantasma -->
+  <div data-ghost-layer class="absolute inset-0 grid place-items-center">
+    <span
+      data-ghost
+      class="select-none text-[17vw] font-extrabold tracking-tight whitespace-nowrap text-claro/[0.035] uppercase transition-opacity duration-500"
+    >
+      Marcos
+    </span>
+  </div>
+</div>
+
+<script>
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
+  let scrolly = window.scrollY;
+  let startCanvas = () => {};
+
+  /* ---------------- Aurora parallax ---------------- */
+  const auroras = Array.from(document.querySelectorAll<HTMLElement>("[data-aurora]"));
+  let parallaxTick = false;
+
+  function applyParallax() {
+    parallaxTick = false;
+    if (reduceMotion.matches) return;
+    if (isDesktop) {
+      for (const aurora of auroras) {
+        const speed = Number(aurora.dataset.speed ?? "0.1");
+        aurora.style.transform = `translate3d(0, ${scrolly * speed}px, 0)`;
+      }
+    }
+  }
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      scrolly = window.scrollY;
+      if (!parallaxTick) {
+        parallaxTick = true;
+        requestAnimationFrame(applyParallax);
+      }
+      startCanvas();
+    },
+    { passive: true },
+  );
+  applyParallax();
+
+  /* ---------------- Tipografía fantasma por sección ---------------- */
+  const ghost = document.querySelector<HTMLElement>("[data-ghost]");
+  const ghostWords: Record<string, string> = {
+    inicio: "Marcos",
+    servicios: "Servicios",
+    proyectos: "Proyectos",
+    proceso: "Proceso",
+    resultados: "Resultados",
+    "sobre-mi": "Sobre mí",
+    trayectoria: "Trayectoria",
+    preguntas: "Preguntas",
+    contacto: "Contacto",
+  };
+
+  if (ghost) {
+    const ghostObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const word = ghostWords[(entry.target as HTMLElement).id];
+          if (!word || ghost.textContent === word) continue;
+          ghost.style.opacity = "0";
+          window.setTimeout(() => {
+            ghost.textContent = word;
+            ghost.style.opacity = "1";
+          }, 220);
+        }
+      },
+      { rootMargin: "-45% 0px -45% 0px" },
+    );
+
+    document.querySelectorAll("main section[id]").forEach((section) => {
+      if (ghostWords[(section as HTMLElement).id]) ghostObserver.observe(section);
+    });
+  }
+
+  /* ---------------- Grilla con foco (canvas) ---------------- */
+  const canvas = document.querySelector<HTMLCanvasElement>("[data-grid-canvas]");
+
+  if (canvas && isDesktop) {
+    const ctx = canvas.getContext("2d");
+
+    if (ctx) {
+      let width = 0;
+      let height = 0;
+      let dots: Array<{ x: number; y: number }> = [];
+      const spacing = 48;
+      const radius = 260;
+      const pointer = { x: -9999, y: -9999 };
+      const focus = { x: 0, y: 0 };
+      const target = { x: 0, y: 0 };
+      let active = false;
+
+      const build = () => {
+        width = canvas.clientWidth;
+        height = canvas.clientHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        dots = [];
+        for (let x = 0; x <= width + spacing; x += spacing) {
+          for (let y = 0; y <= height + spacing; y += spacing) {
+            dots.push({ x, y });
+          }
+        }
+
+        target.x = width / 2;
+        target.y = height / 2;
+        focus.x = target.x;
+        focus.y = target.y;
+      };
+
+      const draw = () => {
+        ctx.clearRect(0, 0, width, height);
+        const offsetY = scrolly * 0.04;
+        const lit: Array<{ x: number; y: number }> = [];
+        const radiusSq = radius * radius;
+
+        for (const dot of dots) {
+          const y = dot.y + offsetY;
+          const dx = dot.x - focus.x;
+          const dy = y - focus.y;
+          const distSq = dx * dx + dy * dy;
+
+          let glow = 0;
+          if (distSq < radiusSq) {
+            glow = 1 - Math.sqrt(distSq) / radius;
+            glow *= glow;
+          }
+
+          const alpha = 0.04 + glow * 0.55;
+          const size = 1 + glow * 1.8;
+          ctx.beginPath();
+          ctx.fillStyle =
+            glow > 0.02 ? `rgba(255, 59, 59, ${alpha})` : `rgba(237, 237, 237, ${alpha})`;
+          ctx.arc(dot.x, y, size, 0, Math.PI * 2);
+          ctx.fill();
+
+          if (glow > 0.3) lit.push({ x: dot.x, y });
+        }
+
+        ctx.lineWidth = 1;
+        const maxLink = spacing * 1.7;
+        const maxLinkSq = maxLink * maxLink;
+        for (let i = 0; i < lit.length; i++) {
+          for (let j = i + 1; j < lit.length; j++) {
+            const dx = lit[i].x - lit[j].x;
+            const dy = lit[i].y - lit[j].y;
+            const distSq = dx * dx + dy * dy;
+            if (distSq > maxLinkSq) continue;
+            const a = (1 - Math.sqrt(distSq) / maxLink) * 0.22;
+            ctx.strokeStyle = `rgba(255, 59, 59, ${a})`;
+            ctx.beginPath();
+            ctx.moveTo(lit[i].x, lit[i].y);
+            ctx.lineTo(lit[j].x, lit[j].y);
+            ctx.stroke();
+          }
+        }
+      };
+
+      const loop = () => {
+        target.x = pointer.x > -1000 ? pointer.x : width / 2;
+        target.y = pointer.y > -1000 ? pointer.y : height / 2;
+
+        const dx = target.x - focus.x;
+        const dy = target.y - focus.y;
+        focus.x += dx * 0.08;
+        focus.y += dy * 0.08;
+
+        draw();
+
+        if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+          requestAnimationFrame(loop);
+        } else {
+          focus.x = target.x;
+          focus.y = target.y;
+          draw();
+          active = false;
+        }
+      };
+
+      startCanvas = () => {
+        if (!active) {
+          active = true;
+          requestAnimationFrame(loop);
+        }
+      };
+
+      window.addEventListener(
+        "pointermove",
+        (event) => {
+          pointer.x = event.clientX;
+          pointer.y = event.clientY;
+          startCanvas();
+        },
+        { passive: true },
+      );
+
+      let resizeTick = false;
+      window.addEventListener("resize", () => {
+        if (resizeTick) return;
+        resizeTick = true;
+        window.setTimeout(() => {
+          resizeTick = false;
+          build();
+          draw();
+        }, 150);
+      });
+
+      build();
+      if (reduceMotion.matches) {
+        draw();
+      } else {
+        startCanvas();
+      }
+    }
+  }
+</script>

@@ -32,12 +32,20 @@ const year = new Date().getFullYear();
       class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-claro/60"
       aria-label="Enlaces legales"
     >
-      <a href="/privacidad" class="transition-colors duration-300 ease-fluid hover:text-claro">
+      <button
+        type="button"
+        data-legal="privacy"
+        class="cursor-pointer text-sm text-claro/60 bg-transparent transition-colors duration-300 ease-fluid hover:text-claro"
+      >
         Privacidad
-      </a>
-      <a href="/terminos" class="transition-colors duration-300 ease-fluid hover:text-claro">
+      </button>
+      <button
+        type="button"
+        data-legal="terms"
+        class="cursor-pointer text-sm text-claro/60 bg-transparent transition-colors duration-300 ease-fluid hover:text-claro"
+      >
         Términos
-      </a>
+      </button>
     </nav>
 
     <p class="text-sm text-claro/40">

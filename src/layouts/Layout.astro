@@ -1,6 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Background from "../components/ui/Background.astro";
+import LegalModal from "../components/ui/LegalModal.astro";
 import ScrollToTop from "../components/ui/ScrollToTop.astro";
 import WhatsAppFloat from "../components/ui/WhatsAppFloat.astro";
 import "@fontsource-variable/manrope";
@@ -68,7 +70,9 @@ const jsonLd = JSON.stringify({
     <script type="application/ld+json" set:html={jsonLd} />
   </head>
 
-  <body class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-fondo text-claro">
+  <body class="isolate grid min-h-screen grid-rows-[auto_1fr_auto] bg-fondo text-claro">
+    <Background />
+
     <a
       href="#contenido"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-acento focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
@@ -93,6 +97,7 @@ const jsonLd = JSON.stringify({
     <Footer />
     <ScrollToTop />
     <WhatsAppFloat />
+    <LegalModal />
   </body>
 
   <script>

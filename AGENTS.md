@@ -70,16 +70,16 @@ src/
     section/              # Hero, TaglineReveal, Services, Projects, Process,
                           # Proof, About, Experience, FAQ, Contact
     ui/                   # card, timeline, WhatsAppButton, WhatsAppFloat,
-                          # CallToActionButtons, ScrollToTop, SectionHeading
+                          # CallToActionButtons, ScrollToTop, SectionHeading,
+                          # SectionLabel, Background, LegalModal
   data/
     cv.ts                 # Todo el contenido (único default export)
+    legal.ts              # Textos de privacidad y términos (modales)
   layouts/
-    Layout.astro          # HTML raíz, SEO/OG, JSON-LD, reveals
+    Layout.astro          # HTML raíz, SEO/OG, JSON-LD, reveals, fondo
   pages/
     index.astro           # Landing de una página
     404.astro             # 404 con marca
-    privacidad.astro      # Política de privacidad
-    terminos.astro        # Términos y condiciones
   styles/
     global.css            # Tailwind + @theme + estilos base
   types/index.ts          # Interfaces
@@ -114,5 +114,5 @@ Todo el contenido vive en `src/data/cv.ts` (default export) con estas claves:
 
 ## Contenido pendiente de personalizar
 
-- Los textos de `privacidad.astro` y `terminos.astro` son plantillas base: revisalos con un
-  profesional antes de publicarlos.
+- Los textos de `src/data/legal.ts` (modales de privacidad y términos) son plantillas base:
+  revisalos con un profesional antes de publicarlos.
