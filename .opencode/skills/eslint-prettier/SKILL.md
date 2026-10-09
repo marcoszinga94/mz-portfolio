@@ -21,10 +21,10 @@ description: Use when configuring, updating, or troubleshooting ESLint and Prett
 
 ## Scripts (package.json)
 
-| Command | Action |
-|---|---|
-| `npm run lint` | Run ESLint on all files |
-| `npm run format` | Format all files with Prettier |
+| Command                | Action                           |
+| ---------------------- | -------------------------------- |
+| `npm run lint`         | Run ESLint on all files          |
+| `npm run format`       | Format all files with Prettier   |
 | `npm run format:check` | Check formatting without writing |
 
 ## Code style conventions (maintain when editing)

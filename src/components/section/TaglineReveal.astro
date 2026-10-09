@@ -1,0 +1,45 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+const words = text.trim().split(/\s+/);
+---
+
+<section class="py-8 sm:py-12" aria-label="Propuesta de valor">
+  <p class="tagline mx-auto max-w-[680px] text-balance text-center text-3xl font-semibold text-claro sm:text-4xl lg:text-5xl">
+    {words.map((word, index) => (
+      <>
+        <span class="tagline-word">{word}</span>
+        {index < words.length - 1 ? " " : ""}
+      </>
+    ))}
+  </p>
+</section>
+
+<script>
+  const taglineWords = document.querySelectorAll<HTMLElement>(".tagline-word");
+
+  if (taglineWords.length) {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReduced) {
+      taglineWords.forEach((word) => word.classList.add("is-lit"));
+    } else {
+      const wordObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-lit");
+              wordObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { rootMargin: "-35% 0px -45% 0px", threshold: 0 },
+      );
+
+      taglineWords.forEach((word) => wordObserver.observe(word));
+    }
+  }
+</script>

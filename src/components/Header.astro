@@ -1,142 +1,192 @@
 ---
 import type { MenuItem } from "../types";
-
-const developer = "<Desarrollador Web>";
+import data from "../data/cv";
 
 const menuItems: MenuItem[] = [
-  { name: "Inicio", url: "#inicio" },
   { name: "Servicios", url: "#servicios" },
   { name: "Proyectos", url: "#proyectos" },
-  { name: "Sobre mí", url: "#sobre-mi" },
-  { name: "Trayectoria", url: "#trayectoria" },
+  { name: "Proceso", url: "#proceso" },
+  { name: "Preguntas", url: "#preguntas" },
   { name: "Contacto", url: "#contacto" },
 ];
+
+const whatsapp = data.socialLinks.find((s) => s.name === "WhatsApp")!;
+const ctaUrl = `${whatsapp.url}?text=${encodeURIComponent("Hola Marcos, quiero un presupuesto para mi proyecto.")}`;
 ---
 
-<header
-  class="fixed top-0 right-0 left-0 z-50 backdrop-blur-sm bg-gradient-to-b from-black to-transparent"
->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-16">
-      <!-- Logo -->
-      <div class="relative z-10 flex flex-row gap-2 items-center">
-        <span class="text-lg text-acento font-bold tracking-tight"> Marcos F. Zingaretti </span>
-        <span class="hidden lg:flex text-sm font-medium text-claro/70">
-          {developer}
-        </span>
-      </div>
+<header class="fixed inset-x-0 top-0 z-50">
+  <div class="pointer-events-auto mx-auto mt-6 flex w-max max-w-[calc(100vw-2rem)] items-center gap-1 rounded-full border border-borde bg-superficie/70 p-2 backdrop-blur-xl">
+    <a
+      href="#inicio"
+      class="flex items-center gap-2 rounded-full px-2 py-1 transition-colors duration-300 ease-fluid hover:bg-elevada"
+      aria-label="Marcos F. Zingaretti, ir al inicio"
+    >
+      <span class="grid size-8 shrink-0 place-items-center rounded-full bg-acento text-sm font-extrabold text-white">
+        MZ
+      </span>
+      <span class="hidden pr-1 text-sm font-semibold sm:block">Marcos F. Zingaretti</span>
+    </a>
 
-      <!-- Mobile menu button -->
-      <div class="lg:hidden">
-        <button
-          id="menuButton"
-          aria-label="Menú de navegación"
-          class="relative z-10 p-2 text-acento hover:text-medio focus:outline-none transition-colors"
+    <nav class="ml-1 hidden items-center gap-1 lg:flex" aria-label="Principal">
+      {menuItems.map(({ name, url }) => (
+        <a
+          href={url}
+          data-nav-link
+          class="rounded-full px-3 py-2 text-sm font-medium text-claro/70 transition-colors duration-300 ease-fluid hover:bg-elevada hover:text-claro aria-[current=true]:bg-elevada aria-[current=true]:text-claro"
         >
-          <div class="w-6 h-5 flex flex-col justify-between">
-            <span class="w-full h-0.5 bg-current transform transition-all duration-300" id="line1"
-            ></span>
-            <span class="w-full h-0.5 bg-current transform transition-all duration-300" id="line2"
-            ></span>
-            <span class="w-full h-0.5 bg-current transform transition-all duration-300" id="line3"
-            ></span>
-          </div>
-        </button>
-      </div>
+          {name}
+        </a>
+      ))}
+    </nav>
 
-      <!-- Desktop navigation -->
-      <nav class="hidden lg:block">
-        <ul class="flex items-center gap-6">
-          {
-            menuItems.map(({ name, url }) => (
-              <li>
-                <a
-                  href={url}
-                  class="relative py-2 text-claro/70 hover:text-acento transition-colors duration-300"
-                >
-                  {name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
+    <a
+      href={ctaUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="ml-1 hidden rounded-full bg-acento px-4 py-2 text-sm font-semibold text-white transition-transform duration-300 ease-fluid hover:scale-[1.03] active:scale-[0.98] lg:inline-flex"
+    >
+      Pedir presupuesto
+    </a>
 
-      <!-- Mobile navigation -->
-      <nav
-        id="mobileMenu"
-        class="fixed top-16 inset-x-0 bottom-0 bg-fondo/95 backdrop-blur-lg transform translate-x-full transition-transform duration-300 lg:hidden min-h-[calc(100vh-4rem)] flex items-center justify-center z-[100] shadow-[0_8px_32px_0_rgba(0,0,0,0.25)]"
-      >
-        <ul
-          class="h-full flex flex-col items-center justify-center gap-6 text-xl pb-16 px-4 w-full p-0 m-0"
-        >
-          {
-            menuItems.map(({ name, url }) => (
-              <li>
-                <a
-                  href={url}
-                  class="text-claro hover:text-acento transition-all duration-300 text-base p-2 rounded-md bg-[rgba(26,26,46,0.97)] w-[90%] text-center max-w-[90%] tracking-[0.02em] font-medium shadow-[0_2px_8px_0_rgba(0,0,0,0.1)] my-1 mx-auto hover:bg-[rgba(255,255,255,0.08)] hover:translate-x-[2px] hover:scale-[1.02]"
-                >
-                  {name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-    </div>
+    <button
+      id="menuButton"
+      type="button"
+      class="ml-1 grid size-10 place-items-center rounded-full text-claro transition-colors duration-300 ease-fluid hover:bg-elevada lg:hidden"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+    >
+      <span class="relative block h-4 w-5">
+        <span
+          data-line="1"
+          class="absolute left-0 top-0 h-0.5 w-full origin-center rounded-full bg-current transition-transform duration-300 ease-fluid"
+        ></span>
+        <span
+          data-line="2"
+          class="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded-full bg-current transition-opacity duration-200"
+        ></span>
+        <span
+          data-line="3"
+          class="absolute bottom-0 left-0 h-0.5 w-full origin-center rounded-full bg-current transition-transform duration-300 ease-fluid"
+        ></span>
+      </span>
+    </button>
   </div>
 </header>
 
-<script>
-  interface HeaderElements {
-    menuButton: HTMLElement | null;
-    mobileMenu: HTMLElement | null;
-    line1: HTMLElement | null;
-    line2: HTMLElement | null;
-    line3: HTMLElement | null;
-    closeMenuButton: HTMLElement | null;
+<div
+  id="mobileMenu"
+  class="motion-menu pointer-events-none fixed inset-0 z-40 bg-black/80 opacity-0 backdrop-blur-3xl lg:hidden"
+>
+  <nav
+    class="flex h-full flex-col items-center justify-center gap-2 px-8"
+    aria-label="Principal móvil"
+  >
+    <ul class="flex flex-col items-center gap-3">
+      {menuItems.map(({ name, url }, index) => (
+        <li class="motion-menu-item opacity-0" style={`transition-delay:${index * 60}ms`}>
+          <a
+            href={url}
+            class="block rounded-full px-6 py-3 text-2xl font-semibold text-claro/80 transition-colors duration-300 ease-fluid hover:text-acento"
+          >
+            {name}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <a
+      href={ctaUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="motion-menu-item mt-6 inline-flex rounded-full bg-acento px-6 py-3 text-base font-semibold text-white opacity-0"
+      style={`transition-delay:${menuItems.length * 60}ms`}
+    >
+      Pedir presupuesto
+    </a>
+  </nav>
+</div>
+
+<style>
+  .motion-menu {
+    transition: opacity 400ms var(--ease-fluid);
   }
 
-  const elements: HeaderElements = {
-    menuButton: document.getElementById("menuButton"),
-    mobileMenu: document.getElementById("mobileMenu"),
-    line1: document.getElementById("line1"),
-    line2: document.getElementById("line2"),
-    line3: document.getElementById("line3"),
-    closeMenuButton: document.getElementById("closeMenuButton"),
-  };
+  .motion-menu-item {
+    transform: translateY(3rem);
+    transition:
+      opacity 600ms var(--ease-fluid),
+      transform 600ms var(--ease-fluid);
+  }
 
+  #mobileMenu.is-open {
+    pointer-events: auto;
+    opacity: 1;
+  }
+
+  #mobileMenu.is-open .motion-menu-item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #menuButton.is-open [data-line="1"] {
+    transform: translateY(0.5rem) rotate(45deg);
+  }
+
+  #menuButton.is-open [data-line="2"] {
+    opacity: 0;
+  }
+
+  #menuButton.is-open [data-line="3"] {
+    transform: translateY(-0.5rem) rotate(-45deg);
+  }
+</style>
+
+<script>
+  const menuButton = document.getElementById("menuButton");
+  const mobileMenu = document.getElementById("mobileMenu");
   let isOpen = false;
 
-  function toggleMenu() {
-    isOpen = !isOpen;
-    const { mobileMenu, line1, line2, line3 } = elements;
-
-    if (isOpen) {
-      mobileMenu?.classList.remove("translate-x-full");
-      line1?.classList.add("rotate-45", "translate-y-2");
-      line2?.classList.add("opacity-0");
-      line3?.classList.add("-rotate-45", "-translate-y-2");
-      document.body.style.overflow = "hidden";
-    } else {
-      mobileMenu?.classList.add("translate-x-full");
-      line1?.classList.remove("rotate-45", "translate-y-2");
-      line2?.classList.remove("opacity-0");
-      line3?.classList.remove("-rotate-45", "-translate-y-2");
-      document.body.style.overflow = "";
-    }
+  function setOpen(next: boolean) {
+    if (!menuButton || !mobileMenu) return;
+    isOpen = next;
+    menuButton.classList.toggle("is-open", next);
+    mobileMenu.classList.toggle("is-open", next);
+    menuButton.setAttribute("aria-expanded", String(next));
+    menuButton.setAttribute("aria-label", next ? "Cerrar menú" : "Abrir menú");
+    document.documentElement.style.overflow = next ? "hidden" : "";
   }
 
-  elements.menuButton?.addEventListener("click", toggleMenu);
-  elements.closeMenuButton?.addEventListener("click", function () {
-    if (isOpen) toggleMenu();
+  menuButton?.addEventListener("click", () => setOpen(!isOpen));
+
+  mobileMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
   });
 
-  // Cerrar menú al hacer click en un enlace
-  document.querySelectorAll("#mobileMenu a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (isOpen) toggleMenu();
-    });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && isOpen) setOpen(false);
   });
+
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-nav-link]"));
+  const sectionLinks = new Map<Element, HTMLAnchorElement>();
+
+  navLinks.forEach((link) => {
+    const id = link.getAttribute("href")?.slice(1);
+    const section = id ? document.getElementById(id) : null;
+    if (section) sectionLinks.set(section, link);
+  });
+
+  const activeObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          navLinks.forEach((link) => link.removeAttribute("aria-current"));
+          sectionLinks.get(entry.target)?.setAttribute("aria-current", "true");
+        }
+      });
+    },
+    { rootMargin: "-45% 0px -50% 0px" },
+  );
+
+  sectionLinks.forEach((_link, section) => activeObserver.observe(section));
 </script>

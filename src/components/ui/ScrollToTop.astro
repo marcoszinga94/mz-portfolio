@@ -1,41 +1,29 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
 <button
   id="scroll-to-top"
+  type="button"
   aria-label="Volver al inicio"
-  class="fixed bottom-8 right-8 z-50 p-3 rounded-full border-2 border-acento text-acento hover:bg-acento/10 transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-acento focus-visible:ring-offset-2 focus-visible:ring-offset-fondo transform hover:scale-110 active:scale-90 translate-y-20 opacity-0 pointer-events-none cursor-pointer"
+  class="pointer-events-none fixed bottom-8 right-8 z-50 grid size-11 translate-y-20 place-items-center rounded-full border border-borde bg-superficie text-claro opacity-0 transition-all duration-500 ease-fluid hover:border-acento hover:text-acento"
 >
-  <svg
-    class="size-6"
-    fill="none"
-    height="24"
-    stroke="currentColor"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    stroke-width="2"
-    viewBox="0 0 24 24"
-    width="24"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M18 15l-6-6-6 6" />
-  </svg>
+  <Icon name="ph:arrow-up" class="size-5" />
 </button>
 
 <script>
   const scrollBtn = document.getElementById("scroll-to-top");
+  const sentinel = document.getElementById("scroll-sentinel");
 
-  if (scrollBtn) {
-    let isVisible = false;
-
-    window.addEventListener("scroll", () => {
-      const shouldShow = window.scrollY > 300;
-      if (shouldShow === isVisible) return;
-      isVisible = shouldShow;
-
-      scrollBtn.classList.toggle("translate-y-20", !shouldShow);
-      scrollBtn.classList.toggle("opacity-0", !shouldShow);
-      scrollBtn.classList.toggle("pointer-events-none", !shouldShow);
-      scrollBtn.classList.toggle("opacity-100", shouldShow);
-      scrollBtn.classList.toggle("pointer-events-auto", shouldShow);
+  if (scrollBtn && sentinel) {
+    const observer = new IntersectionObserver(([entry]) => {
+      const show = !entry.isIntersecting;
+      scrollBtn.classList.toggle("translate-y-20", !show);
+      scrollBtn.classList.toggle("opacity-0", !show);
+      scrollBtn.classList.toggle("pointer-events-none", !show);
     });
+
+    observer.observe(sentinel);
 
     scrollBtn.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });

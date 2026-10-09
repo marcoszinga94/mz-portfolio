@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  class="pointer-events-none absolute inset-y-0 -left-8 hidden items-start select-none xl:flex"
+>
+  <span class="rotate-180 text-base font-bold tracking-widest text-acento uppercase [writing-mode:vertical-rl]">
+    {text}
+  </span>
+</span>

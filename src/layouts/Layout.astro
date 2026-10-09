@@ -3,6 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import ScrollToTop from "../components/ui/ScrollToTop.astro";
 import WhatsAppFloat from "../components/ui/WhatsAppFloat.astro";
+import "@fontsource-variable/manrope";
 import "../styles/global.css";
 
 interface Props {
@@ -10,6 +11,28 @@ interface Props {
   description: string;
 }
 const { title, description } = Astro.props;
+
+const site = "https://portafoliozingaretti.vercel.app";
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = `${site}/Images/og-image.jpg`;
+
+const jsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Marcos F. Zingaretti",
+  description,
+  url: site,
+  image: ogImage,
+  areaServed: "AR",
+  priceRange: "$$",
+  founder: {
+    "@type": "Person",
+    name: "Marcos Federico Zingaretti",
+    jobTitle: "Desarrollador web full stack",
+    sameAs: ["https://github.com/marcoszinga94"],
+  },
+  knowsAbout: ["Desarrollo web", "Astro", "React", "TypeScript", "Node.js", "TailwindCSS"],
+});
 ---
 
 <!doctype html>
@@ -21,164 +44,90 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <meta
       name="keywords"
-      content="Desarrollador Web, Full-Stack Developer, JavaScript, React, Astro, TailwindCSS"
+      content="Desarrollador web, Full Stack Developer, JavaScript, React, Astro, TailwindCSS, páginas web Argentina"
     />
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/Fonts/FiraCode.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="preload" href="/Images/selfie.webp" as="image" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta name="theme-color" content="#000000" />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content="Marcos F. Zingaretti" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/Images/og-image.png" />
-    <meta property="og:url" content="https://portafoliozingaretti.vercel.app/" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonical} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="/Images/og-image.png" />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
 
-  <body
-    class="grid grid-rows-[auto_1fr_auto] bg-linear-to-b from-fondo to-oscuro text-claro overflow-x-hidden"
-  >
-    <Header />
-    <main
-      class="relative pt-20 min-h-screen max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32 page-content"
+  <body class="grid min-h-screen grid-rows-[auto_1fr_auto] bg-fondo text-claro">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-full focus:bg-acento focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
     >
+      Saltar al contenido
+    </a>
+
+    <Header />
+
+    <main
+      id="contenido"
+      class="relative mx-auto w-full max-w-7xl space-y-24 px-6 pt-28 pb-8 sm:px-8 sm:pt-32 lg:space-y-32"
+    >
+      <div
+        id="scroll-sentinel"
+        aria-hidden="true"
+        class="pointer-events-none absolute top-0 left-0 h-64 w-px"
+      ></div>
       <slot />
     </main>
+
     <Footer />
     <ScrollToTop />
     <WhatsAppFloat />
   </body>
 
-  <style is:global>
-    @font-face {
-      font-family: "Fira Code";
-      src: url("/Fonts/FiraCode.ttf") format("truetype");
-      font-display: swap;
-    }
-
-    html {
-      font-family: "Fira Code", monospace;
-      -webkit-text-size-adjust: 100%;
-      -moz-text-size-adjust: 100%;
-      text-size-adjust: 100%;
-      overflow-x: hidden;
-      width: 100%;
-      max-width: 100vw;
-    }
-
-    @media (max-width: 767px) {
-      html {
-        scrollbar-width: none;
-      }
-
-      html::-webkit-scrollbar {
-        display: none;
-      }
-    }
-
-    @media (min-width: 768px) {
-      html::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      html::-webkit-scrollbar-track {
-        background: var(--color-fondo);
-      }
-
-      html::-webkit-scrollbar-thumb {
-        background: var(--color-acento);
-        border-radius: 4px;
-      }
-
-      html::-webkit-scrollbar-thumb:hover {
-        background: var(--color-medio);
-      }
-
-      html {
-        scrollbar-width: thin;
-        scrollbar-color: var(--color-acento) var(--color-fondo);
-      }
-    }
-
-    /* Estilos base */
-    ::selection {
-      background-color: rgba(255, 59, 59, 0.2);
-      color: #fff5f5;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
-    /* Utilidades de accesibilidad */
-    .sr-only {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    .focus-visible:focus-visible {
-      outline: 2px solid var(--scrollbar-thumb);
-      outline-offset: 2px;
-    }
-  </style>
-
   <script>
+    const headerOffset = 88;
+
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", (e) => {
-        e.preventDefault();
+      anchor.addEventListener("click", (event) => {
         const targetId = anchor.getAttribute("href");
-        if (!targetId) return;
+        if (!targetId || targetId === "#") return;
 
         const target = document.querySelector(targetId);
         if (!target) return;
 
-        const headerOffset = 80;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
+        event.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top, behavior: "smooth" });
       });
     });
 
-    const aosObserver = new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("aos-animate");
+            entry.target.classList.add("is-visible");
+            revealObserver.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
     );
 
-    document.querySelectorAll("[data-aos]").forEach((el) => {
-      const delay = el.getAttribute("data-aos-delay");
-      if (delay) {
-        (el as HTMLElement).style.setProperty("--aos-delay", `${delay}ms`);
-      }
-      aosObserver.observe(el);
+    document.querySelectorAll<HTMLElement>("[data-reveal]").forEach((el) => {
+      const delay = el.dataset.revealDelay;
+      if (delay) el.style.setProperty("--reveal-delay", `${delay}ms`);
+      revealObserver.observe(el);
     });
   </script>
 </html>

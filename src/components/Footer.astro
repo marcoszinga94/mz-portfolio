@@ -1,56 +1,47 @@
 ---
+import { Icon } from "astro-icon/components";
 import data from "../data/cv";
+
+const iconByName: Record<string, string> = {
+  Email: "ph:envelope-simple",
+  WhatsApp: "ph:whatsapp-logo",
+  GitHub: "ph:github-logo",
+  LinkedIn: "ph:linkedin-logo",
+};
+
+const year = new Date().getFullYear();
 ---
 
-<footer class="relative mt-20">
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-gray-custom/30 to-fondo"></div>
-
-  <div class="container mx-auto px-6 py-12 pb-20 md:pb-12 relative">
-    <div class="max-w-4xl mx-auto text-center">
-      <div class="flex flex-row gap-6 justify-center">
-        {
-          data.socialLinks.map(({ name, url, icon }) => (
-            <a
-              href={name === "Email" ? `mailto:${url}` : url}
-              target={name === "Email" ? undefined : "_blank"}
-              rel={name === "Email" ? undefined : "noopener noreferrer"}
-              aria-label={name}
-              class="p-3 rounded-xl border border-claro/15 text-claro/60 hover:text-acento hover:border-acento/50 transition-all duration-300 hover:scale-110"
-            >
-              <svg
-                class="size-5"
-                viewBox={name === "WhatsApp" ? "0 0 20 20" : "0 0 24 24"}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d={icon}
-                  fill={name === "GitHub" ? "currentColor" : "none"}
-                  stroke={name === "GitHub" ? "none" : "currentColor"}
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></path>
-              </svg>
-            </a>
-          ))
-        }
-      </div>
-
-      <div class="mt-6 text-sm text-claro/50">
-        <p>Diseñado y desarrollado por Marcos F. Zingaretti</p>
-      </div>
+<footer class="mt-8 border-t border-borde">
+  <div class="mx-auto flex max-w-7xl flex-col items-center gap-6 px-6 py-10 text-center sm:px-8">
+    <div class="flex items-center gap-3">
+      {data.socialLinks.map(({ name, url }) => (
+        <a
+          href={name === "Email" ? `mailto:${url}` : url}
+          target={name === "Email" ? undefined : "_blank"}
+          rel={name === "Email" ? undefined : "noopener noreferrer"}
+          aria-label={name}
+          class="grid size-10 place-items-center rounded-full border border-borde text-claro/60 transition-colors duration-300 ease-fluid hover:border-acento hover:text-acento"
+        >
+          <Icon name={iconByName[name]} class="size-5" />
+        </a>
+      ))}
     </div>
-  </div>
 
-  <!-- Decorative elements -->
-  <div
-    class="absolute bottom-0 left-0 w-64 h-64 bg-acento/5 rounded-full blur-3xl animate-pulse"
-    aria-hidden="true"
-  >
-  </div>
-  <div
-    class="absolute bottom-0 right-0 w-64 h-64 bg-medio/5 rounded-full blur-3xl animate-float"
-    aria-hidden="true"
-  >
+    <nav
+      class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-claro/60"
+      aria-label="Enlaces legales"
+    >
+      <a href="/privacidad" class="transition-colors duration-300 ease-fluid hover:text-claro">
+        Privacidad
+      </a>
+      <a href="/terminos" class="transition-colors duration-300 ease-fluid hover:text-claro">
+        Términos
+      </a>
+    </nav>
+
+    <p class="text-sm text-claro/40">
+      © {year} Marcos F. Zingaretti. Diseñado y desarrollado en Argentina.
+    </p>
   </div>
 </footer>

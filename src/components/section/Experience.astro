@@ -1,33 +1,24 @@
 ---
 import Timeline from "../ui/timeline.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import SectionLabel from "../ui/SectionLabel.astro";
 import data from "../../data/cv";
 ---
 
-<section id="trayectoria" class="relative py-20 overflow-hidden">
-  <div class="container mx-auto px-6 relative">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl font-bold inline-block bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-        >
-          Mi Trayectoria
-        </h2>
-        <p class="mt-4 text-claro/70">
-          Un recorrido por mi experiencia profesional y formación académica
-        </p>
-      </div>
+<section id="trayectoria" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Experiencia y formación"
+    description="Un recorrido por mi experiencia profesional y mi formación académica."
+  />
 
-      <div class="relative">
-        <!-- Decorative line -->
-        <div
-          class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-t from-transparent from-0% via-acento/60 via-20% via-acento/60 via-90% to-transparent to-96%"
-        >
-        </div>
-
-        <ul class="relative space-y-8">
-          {data.experiencias.map((experiencia) => <Timeline item={experiencia} />)}
-        </ul>
-      </div>
+  <div class="relative mt-12">
+    <SectionLabel text="Trayectoria" />
+    <div class="rounded-2xl border border-borde bg-superficie p-6 sm:p-8" data-reveal>
+      <ol class="space-y-10 border-l border-borde">
+        {data.experiencias.map((experiencia) => (
+          <Timeline item={experiencia} />
+        ))}
+      </ol>
     </div>
   </div>
 </section>

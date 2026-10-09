@@ -1,76 +1,51 @@
 ---
+import { Icon } from "astro-icon/components";
 import data from "../../data/cv";
+import SectionHeading from "../ui/SectionHeading.astro";
+import SectionLabel from "../ui/SectionLabel.astro";
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 ---
 
-<section id="servicios" class="relative py-20 overflow-hidden">
-  <div class="container mx-auto px-6 relative">
-    <div class="text-center mb-16">
-      <h2
-        class="text-4xl font-bold inline-block bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-      >
-        Servicios
-      </h2>
-      <p class="mt-4 text-claro/70 max-w-2xl mx-auto">
-        Soluciones digitales a medida para tu negocio, desde la idea hasta el soporte continuo
-      </p>
-    </div>
+<section id="servicios" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Lo que puedo hacer por tu negocio"
+    description="Soluciones digitales a medida, desde la idea hasta el soporte continuo."
+  />
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-      {
-        data.servicios.map((servicio) => (
-          <div
-            data-aos="fade-up"
-            class="flex flex-col bg-linear-to-br from-gray-custom to-fondo rounded-2xl p-8 border border-claro/10 hover:border-acento/50 transition-all duration-500 hover:scale-[1.02]"
-          >
-            <div
-              class="size-14 rounded-xl bg-acento/10 border border-acento/20 flex items-center justify-center text-acento"
-            >
-              <svg
-                class="size-7"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d={servicio.icono}></path>
-              </svg>
-            </div>
+  <div class="relative mt-12">
+    <SectionLabel text="Servicios" />
+    <div class="grid gap-6 md:grid-cols-3">
+      {data.servicios.map((servicio, index) => (
+        <article
+          data-reveal
+          data-reveal-delay={index * 100}
+          class="flex flex-col rounded-2xl border border-borde bg-superficie p-6"
+        >
+          <span class="grid size-12 place-items-center rounded-xl bg-elevada text-acento">
+            <Icon name={servicio.icono} class="size-6" />
+          </span>
 
-            <h3 class="mt-6 text-xl font-bold text-claro">{servicio.nombre}</h3>
-            <p class="mt-3 text-claro/70 leading-relaxed">{servicio.descripcion}</p>
+          <h3 class="mt-6 text-xl font-bold">{servicio.nombre}</h3>
+          <p class="mt-2 leading-relaxed text-claro/70">{servicio.descripcion}</p>
 
-            <ul class="mt-5 space-y-2 flex-1">
-              {servicio.caracteristicas.map((caracteristica) => (
-                <li class="flex items-start gap-2 text-sm text-claro/80">
-                  <svg
-                    class="size-4 mt-0.5 shrink-0 text-acento"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  {caracteristica}
-                </li>
-              ))}
-            </ul>
+          <ul class="mt-6 flex-1 space-y-3">
+            {servicio.caracteristicas.map((caracteristica) => (
+              <li class="flex items-start gap-3 text-sm text-claro/80">
+                <Icon name="ph:check" class="mt-0.5 size-4 shrink-0 text-acento" />
+                {caracteristica}
+              </li>
+            ))}
+          </ul>
 
-            <div class="mt-8">
-              <WhatsAppButton
-                message={`Hola Marcos, me interesa tu servicio de ${servicio.nombre}. ¿Me podés pasar un presupuesto?`}
-                label="Pedir presupuesto"
-                className="w-full"
-              />
-            </div>
+          <div class="mt-8">
+            <WhatsAppButton
+              message={`Hola Marcos, me interesa tu servicio de ${servicio.nombre}. ¿Me podés pasar un presupuesto?`}
+              label="Pedir presupuesto"
+              className="w-full"
+            />
           </div>
-        ))
-      }
+        </article>
+      ))}
     </div>
   </div>
 </section>

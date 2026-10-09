@@ -1,23 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/section/Hero.astro";
+import TaglineReveal from "../components/section/TaglineReveal.astro";
 import Services from "../components/section/Services.astro";
 import Projects from "../components/section/Projects.astro";
 import Process from "../components/section/Process.astro";
+import Proof from "../components/section/Proof.astro";
 import About from "../components/section/About.astro";
 import Experience from "../components/section/Experience.astro";
+import Faq from "../components/section/FAQ.astro";
 import Contact from "../components/section/Contact.astro";
+
+export const prerender = true;
 ---
 
 <Layout
-  title="Marcos Zingaretti - Desarrollador Web"
-  description="Desarrollador y Programador web de Páginas Web Personalizadas"
+  title="Marcos F. Zingaretti - Desarrollo web y sistemas a medida"
+  description="Desarrollador web full stack. Diseño y desarrollo webs y sistemas a medida para negocios: rápidos, optimizados y pensados para convertir visitas en clientes."
 >
   <Hero />
+  <TaglineReveal text="Tu próxima web debería traerte clientes, incluso cuando no estás mirando." />
   <Services />
   <Projects />
   <Process />
+  <Proof />
   <About />
   <Experience />
+  <Faq />
   <Contact />
 </Layout>

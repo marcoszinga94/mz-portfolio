@@ -1,0 +1,14 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  class?: string;
+}
+
+const { title, description, class: className = "" } = Astro.props;
+---
+
+<div class={`mx-auto max-w-2xl text-center ${className}`} data-reveal>
+  <h2 class="text-3xl font-bold sm:text-4xl">{title}</h2>
+  {description && <p class="mt-4 leading-relaxed text-claro/70">{description}</p>}
+</div>

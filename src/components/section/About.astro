@@ -1,45 +1,35 @@
 ---
-import { Image } from "astro:assets";
 import data from "../../data/cv";
+import SectionHeading from "../ui/SectionHeading.astro";
+import SectionLabel from "../ui/SectionLabel.astro";
 ---
 
-<section id="sobre-mi" class="relative py-20 overflow-hidden">
-  <div class="container mx-auto px-6 relative">
-    <div class="max-w-3xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-12">
-        <span class="bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent">
-          Sobre Mí
-        </span>
-      </h2>
+<section id="sobre-mi" class="relative scroll-mt-28">
+  <SectionHeading title="Cómo llegué hasta acá" />
 
-      <div class="space-y-6 text-claro/80" data-aos="fade-up">
-        {
-          data.sobreMi.map((parrafo) => (
-            <p class="leading-relaxed text-lg transition-all duration-300 hover:text-claro text-pretty">
-              {parrafo}
-            </p>
-          ))
-        }
+  <div class="relative mt-12">
+    <SectionLabel text="Sobre mí" />
+    <div class="rounded-2xl border border-borde bg-superficie p-6 sm:p-8" data-reveal>
+      <div class="space-y-5">
+        {data.sobreMi.map((parrafo) => (
+          <p class="text-lg leading-relaxed text-claro/80">{parrafo}</p>
+        ))}
       </div>
 
-      <div
-        class="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:flex lg:flex-nowrap lg:justify-center gap-8"
-        data-aos="fade-up"
-        data-aos-delay="200"
-      >
-        {
-          data.habilidades.map((habilidad) => (
-            <div class="flex flex-col group items-center gap-4">
-              <Image
-                width="64"
-                height="64"
-                src={`/Images/stacks/${habilidad.icon}.svg`}
-                alt={`Icono de ${habilidad.nombre}`}
-                class="size-16 m-auto object-contain transition-transform duration-300 group-hover:-rotate-6"
-              />
-            </div>
-          ))
-        }
+      <div class="mt-10 flex flex-wrap justify-center gap-8">
+        {data.habilidades.map((habilidad) => (
+          <div class="flex flex-col items-center gap-2">
+            <img
+              src={`/Images/stacks/${habilidad.icon}.svg`}
+              alt={`Logo de ${habilidad.nombre}`}
+              width={48}
+              height={48}
+              loading="lazy"
+              class="size-12 object-contain"
+            />
+            <span class="text-xs text-claro/60">{habilidad.nombre}</span>
+          </div>
+        ))}
       </div>
     </div>
   </div>

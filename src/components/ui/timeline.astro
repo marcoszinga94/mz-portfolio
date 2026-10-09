@@ -8,61 +8,10 @@ interface Props {
 const { item } = Astro.props;
 ---
 
-<li class="relative pl-8 group" data-aos="fade-up">
-  <!-- Dot indicator -->
-  <div
-    class="absolute left-0 top-7 -translate-x-1/2 transform transition-all duration-500 group-hover:scale-110"
-  >
-    <div class="relative w-4 h-4">
-      <!-- Outer ring -->
-      <div
-        class="absolute inset-0 rounded-full bg-gradient-to-r from-acento to-medio opacity-30 animate-pulse"
-      >
-      </div>
+<li class="relative pl-8">
+  <span class="absolute left-0 top-2 size-3 -translate-x-1/2 rounded-full bg-acento ring-4 ring-superficie"></span>
 
-      <!-- Inner dot -->
-      <div
-        class="absolute inset-1 rounded-full bg-acento group-hover:bg-medio transition-colors duration-300"
-      >
-      </div>
-
-      <!-- Ping animation -->
-      <div class="absolute inset-0 rounded-full bg-acento animate-ping opacity-20"></div>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <div class="py-6 pl-6 group-hover:translate-x-8 transition-all duration-300">
-    <time
-      class="block mb-2 text-sm font-medium tracking-wider bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-    >
-      {item.fecha}
-    </time>
-
-    <h3
-      class="text-xl font-bold text-claro mb-3 group-hover:text-acento transition-colors duration-300"
-    >
-      {item.titulo}
-    </h3>
-
-    <p
-      class="text-claro/70 leading-relaxed text-pretty group-hover:text-claro/90 transition-colors duration-300"
-    >
-      {item.descripcion}
-    </p>
-  </div>
+  <time class="text-sm font-medium text-claro/50">{item.fecha}</time>
+  <h3 class="mt-1 text-lg font-bold">{item.titulo}</h3>
+  <p class="mt-1 leading-relaxed text-claro/70">{item.descripcion}</p>
 </li>
-
-<style>
-  @keyframes ping {
-    75%,
-    100% {
-      transform: scale(2);
-      opacity: 0;
-    }
-  }
-
-  .animate-ping {
-    animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-  }
-</style>

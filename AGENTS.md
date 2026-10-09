@@ -2,171 +2,117 @@
 
 ## Project Overview
 
-Astro portfolio website for Marcos F. Zingaretti, a web developer. Built with Astro, TailwindCSS v4, and TypeScript. Deployed to Vercel with SSR (`output: "server"`).
+Portfolio de una sola página para Marcos F. Zingaretti, desarrollador web full stack. Construido
+con Astro, TailwindCSS v4 y TypeScript. Desplegado en Vercel; las páginas se prerenderizan como
+estáticas (`output: "server"` + `export const prerender = true`).
 
 ## Commands
 
 ```bash
-# Development
-npm run dev          # Start dev server (astro dev)
-npm run start        # Alias for dev
+# Desarrollo
+npm run dev          # Servidor de desarrollo (astro dev)
+npm run start        # Alias de dev
 
-# Build & Preview
-npm run build        # Type-check (astro check) + build (astro build)
-npm run preview      # Preview production build
+# Build y preview
+npm run build        # Type check (astro check) + build (astro build)
+npm run preview      # Preview del build de producción
 
 # Astro CLI
-npm run astro        # Direct astro CLI access
+npm run astro        # Acceso directo al CLI
+
+# Calidad de código
+npm run lint         # ESLint (astro + typescript)
+npm run format       # Prettier (incluye prettier-plugin-astro)
+npm run format:check # Verifica el formato
+
+# Utilidades
+npm run generate-cv  # Genera el PDF del CV a partir de src/data/cv.ts
 ```
 
-**No test framework is configured.** No lint script exists. Run `npm run build` (which includes `astro check`) to verify correctness.
+**No hay framework de tests.** Verificá con `npm run lint` y `npm run build` (incluye `astro check`).
 
 ## Tech Stack
 
-- **Framework**: Astro 5.x with SSR (Vercel adapter)
-- **Styling**: TailwindCSS v4 via `@tailwindcss/vite` plugin
-- **Language**: TypeScript 5.9 (strict mode)
-- **Deployment**: Vercel (with analytics and speed insights)
+- **Framework**: Astro 7.x (Vercel adapter, páginas prerenderizadas)
+- **Estilos**: TailwindCSS v4 vía `@tailwindcss/vite` (sin `tailwind.config.js`)
+- **Lenguaje**: TypeScript 6.x (strict)
+- **Iconos**: `astro-icon` + `@iconify-json/ph` (set Phosphor)
+- **Tipografía**: Manrope Variable (`@fontsource-variable/manrope`)
+- **Deploy**: Vercel (con analytics)
+
+## Design System
+
+El sitio sigue el sistema definido en `src/styles/global.css` (`@theme`). Respetá estos tokens,
+no inventes valores sueltos.
+
+- **Colores** (paleta oscura plana, sin gradientes de fondo):
+  `acento` (#ff3b3b), `medio` (#ff7676), `claro` (#ededed), `hero-end` (#9b9b9b),
+  `fondo` (#000000), `superficie` (#181818), `elevada` (#1f1f1f), `borde` (#313131)
+- **Tipografía**: una sola familia (Manrope). El gradiente de texto se usa solo en el título del
+  hero (blanco → `hero-end`). Sin itálicas ni pesos ultra bold (máx. `font-extrabold`).
+- **Espaciado**: solo valores de la escala de Tailwind (2, 4, 8, 12, 16, 24, 32, 40, 48, 64…).
+- **Radios**: solo utilidades de Tailwind (`rounded-lg`, `rounded-xl`, `rounded-2xl`, `rounded-full`).
+- **Bordes**: siempre completos, nunca de un solo lado en tarjetas. Sin degradados de fondo.
+- **Movimiento**: transiciones con `ease-fluid` (`cubic-bezier(0.32,0.72,0,1)`) y duración ~300-800 ms.
+  Los reveals usan `data-reveal` (fade + subida + blur, vía `IntersectionObserver`). Nunca
+  `window.addEventListener("scroll")`.
+- **Accesibilidad**: foco visible (global), skip link, `aria-current` en la navegación, `prefers-reduced-motion`.
 
 ## Project Structure
 
 ```
 src/
+  assets/
+    selfie.webp           # Imagen del hero (importada para optimizar con sharp)
   components/
-    Header.astro          # Site header with responsive nav
-    Footer.astro          # Site footer with social links
-    section/              # Page sections (Hero, About, Projects, Experience)
-    ui/                   # Reusable UI components (card, timeline, socialLinks, etc.)
+    Header.astro          # Nav "isla flotante" + overlay móvil
+    Footer.astro          # Redes + enlaces legales
+    section/              # Hero, TaglineReveal, Services, Projects, Process,
+                          # Proof, About, Experience, FAQ, Contact
+    ui/                   # card, timeline, WhatsAppButton, WhatsAppFloat,
+                          # CallToActionButtons, ScrollToTop, SectionHeading
   data/
-    cv.ts                 # All portfolio content data (single default export)
+    cv.ts                 # Todo el contenido (único default export)
   layouts/
-    Layout.astro          # Root HTML layout with SEO meta
+    Layout.astro          # HTML raíz, SEO/OG, JSON-LD, reveals
   pages/
-    index.astro           # Single-page portfolio
-    404.astro             # Custom 404 page
+    index.astro           # Landing de una página
+    404.astro             # 404 con marca
+    privacidad.astro      # Política de privacidad
+    terminos.astro        # Términos y condiciones
   styles/
-    global.css            # Tailwind import + custom theme + animations
-  types/
-    index.ts              # TypeScript interfaces
-  env.d.ts                # Env vars + JSX module declarations
+    global.css            # Tailwind + @theme + estilos base
+  types/index.ts          # Interfaces
+  env.d.ts
 public/
-  Fonts/                  # FiraCode font
-  Images/                 # Images, project screenshots, stack icons
+  Fonts/                  # (legacy) fuentes estáticas
+  Images/                 # og-image.jpg, screenshots de proyectos, logos de stack
 ```
-
-## Code Style Guidelines
-
-### TypeScript
-
-- **Strict mode** enabled via `astro/tsconfigs/strict`
-- `verbatimModuleSyntax: true` - use `import type` for type-only imports
-- `noUnusedLocals: false` and `noUnusedParameters: false` (not enforced)
-- Path alias: `@/*` maps to `src/*` (e.g., `import { X } from "@/types"`)
-- Prefer interfaces over type aliases for object shapes
-
-### Imports
-
-```typescript
-// Type-only imports must use "import type"
-import type { MenuItem } from "../types";
-import type { Proyecto } from "../../types/index.ts";
-
-// Value imports use standard syntax
-import data from "../../data/cv";
-import { Image } from "astro:assets";
-
-// Component imports use relative paths
-import Header from "../components/Header.astro";
-import Card from "../ui/card.astro";
-```
-
-### Astro Components
-
-- Frontmatter goes in `---` blocks at the top
-- Define `Props` interface for component props
-- Destructure props via `const { ... } = Astro.props;`
-- Use `<script>` tags for client-side JS (no framework like React/Vue)
-- Use `<style>` tags for component-scoped CSS (supports `is:global` when needed)
-
-```astro
----
-import type { SomeType } from "../types";
-
-interface Props {
-  item: SomeType;
-}
-
-const { item } = Astro.props;
----
-
-<div>{item.name}</div>
-```
-
-### Naming Conventions
-
-- **Files**: PascalCase for section components (`Hero.astro`, `About.astro`), lowercase for UI components (`card.astro`, `timeline.astro`)
-- **Types/Interfaces**: PascalCase, Spanish names (`Proyecto`, `Habilidad`, `TimelineItem`)
-- **Variables/functions**: camelCase
-- **CSS classes**: Tailwind utility classes; custom color names are Spanish (`acento`, `medio`, `claro`, `oscuro`, `fondo`, `gray-custom`)
-- **Data fields**: Spanish (`nombre`, `descripcion`, `enlace`, `fecha`, `titulo`)
-
-### TailwindCSS
-
-- Tailwind v4 with `@tailwindcss/vite` plugin (no `tailwind.config.js`)
-- Custom theme defined in `src/styles/global.css` using `@theme` block:
-  - `acento` (#ff3b3b), `medio` (#ff7676), `claro` (#fff5f5)
-  - `oscuro` (#0a0a0a), `fondo` (#1a1a2e), `gray-custom` (#2a2a3e)
-- Use Tailwind utility classes directly in markup
-- Custom animations defined in `global.css` and component `<style>` blocks
-
-### Styling Patterns
-
-- Gradients: `bg-gradient-to-r from-acento to-medio`
-- Text gradient: `bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent`
-- Hover effects: `hover:scale-[1.02]`, `hover:text-acento transition-colors duration-300`
-- Accessibility: `sr-only` class for screen readers, `focus-visible:ring-2` patterns
-
-### External Links
-
-- Always use `target="_blank" rel="noopener noreferrer"` for external links
-- Internal anchor links use `#section-id` format
-
-### Images
-
-- Use Astro's `<Image>` component from `astro:assets` for optimization
-- Use `<img>` tags for dynamic sources (e.g., stack icons in loops)
-- Project images stored as `.webp` in `/Images/paginas/`
-- Stack icons stored as `.svg` in `/Images/stacks/`
-
-### Error Handling
-
-- No explicit error handling patterns; components assume data is correct
-- Use optional chaining (`?.`) for DOM element access in scripts
-- Use optional properties in interfaces where data may be absent (`caracteristicas?: string[]`)
 
 ## Content Management
 
-All portfolio content lives in `src/data/cv.ts` as a single default export object with these keys:
+Todo el contenido vive en `src/data/cv.ts` (default export) con estas claves:
 
-- `sobreMi`: string[] - About me paragraphs
-- `habilidades`: Habilidad[] - Skills with icons
-- `experiencias`: TimelineItem[] - Work/education timeline
-- `proyectos`: Proyecto[] - Project cards
-- `socialLinks`: SocialLink[] - GitHub/LinkedIn links with SVG paths
+- `sobreMi`: string[] — párrafos de "Sobre mí"
+- `habilidades`: Habilidad[] — stack con logo
+- `experiencias`: TimelineItem[] — trayectoria
+- `proyectos`: Proyecto[] — tarjetas de proyectos
+- `socialLinks`: SocialLink[] — Email / WhatsApp / GitHub
+- `servicios`: Servicio[] — servicios (`icono` es un nombre de icono Phosphor)
+- `proceso`: ProcesoStep[] — pasos de trabajo
+- `metricas`: Metrica[] — cifras de resultados
+- `faq`: FaqItem[] — preguntas frecuentes
 
-## Animations
+## Code Style
 
-- Scroll-triggered animations use Intersection Observer (not a library)
-- Elements use `data-aos` attributes with optional `data-aos-delay`
-- Animation class `aos-animate` is added on intersection
-- Custom keyframes defined per-component in `<style>` blocks
+- **TS**: strict, `verbatimModuleSyntax` (usá `import type`), alias `@/*` → `src/*`
+- **Componentes Astro**: frontmatter `---`, interface `Props`, `<script>` para JS de cliente
+- **Nombres**: PascalCase para secciones, lowercase para UI; tipos y campos en español
+- **Contenido**: oraciones en sentence case, sin guiones dentro del texto, copy real (sin placeholders)
+- **Enlaces externos**: siempre `target="_blank" rel="noopener noreferrer"`
+- **Imágenes**: `<Image>` de `astro:assets` para assets en `src/assets`; `<img>` para los de `public/`
 
-## Environment Variables
+## Contenido pendiente de personalizar
 
-- `PUBLIC_SITE_URL`: Public site URL (defined in `env.d.ts`)
-
-## Deployment
-
-- Vercel with SSR adapter
-- Web analytics and speed insights enabled in `astro.config.mjs`
-- Build output: `dist/`
+- Los textos de `privacidad.astro` y `terminos.astro` son plantillas base: revisalos con un
+  profesional antes de publicarlos.

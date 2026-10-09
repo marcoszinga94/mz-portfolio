@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import type { Proyecto } from "../../types/index.ts";
 
 interface Props {
@@ -12,62 +13,48 @@ const { proyecto } = Astro.props;
   href={proyecto.enlace}
   target="_blank"
   rel="noopener noreferrer"
-  draggable="false"
-  class="group block relative overflow-hidden p-2 h-full"
+  class="group block h-full"
+  aria-label={`Ver el proyecto ${proyecto.nombre}`}
 >
-  <article
-    data-has-long={proyecto.descripcionLarga ? "" : undefined}
-    class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl overflow-hidden shadow-lg transition-all duration-500 hover:translate-y-[-4px] hover:scale-[1.01] flex flex-col h-full min-h-[420px] w-full"
-  >
-    <div class="relative overflow-hidden shrink-0 h-[200px]">
+  <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-borde bg-superficie transition-colors duration-500 ease-fluid hover:border-acento/50">
+    <div class="relative h-48 overflow-hidden">
       <img
         src={`/Images/paginas/${proyecto.imagen}.webp`}
-        alt={`Vista previa del proyecto ${proyecto.nombre}: ${proyecto.descripcion}`}
+        alt={`Vista previa del proyecto ${proyecto.nombre}`}
+        width={711}
+        height={400}
         loading="lazy"
         decoding="async"
-        class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+        class="h-full w-full object-cover object-center transition-transform duration-700 ease-fluid group-hover:scale-105"
       />
     </div>
 
-    <div class="flex flex-col p-6 gap-2 grow bg-linear-to-br from-gray-custom/50 to-fondo/50 min-h-0">
-      <div class="content-inner flex flex-col gap-2 min-h-0 grow">
-        <div class="flex flex-col gap-2">
-          <h3 class="font-bold text-xl md:text-2xl bg-linear-to-r from-acento to-medio bg-clip-text text-transparent group-hover:from-medio group-hover:to-acento transition-all duration-500">
-            {proyecto.nombre}
-          </h3>
+    <div class="flex flex-1 flex-col p-6">
+      <div class="flex items-start justify-between gap-3">
+        <h3 class="text-xl font-bold">{proyecto.nombre}</h3>
+        <Icon
+          name="ph:arrow-up-right"
+          class="mt-1 size-5 shrink-0 text-claro/40 transition-colors duration-300 ease-fluid group-hover:text-acento"
+        />
+      </div>
 
-          <div class="flex flex-col gap-1">
-            <p class="desc-short line-clamp-2 text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300">
-              {proyecto.descripcion}
-            </p>
-            {proyecto.descripcionLarga && (
-              <p class="desc-long hidden text-claro/80 leading-relaxed group-hover:text-claro transition-colors duration-300">
-                {proyecto.descripcionLarga}
-              </p>
-            )}
-          </div>
-        </div>
+      <p class="mt-2 text-sm leading-relaxed text-claro/70">{proyecto.descripcion}</p>
 
       {proyecto.tecnologias && (
-        <div class="flex flex-col gap-2 pt-3 border-t border-acento/20 mt-auto">
-          <p class="text-xs text-medio/70">Tecnologías:</p>
-          <div class="flex flex-wrap gap-3">
-            {proyecto.tecnologias.map((stack: string) => (
-              <div class="group/icon">
-                <img
-                  src={`/Images/stacks/${stack}.svg`}
-                  alt={`Icono de ${stack}`}
-                  width={28}
-                  height={28}
-                  loading="lazy"
-                  class="w-7 h-7 transition-all duration-300 group-hover/icon:scale-125 group-hover/icon:rotate-6 group-hover/icon:drop-shadow-[0_0_8px_rgba(255,59,59,0.5)]"
-                />
-              </div>
-            ))}
-          </div>
+        <div class="mt-auto flex flex-wrap items-center gap-3 pt-6">
+          {proyecto.tecnologias.map((stack: string) => (
+            <img
+              src={`/Images/stacks/${stack}.svg`}
+              alt={stack}
+              title={stack}
+              width={24}
+              height={24}
+              loading="lazy"
+              class="size-6 transition-transform duration-300 ease-fluid group-hover:scale-110"
+            />
+          ))}
         </div>
       )}
-      </div>
     </div>
   </article>
 </a>

@@ -1,0 +1,43 @@
+---
+import { Icon } from "astro-icon/components";
+import data from "../../data/cv";
+import SectionHeading from "../ui/SectionHeading.astro";
+import SectionLabel from "../ui/SectionLabel.astro";
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: data.faq.map((item) => ({
+    "@type": "Question",
+    name: item.pregunta,
+    acceptedAnswer: { "@type": "Answer", text: item.respuesta },
+  })),
+});
+---
+
+<section id="preguntas" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Dudas frecuentes"
+    description="Lo que suelen preguntarme antes de empezar un proyecto."
+  />
+
+  <div class="relative mt-12">
+    <SectionLabel text="Preguntas" />
+    <div class="divide-y divide-borde overflow-hidden rounded-2xl border border-borde bg-superficie">
+      {data.faq.map((item) => (
+        <details class="group px-6" data-reveal>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-semibold">
+            {item.pregunta}
+            <Icon
+              name="ph:caret-down"
+              class="size-5 shrink-0 text-claro/50 transition-transform duration-300 ease-fluid group-open:rotate-180"
+            />
+          </summary>
+          <p class="pb-5 leading-relaxed text-claro/70">{item.respuesta}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  <script type="application/ld+json" set:html={faqSchema} />
+</section>

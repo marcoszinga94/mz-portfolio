@@ -27,6 +27,7 @@ export interface Servicio {
   nombre: string;
   descripcion: string;
   caracteristicas: string[];
+  /** Nombre de icono Phosphor (ej: "ph:storefront") */
   icono: string;
 }
 
@@ -37,13 +38,16 @@ export interface ProcesoStep {
 }
 
 export interface SocialLink {
-  name: string;
+  name: "Email" | "WhatsApp" | "GitHub" | "LinkedIn";
   url: string;
-  icon: string;
 }
 
-// Tipos para eventos personalizados
-export interface CustomNavigateEvent extends Event {
-  destination: { url: string };
-  intercept(options: { handler: () => Promise<void> }): void;
+export interface FaqItem {
+  pregunta: string;
+  respuesta: string;
+}
+
+export interface Metrica {
+  valor: string;
+  etiqueta: string;
 }

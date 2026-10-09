@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components";
+import data from "../../data/cv";
+import SectionHeading from "../ui/SectionHeading.astro";
+import SectionLabel from "../ui/SectionLabel.astro";
+---
+
+<section id="resultados" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Trabajo entregado, no promesas"
+    description="Proyectos reales que ya están resolviendo problemas todos los días."
+  />
+
+  <div class="relative mt-12">
+    <SectionLabel text="Resultados" />
+
+    <div class="grid gap-6 sm:grid-cols-3">
+      {data.metricas.map((metrica, index) => (
+        <div
+          data-reveal
+          data-reveal-delay={index * 100}
+          class="rounded-2xl border border-borde bg-superficie p-8 text-center"
+        >
+          <p class="text-4xl font-extrabold text-acento">{metrica.valor}</p>
+          <p class="mt-2 text-sm text-claro/70">{metrica.etiqueta}</p>
+        </div>
+      ))}
+    </div>
+
+    <div data-reveal class="mt-6 rounded-2xl border border-borde bg-superficie p-8">
+      <p class="text-sm font-semibold tracking-widest text-acento">Proyectos en marcha</p>
+      <div class="mt-4 flex flex-wrap gap-x-8 gap-y-3">
+        {data.proyectos.map((proyecto) => (
+          <a
+            href={proyecto.enlace}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-lg font-bold text-claro/50 transition-colors duration-300 ease-fluid hover:text-claro"
+          >
+            {proyecto.nombre}
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div
+      data-reveal
+      class="mt-6 flex items-start gap-4 rounded-2xl border border-borde bg-superficie p-6"
+    >
+      <Icon name="ph:shield-check" class="size-6 shrink-0 text-acento" />
+      <div>
+        <p class="font-semibold">Sin riesgo para vos</p>
+        <p class="mt-1 text-sm leading-relaxed text-claro/70">
+          La primera consulta es sin costo y sin compromiso. Recibís un presupuesto cerrado antes de
+          empezar, con alcance y plazos claros.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

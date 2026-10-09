@@ -1,49 +1,37 @@
 ---
 import { Image } from "astro:assets";
 import CallToActionButtons from "../ui/CallToActionButtons.astro";
+import selfie from "../../assets/selfie.webp";
 ---
 
-<section
-  id="inicio"
-  class="relative flex min-h-[85vh] w-full items-center justify-center overflow-hidden"
->
-  <!-- Elementos decorativos -->
-  <div class="absolute top-20 left-10 w-24 h-24 bg-acento/10 rounded-full blur-lg"></div>
-  <div class="absolute bottom-20 right-10 w-32 h-32 bg-acento/5 rounded-full blur-xl"></div>
+<section id="inicio" class="relative scroll-mt-28">
+  <div class="grid items-center gap-12 lg:grid-cols-[1fr_auto] lg:gap-16">
+    <div class="flex flex-col items-start gap-6" data-reveal>
+      <h1 class="max-w-[680px] bg-gradient-to-r from-white to-hero-end bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
+        Webs y sistemas a medida que convierten visitas en clientes
+      </h1>
 
-  <!-- Contenido principal -->
-  <div
-    class="relative z-10 flex flex-col-reverse lg:flex-row items-center justify-center gap-12 px-4 max-w-7xl mx-auto"
-  >
-    <div class="relative flex flex-col gap-6 text-center lg:text-left lg:w-1/2 z-10">
-      <div class="space-y-3">
-        <h1
-          class="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-        >
-          Marcos Federico
-          <span class="block text-5xl lg:text-7xl mt-2">Zingaretti</span>
-        </h1>
-        <h2 class="text-xl lg:text-2xl text-claro/80 font-medium">
-          Webs y sistemas a medida para hacer crecer tu negocio
-        </h2>
-      </div>
-
-      <p class="text-claro/70 text-lg max-w-xl mx-auto lg:mx-0">
-        Páginas web rápidas, modernas y optimizadas para convertir visitas en clientes. Te acompaño
-        de la idea al lanzamiento.
+      <p class="max-w-[680px] text-lg leading-relaxed text-claro/70">
+        Diseño y desarrollo sitios y plataformas para negocios que quieren vender más y ordenar su
+        operación. Te acompaño de la idea al lanzamiento.
       </p>
 
       <CallToActionButtons />
+
+      <p class="text-sm text-claro/50">
+        6 sistemas en producción para clínicas, gimnasios y empresas del agro.
+      </p>
     </div>
 
-    <div class="lg:w-1/2 flex flex-col justify-center items-center">
+    <div class="flex justify-center lg:justify-end" data-reveal data-reveal-delay="150">
       <Image
-        alt="Foto de Marcos Zingaretti"
-        src="/Images/selfie.webp"
-        width={540}
-        height={720}
+        alt="Retrato de Marcos F. Zingaretti, desarrollador web"
+        src={selfie}
+        widths={[320, 480, 600]}
+        sizes="(min-width: 1024px) 384px, 320px"
         loading="eager"
-        class="relative size-64 lg:size-96 rounded-full object-cover border-4 border-acento/30"
+        fetchpriority="high"
+        class="size-64 rounded-3xl border border-borde object-cover sm:size-80 lg:size-96"
       />
     </div>
   </div>

@@ -1,39 +1,31 @@
 ---
 import data from "../../data/cv";
+import SectionHeading from "../ui/SectionHeading.astro";
+import SectionLabel from "../ui/SectionLabel.astro";
 ---
 
-<section id="proceso" class="relative py-20 overflow-hidden">
-  <div class="container mx-auto px-6 relative">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16">
-        <h2
-          class="text-4xl font-bold inline-block bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-        >
-          ¿Cómo trabajo?
-        </h2>
-        <p class="mt-4 text-claro/70">
-          Un proceso simple y transparente, de la idea al lanzamiento
-        </p>
-      </div>
+<section id="proceso" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Cómo trabajo"
+    description="Un proceso simple y transparente, de la idea al lanzamiento."
+  />
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {
-          data.proceso.map((step) => (
-            <div
-              data-aos="fade-up"
-              class="relative bg-linear-to-br from-gray-custom to-fondo rounded-2xl p-6 border border-claro/10 hover:border-acento/50 transition-all duration-500 hover:translate-y-[-4px]"
-            >
-              <span
-                class="text-4xl font-bold bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-              >
-                {step.paso}
-              </span>
-              <h3 class="mt-4 text-lg font-bold text-claro">{step.titulo}</h3>
-              <p class="mt-2 text-sm text-claro/70 leading-relaxed">{step.descripcion}</p>
-            </div>
-          ))
-        }
-      </div>
+  <div class="relative mt-12">
+    <SectionLabel text="Proceso" />
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {data.proceso.map((step, index) => (
+        <article
+          data-reveal
+          data-reveal-delay={index * 100}
+          class="rounded-2xl border border-borde bg-superficie p-6"
+        >
+          <span class="grid size-10 place-items-center rounded-full border border-borde text-sm font-bold text-acento">
+            {step.paso}
+          </span>
+          <h3 class="mt-5 text-lg font-bold">{step.titulo}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-claro/70">{step.descripcion}</p>
+        </article>
+      ))}
     </div>
   </div>
 </section>

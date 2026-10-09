@@ -1,73 +1,47 @@
 ---
+import { Icon } from "astro-icon/components";
 import data from "../../data/cv";
+import SectionLabel from "../ui/SectionLabel.astro";
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 
 const email = data.socialLinks.find((s) => s.name === "Email")!;
 ---
 
-<section id="contacto" class="relative py-20 overflow-hidden">
-  <div class="container mx-auto px-6 relative">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2
-        class="text-4xl font-bold inline-block bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent"
-      >
-        ¿Tenés un proyecto en mente?
+<section id="contacto" class="relative scroll-mt-28">
+  <div class="relative">
+    <SectionLabel text="Contacto" />
+    <div class="rounded-3xl border border-borde bg-superficie px-6 py-14 text-center sm:px-12">
+      <h2 class="mx-auto max-w-[680px] text-3xl font-bold sm:text-4xl">
+        Contame tu idea y te respondo en menos de 24 horas
       </h2>
-      <p class="mt-6 text-lg text-claro/70 max-w-2xl mx-auto">
-        Contame tu idea y te respondo en menos de 24 horas con una propuesta clara y sin
-        compromiso.
+      <p class="mx-auto mt-4 max-w-xl leading-relaxed text-claro/70">
+        Sin costo y sin compromiso. Si preferís, también podés escribirme por correo o descargar mi
+        CV.
       </p>
 
-      <div class="mt-10 flex flex-wrap justify-center gap-4">
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <WhatsAppButton
           message="Hola Marcos, tengo un proyecto en mente y quiero pedirte un presupuesto."
           label="Hablar por WhatsApp"
         />
 
         <a
-          class="px-6 py-3 text-base inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-acento focus-visible:ring-offset-2 focus-visible:ring-offset-fondo disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] border-2 border-acento text-acento hover:bg-acento/10"
           href={`mailto:${email.url}`}
+          class="inline-flex items-center gap-2 rounded-full border border-borde px-6 py-3 text-base font-semibold text-claro transition-colors duration-300 ease-fluid hover:border-acento hover:text-acento"
         >
-          <svg
-            class="size-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d={email.icon}></path>
-          </svg>
-          Enviar un email
-        </a>
-
-        <a
-          class="px-6 py-3 text-base inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-acento focus-visible:ring-offset-2 focus-visible:ring-offset-fondo disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-[1.02] active:scale-[0.98] border-2 border-acento text-acento hover:bg-acento/10"
-          href="/CV_Marcos_Zingaretti.pdf"
-          download="CV_Marcos_Zingaretti.pdf"
-        >
-          <svg
-            class="size-5 mr-2"
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
-          </svg>
-          Descargar CV
+          <Icon name="ph:envelope-simple" class="size-5" />
+          Enviar un correo
         </a>
       </div>
 
-      <p class="mt-8 text-sm text-claro/50">
-        También podés escribirme a
-        <span class="text-claro/80">{email.url}</span>
-      </p>
+      <a
+        href="/CV_Marcos_Zingaretti.pdf"
+        download="CV_Marcos_Zingaretti.pdf"
+        class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-claro/50 transition-colors duration-300 ease-fluid hover:text-claro"
+      >
+        <Icon name="ph:download-simple" class="size-4" />
+        Descargar CV
+      </a>
     </div>
   </div>
 </section>

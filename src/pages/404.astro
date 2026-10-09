@@ -1,57 +1,29 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import WhatsAppButton from "../components/ui/WhatsAppButton.astro";
+
+export const prerender = true;
 ---
 
 <Layout
-  title="404: Página no encontrada"
-  description="Lo sentimos, la página que buscas no existe. Pero no te preocupes, puedes volver al inicio."
+  title="Página no encontrada - Marcos F. Zingaretti"
+  description="La página que buscás no existe. Volvé al inicio para ver mis servicios y proyectos de desarrollo web."
 >
-  <div class="min-h-screen flex items-center justify-center relative">
-    <!-- Background decoration -->
-    <div class="absolute inset-0 bg-gradient-radial from-acento/5 to-transparent opacity-50"></div>
-    <div
-      class="absolute right-0 top-1/4 w-96 h-96 bg-acento/10 rounded-full blur-[100px] animate-pulse"
-    >
-    </div>
-    <div
-      class="absolute left-0 bottom-1/4 w-96 h-96 bg-medio/10 rounded-full blur-[100px] animate-float"
-    >
-    </div>
+  <section class="flex min-h-[70vh] flex-col items-center justify-center text-center">
+    <p class="text-sm font-semibold tracking-widest text-acento">Error 404</p>
+    <h1 class="mt-4 text-6xl font-extrabold sm:text-8xl">Página no encontrada</h1>
+    <p class="mt-4 max-w-md text-lg text-claro/70">
+      La dirección que abriste no existe o se movió. Puedo ayudarte a volver al camino.
+    </p>
 
-    <div class="relative z-10 text-center px-6 max-w-2xl mx-auto">
-      <h1
-        class="text-9xl font-bold bg-gradient-to-r from-acento to-medio bg-clip-text text-transparent mb-4"
-      >
-        404
-      </h1>
-
-      <h2 class="text-2xl md:text-3xl font-medium text-claro mb-6">¡Ups! Página no encontrada</h2>
-
-      <p class="text-claro/70 text-lg mb-12">
-        Parece que te has perdido en el espacio digital. No te preocupes, te ayudo a volver al
-        camino correcto.
-      </p>
-
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
       <a
         href="/"
-        class="inline-flex items-center gap-2 px-8 py-3 text-lg font-medium text-claro bg-gradient-to-r from-acento to-medio rounded-full transform hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-acento/20"
+        class="inline-flex items-center gap-2 rounded-full bg-acento px-6 py-3 text-base font-semibold text-white transition-transform duration-300 ease-fluid hover:scale-[1.03] active:scale-[0.98]"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-5 w-5"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-          ></path>
-        </svg>
         Volver al inicio
       </a>
+      <WhatsAppButton label="Escribime por WhatsApp" />
     </div>
-  </div>
+  </section>
 </Layout>

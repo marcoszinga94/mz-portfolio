@@ -1,4 +1,13 @@
-import type { Habilidad, TimelineItem, Proyecto, SocialLink, Servicio, ProcesoStep } from "../types";
+import type {
+  Habilidad,
+  TimelineItem,
+  Proyecto,
+  SocialLink,
+  Servicio,
+  ProcesoStep,
+  FaqItem,
+  Metrica,
+} from "../types";
 
 interface PortfolioData {
   sobreMi: string[];
@@ -8,13 +17,15 @@ interface PortfolioData {
   socialLinks: SocialLink[];
   servicios: Servicio[];
   proceso: ProcesoStep[];
+  metricas: Metrica[];
+  faq: FaqItem[];
 }
 
 const data: PortfolioData = {
   sobreMi: [
-    "Mi interés por la tecnología comenzó en la adolescencia, y a los 15 años descubrí en la programación una vocación que definiría mi carrera profesional.",
-    "Empecé con proyectos personales, explorando cada línea de código hasta comprender que el desarrollo de software va más allá de la sintaxis: se trata de resolver problemas y crear soluciones con impacto real.",
-    "Hoy, con experiencia en el desarrollo de aplicaciones completas, abordo cada proyecto aplicando buenas prácticas y aprendizajes acumulados, buscando siempre la mejor solución sin perder de vista la eficiencia y la calidad.",
+    "Mi interés por la tecnología arrancó en la adolescencia: a los 15 años descubrí en la programación una vocación que terminó definiendo mi carrera profesional.",
+    "Empecé con proyectos personales, explorando cada línea de código hasta entender que desarrollar software va más allá de la sintaxis: se trata de resolver problemas reales y crear soluciones con impacto.",
+    "Hoy trabajo en el desarrollo de aplicaciones completas, aplicando buenas prácticas y priorizando la eficiencia y la calidad en cada entrega.",
   ],
   habilidades: [
     { nombre: "Astro", icon: "Astro" },
@@ -29,19 +40,19 @@ const data: PortfolioData = {
       fecha: "2025 - 2028",
       titulo: "Tecnicatura Superior en Desarrollo de Software",
       descripcion:
-        "Formalizando mis conocimiento a grado técnico y generalizando mis conocimientos de desarrollo web hacia un abanico más grande aún, todo tipo de software.",
+        "Formalizando mis conocimientos a nivel técnico y ampliando mi desarrollo web hacia todo tipo de software.",
     },
     {
       fecha: "2020 - 2021",
-      titulo: "Argentina Programa 2.0 - Formalización de Estudios",
+      titulo: "Argentina Programa 2.0 - Formalización de estudios",
       descripcion:
-        "Avancé en mi trayectoria profesional formalizando mis estudios en programación a través del programa Argentina Programa 2.0. Durante esta etapa, adquirí competencias avanzadas trabajando con frameworks como Angular y optimizando el uso de diversas tecnologías.",
+        "Avancé en mi trayectoria formalizando mis estudios en programación a través del programa Argentina Programa 2.0. En esta etapa adquirí competencias avanzadas trabajando con frameworks como Angular y optimizando el uso de diversas tecnologías.",
     },
     {
       fecha: "...2020",
-      titulo: "Autodidacta en Programación",
+      titulo: "Autodidacta en programación",
       descripcion:
-        "Mi pasión por la programación comenzó con aprendizaje autodidacta. A través de peuqeños proyectos, tutoriales en YouTube y repositorios de GitHub, desarrollé las bases fundamentales que han impulsado mi crecimiento constante en el campo.",
+        "Mi pasión por la programación comenzó de forma autodidacta. A través de pequeños proyectos, tutoriales y repositorios de GitHub, desarrollé las bases que impulsan mi crecimiento constante.",
     },
   ],
   proyectos: [
@@ -101,61 +112,44 @@ const data: PortfolioData = {
     },
   ],
   socialLinks: [
-    {
-      name: "Email",
-      url: "marcoszinga94@gmail.com",
-      icon: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22,6l-10,7L2,6",
-    },
-    {
-      name: "WhatsApp",
-      url: "https://wa.me/+5493584406950",
-      icon: "M16.8 5.7C14.4 2 9.5.9 5.7 3.2 2 5.5.8 10.5 3.2 14.2l.2.3-.8 3 3-.8.3.2c1.3.7 2.7 1.1 4.1 1.1 1.5 0 3-.4 4.3-1.2 3.7-2.4 4.8-7.3 2.5-11.1zm-2.1 7.7c-.4.6-.9 1-1.6 1.1-.4 0-.9.2-2.9-.6-1.7-.8-3.1-2.1-4.1-3.6-.6-.7-.9-1.6-1-2.5 0-.8.3-1.5.8-2 .2-.2.4-.3.6-.3H7c.2 0 .4 0 .5.4.2.5.7 1.7.7 1.8.1.1.1.3 0 .4.1.2 0 .4-.1.5-.1.1-.2.3-.3.4-.2.1-.3.3-.2.5.4.6.9 1.2 1.4 1.7.6.5 1.2.9 1.9 1.2.2.1.4.1.5-.1s.6-.7.8-.9c.2-.2.3-.2.5-.1l1.6.8c.2.1.4.2.5.3.1.3.1.7-.1 1z",
-    },
-    {
-      name: "GitHub",
-      url: "https://github.com/marcoszinga94",
-      icon: "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12",
-    },
+    { name: "Email", url: "marcoszinga94@gmail.com" },
+    { name: "WhatsApp", url: "https://wa.me/+5493584406950" },
+    { name: "GitHub", url: "https://github.com/marcoszinga94" },
   ],
   servicios: [
     {
-      nombre: "Páginas web para negocios",
-      descripcion:
-        "Sitios modernos, rápidos y optimizados para convertir visitas en clientes reales.",
+      nombre: "Webs que traen consultas",
+      descripcion: "Sitios modernos, veloces y pensados para convertir visitas en clientes reales.",
       caracteristicas: [
-        "Diseño 100% a medida y responsive",
+        "Diseño a medida y responsive",
         "Optimización SEO desde el inicio",
         "WhatsApp y formularios integrados",
         "Carga rápida en cualquier dispositivo",
       ],
-      icono:
-        "M8 21h8m-4-4v4M3 4h18v12H3z",
+      icono: "ph:storefront",
     },
     {
-      nombre: "Sistemas y apps web",
+      nombre: "Sistemas que ordenan tu negocio",
       descripcion:
         "Plataformas completas con panel de administración, usuarios y datos en la nube.",
       caracteristicas: [
-        "Panel de administración intuitivo",
+        "Panel de administración claro",
         "Autenticación segura y permisos por rol",
         "Base de datos en la nube",
         "Funciones a medida para tu operación",
       ],
-      icono:
-        "M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z",
+      icono: "ph:devices",
     },
     {
-      nombre: "Mantenimiento y soporte",
-      descripcion:
-        "Tu sitio siempre actualizado, seguro y funcionando sin preocupaciones.",
+      nombre: "Soporte que te quita problemas",
+      descripcion: "Tu sitio siempre actualizado, seguro y funcionando sin sobresaltos.",
       caracteristicas: [
         "Actualizaciones y mejoras continuas",
         "Copias de seguridad y monitoreo",
         "Corrección de errores prioritaria",
         "Asesoramiento técnico permanente",
       ],
-      icono:
-        "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z",
+      icono: "ph:headset",
     },
   ],
   proceso: [
@@ -163,25 +157,69 @@ const data: PortfolioData = {
       paso: "1",
       titulo: "Consulta inicial",
       descripcion:
-        "Hablamos de tu proyecto, objetivos y necesidades. Sin costo y sin compromiso.",
+        "Hablamos de tu proyecto, tus objetivos y tus necesidades. Sin costo y sin compromiso.",
     },
     {
       paso: "2",
       titulo: "Propuesta y presupuesto",
-      descripcion:
-        "Te presento un plan claro con alcance, plazos y presupuesto antes de empezar.",
+      descripcion: "Te presento un plan claro con alcance, plazos y precio antes de empezar.",
     },
     {
       paso: "3",
       titulo: "Desarrollo",
-      descripcion:
-        "Construyo tu solución con avances periódicos y comunicación constante.",
+      descripcion: "Construyo tu solución con avances periódicos y comunicación constante.",
     },
     {
       paso: "4",
       titulo: "Entrega y soporte",
-      descripcion:
-        "Ponemos tu proyecto en marcha y te acompaño después del lanzamiento.",
+      descripcion: "Ponemos el proyecto en marcha y te acompaño después del lanzamiento.",
+    },
+  ],
+  metricas: [
+    { valor: "6", etiqueta: "Proyectos en producción" },
+    { valor: "24 h", etiqueta: "Respuesta a tu consulta" },
+    { valor: "2 a 8", etiqueta: "Semanas según el proyecto" },
+  ],
+  faq: [
+    {
+      pregunta: "¿Cuánto tarda mi proyecto?",
+      respuesta:
+        "Una web institucional suele estar lista en 2 a 3 semanas. Un sistema con panel y usuarios toma entre 4 y 8 semanas, según el alcance. Los plazos quedan fijados en la propuesta antes de empezar.",
+    },
+    {
+      pregunta: "¿Cuánto cuesta una web o un sistema?",
+      respuesta:
+        "Cada proyecto es distinto, por eso no manejo precios de lista. Después de la consulta inicial te paso un presupuesto cerrado, con alcance y plazos, sin costos escondidos.",
+    },
+    {
+      pregunta: "¿Trabajás con negocios de otras ciudades?",
+      respuesta:
+        "Sí. Trabajo de forma remota con clientes de todo el país. Las reuniones se hacen por videollamada y la comunicación diaria es por WhatsApp.",
+    },
+    {
+      pregunta: "¿Hacés webs a medida o usás plantillas?",
+      respuesta:
+        "Diseño y desarrollo a medida. No uso plantillas genéricas: cada web se adapta a tu negocio, no al revés.",
+    },
+    {
+      pregunta: "¿Qué necesito tener listo para empezar?",
+      respuesta:
+        "Solo tus objetivos y, si los tenés, tu logo, textos e imágenes. Todo lo demás lo definimos juntos en la consulta inicial.",
+    },
+    {
+      pregunta: "¿Qué pasa después de la entrega?",
+      respuesta:
+        "Incluyo una capacitación para que puedas usarlo y un período de acompañamiento. Si querés, podés sumar un plan de mantenimiento mensual.",
+    },
+    {
+      pregunta: "¿Puedo pedir cambios más adelante?",
+      respuesta:
+        "Sí. El proyecto queda a tu nombre y cualquier cambio se cotiza aparte, siempre avisándote antes de avanzar.",
+    },
+    {
+      pregunta: "¿Mis datos y los de mis clientes están seguros?",
+      respuesta:
+        "Trabajo con bases de datos en la nube, autenticación segura y permisos por rol. Todos los accesos quedan bajo tu control.",
     },
   ],
 };
