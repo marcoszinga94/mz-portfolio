@@ -1,0 +1,50 @@
+name: Actualizar capturas de proyectos
+
+on:
+  # Todos los lunes a las 06:00 UTC
+  schedule:
+    - cron: "0 6 * * 1"
+  # También se puede disparar a mano desde la pestaña Actions
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: project-shots
+  cancel-in-progress: false
+
+jobs:
+  shots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Setup Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Generar capturas
+        env:
+          CHROME_PATH: ${{ steps.chrome.outputs.chrome-path }}
+        run: node scripts/generate-project-shots.mjs
+
+      - name: Commit y push si hubo cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -z "$(git status --porcelain -- public/Images/paginas)" ]; then
+            echo "Sin cambios en las capturas."
+            exit 0
+          fi
+          git add public/Images/paginas
+          git commit -m "chore: actualizar capturas de proyectos"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
