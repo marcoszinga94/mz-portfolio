@@ -99,8 +99,10 @@ main > section {
   margin-inline: auto;
 }
 
-/* Reveal al entrar en viewport: fade + subida + desenfoque, con easing de muelle */
-[data-reveal] {
+/* Reveal al entrar en viewport: fade + subida + desenfoque, con easing de muelle.
+   El estado oculto solo aplica cuando hay JS (.js): si el JS falla, el contenido
+   se ve normalmente en lugar de quedar invisible. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(4rem);
   filter: blur(12px);
@@ -109,6 +111,10 @@ main > section {
     transform 800ms var(--ease-fluid),
     filter 800ms var(--ease-fluid);
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* will-change solo mientras el elemento está pendiente de revelarse */
+.js [data-reveal]:not(.is-visible) {
   will-change: opacity, transform, filter;
 }
 
@@ -121,12 +127,21 @@ main > section {
 /* Tagline reveal: cada palabra se enciende al cruzar la línea de disparo */
 .tagline-word {
   display: inline-block;
-  opacity: 0.3;
   transition: opacity 700ms var(--ease-fluid);
+}
+
+.js .tagline-word {
+  opacity: 0.3;
 }
 
 .tagline-word.is-lit {
   opacity: 1;
+}
+
+/* Con el menú móvil abierto, ocultamos los flotantes para que no queden por encima */
+html.menu-open [data-floating] {
+  opacity: 0;
+  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

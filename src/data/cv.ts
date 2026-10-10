@@ -11,6 +11,7 @@ import type {
 
 interface PortfolioData {
   sobreMi: string[];
+  sobreMiCorto: string;
   habilidades: Habilidad[];
   experiencias: TimelineItem[];
   proyectos: Proyecto[];
@@ -27,6 +28,8 @@ const data: PortfolioData = {
     "Empecé con proyectos personales, explorando cada línea de código hasta entender que desarrollar software va más allá de la sintaxis: se trata de resolver problemas reales y crear soluciones con impacto.",
     "Hoy trabajo en el desarrollo de aplicaciones completas, aplicando buenas prácticas y priorizando la eficiencia y la calidad en cada entrega.",
   ],
+  sobreMiCorto:
+    "Soy desarrollador web full stack. Empecé de forma autodidacta y hoy construyo aplicaciones completas, con foco en resolver problemas reales y cuidar la calidad en cada entrega.",
   habilidades: [
     { nombre: "Astro", icon: "Astro" },
     { nombre: "Node.js", icon: "Node" },
@@ -34,6 +37,8 @@ const data: PortfolioData = {
     { nombre: "TailwindCSS", icon: "TailwindCSS" },
     { nombre: "TypeScript", icon: "TypeScript" },
     { nombre: "JavaScript", icon: "JavaScript" },
+    { nombre: "Python", icon: "Python" },
+    { nombre: "IA", icon: "IA" },
   ],
   experiencias: [
     {

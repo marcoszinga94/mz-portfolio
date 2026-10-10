@@ -4,6 +4,17 @@ import SectionHeading from "../ui/SectionHeading.astro";
 import SectionLabel from "../ui/SectionLabel.astro";
 import WhatsAppButton from "../ui/WhatsAppButton.astro";
 import data from "../../data/cv";
+
+const [destacado, ...resto] = data.proyectos;
+
+// Un proyecto "ancho" que ocupa 2 columnas en desktop. Lo ubicamos al inicio de
+// la segunda fila para que la grilla de 3 columnas cierre sin dejar huecos.
+const ancho = "TurnoMaster";
+const anchoIdx = resto.findIndex((proyecto) => proyecto.nombre === ancho);
+if (anchoIdx !== -1 && resto.length >= 4) {
+  const [proyectoAncho] = resto.splice(anchoIdx, 1);
+  resto.splice(3, 0, proyectoAncho);
+}
 ---
 
 <section id="proyectos" class="relative scroll-mt-28">
@@ -14,10 +25,19 @@ import data from "../../data/cv";
 
   <div class="relative mt-12">
     <SectionLabel text="Proyectos" />
+
+    <div data-reveal class="mb-6">
+      <Card proyecto={destacado} featured />
+    </div>
+
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {data.proyectos.map((proyecto, index) => (
-        <div data-reveal data-reveal-delay={(index % 3) * 100}>
-          <Card proyecto={proyecto} />
+      {resto.map((proyecto, index) => (
+        <div
+          data-reveal
+          data-reveal-delay={(index % 3) * 100}
+          class={proyecto.nombre === ancho ? "lg:col-span-2" : undefined}
+        >
+          <Card proyecto={proyecto} wide={proyecto.nombre === ancho} />
         </div>
       ))}
     </div>

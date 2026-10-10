@@ -4,9 +4,27 @@ import type { Proyecto } from "../../types/index.ts";
 
 interface Props {
   proyecto: Proyecto;
+  /** Variante destacada: imagen a la izquierda y más peso visual (solo en lg) */
+  featured?: boolean;
+  /** Variante ancha: ocupa 2 columnas, con imagen más alta y recorte desde arriba */
+  wide?: boolean;
 }
 
-const { proyecto } = Astro.props;
+const { proyecto, featured = false, wide = false } = Astro.props;
+
+const articleClass = `flex h-full overflow-hidden rounded-2xl border border-borde bg-superficie transition-colors duration-500 ease-fluid hover:border-acento/50 ${
+  featured ? "flex-col lg:flex-row" : "flex-col"
+}`;
+
+const mediaClass = featured
+  ? "relative h-56 overflow-hidden lg:h-auto lg:w-1/2"
+  : wide
+    ? "relative h-48 overflow-hidden lg:h-64"
+    : "relative h-48 overflow-hidden";
+
+const bodyClass = featured
+  ? "flex flex-1 flex-col p-6 lg:justify-center lg:p-10"
+  : "flex flex-1 flex-col p-6";
 ---
 
 <a
@@ -16,8 +34,8 @@ const { proyecto } = Astro.props;
   class="group block h-full"
   aria-label={`Ver el proyecto ${proyecto.nombre}`}
 >
-  <article class="flex h-full flex-col overflow-hidden rounded-2xl border border-borde bg-superficie transition-colors duration-500 ease-fluid hover:border-acento/50">
-    <div class="relative h-48 overflow-hidden">
+  <article class={articleClass}>
+    <div class={mediaClass}>
       <img
         src={`/Images/paginas/${proyecto.imagen}.webp`}
         alt={`Vista previa del proyecto ${proyecto.nombre}`}
@@ -25,23 +43,35 @@ const { proyecto } = Astro.props;
         height={400}
         loading="lazy"
         decoding="async"
-        class="h-full w-full object-cover object-center transition-transform duration-700 ease-fluid group-hover:scale-105"
+        class={`h-full w-full object-cover transition-transform duration-700 ease-fluid group-hover:scale-105 ${
+          wide ? "object-top" : "object-center"
+        }`}
       />
     </div>
 
-    <div class="flex flex-1 flex-col p-6">
+    <div class={bodyClass}>
       <div class="flex items-start justify-between gap-3">
-        <h3 class="text-xl font-bold">{proyecto.nombre}</h3>
+        <h3 class={featured ? "text-2xl font-bold lg:text-3xl" : "text-xl font-bold"}>
+          {proyecto.nombre}
+        </h3>
         <Icon
           name="ph:arrow-up-right"
           class="mt-1 size-5 shrink-0 text-claro/40 transition-colors duration-300 ease-fluid group-hover:text-acento"
         />
       </div>
 
-      <p class="mt-2 text-sm leading-relaxed text-claro/70">{proyecto.descripcion}</p>
+      <p
+        class={
+          featured
+            ? "mt-3 line-clamp-4 text-base leading-relaxed text-claro/70"
+            : "mt-2 text-sm leading-relaxed text-claro/70"
+        }
+      >
+        {featured ? (proyecto.descripcionLarga ?? proyecto.descripcion) : proyecto.descripcion}
+      </p>
 
       {proyecto.tecnologias && (
-        <div class="mt-auto flex flex-wrap items-center gap-3 pt-6">
+        <div class={`flex flex-wrap items-center gap-3 ${featured ? "pt-8" : "mt-auto pt-6"}`}>
           {proyecto.tecnologias.map((stack: string) => (
             <img
               src={`/Images/stacks/${stack}.svg`}

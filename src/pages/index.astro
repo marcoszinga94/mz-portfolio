@@ -3,12 +3,12 @@ import Layout from "../layouts/Layout.astro";
 import Hero from "../components/section/Hero.astro";
 import TaglineReveal from "../components/section/TaglineReveal.astro";
 import Services from "../components/section/Services.astro";
-import Projects from "../components/section/Projects.astro";
-import Process from "../components/section/Process.astro";
-import Proof from "../components/section/Proof.astro";
 import About from "../components/section/About.astro";
-import Experience from "../components/section/Experience.astro";
+import Projects from "../components/section/Projects.astro";
+import Proof from "../components/section/Proof.astro";
+import Process from "../components/section/Process.astro";
 import Faq from "../components/section/FAQ.astro";
+import Experience from "../components/section/Experience.astro";
 import Contact from "../components/section/Contact.astro";
 
 export const prerender = true;
@@ -21,11 +21,11 @@ export const prerender = true;
   <Hero />
   <TaglineReveal text="Tu próxima web debería traerte clientes, incluso cuando no estás mirando." />
   <Services />
-  <Projects />
-  <Process />
-  <Proof />
   <About />
-  <Experience />
+  <Projects />
+  <Proof />
+  <Process />
   <Faq />
+  <Experience />
   <Contact />
 </Layout>

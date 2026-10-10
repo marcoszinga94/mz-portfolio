@@ -155,6 +155,10 @@ const ctaUrl = `${whatsapp.url}?text=${encodeURIComponent("Hola Marcos, quiero u
     menuButton.setAttribute("aria-expanded", String(next));
     menuButton.setAttribute("aria-label", next ? "Cerrar menú" : "Abrir menú");
     document.documentElement.style.overflow = next ? "hidden" : "";
+    document.documentElement.classList.toggle("menu-open", next);
+    document.getElementById("contenido")?.toggleAttribute("inert", next);
+    document.querySelector("footer")?.toggleAttribute("inert", next);
+    if (next) mobileMenu.querySelector<HTMLAnchorElement>("a")?.focus();
   }
 
   menuButton?.addEventListener("click", () => setOpen(!isOpen));
