@@ -120,6 +120,7 @@ const data: PortfolioData = {
     { name: "Email", url: "marcoszinga94@gmail.com" },
     { name: "WhatsApp", url: "https://wa.me/+5493584406950" },
     { name: "GitHub", url: "https://github.com/marcoszinga94" },
+    { name: "Instagram", url: "https://www.instagram.com/marcosfzinga/" },
   ],
   servicios: [
     {

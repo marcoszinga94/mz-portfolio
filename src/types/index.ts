@@ -38,7 +38,7 @@ export interface ProcesoStep {
 }
 
 export interface SocialLink {
-  name: "Email" | "WhatsApp" | "GitHub" | "LinkedIn";
+  name: "Email" | "WhatsApp" | "GitHub" | "LinkedIn" | "Instagram";
   url: string;
 }
 

@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LocalLanding from "../components/section/LocalLanding.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    pregunta: "¿Trabajás con negocios de La Carlota?",
+    respuesta:
+      "Sí. Trabajo con comercios, profesionales y empresas de La Carlota y la zona, de forma remota y con reuniones por videollamada o WhatsApp. Podemos coordinar encuentros presenciales cuando haga falta.",
+  },
+  {
+    pregunta: "¿Cuánto cuesta una página web para un negocio de La Carlota?",
+    respuesta:
+      "Cada proyecto es distinto, por eso el precio depende del alcance. Después de una consulta sin costo te paso un presupuesto cerrado, con plazos claros y sin costos escondidos.",
+  },
+  {
+    pregunta: "¿Desarrollás sistemas para empresas del agro?",
+    respuesta:
+      "Sí. Ya desarrollé el sitio de El Socorro, una empresa agrícola de la zona, y entiendo las necesidades de ese rubro: catálogos de productos, contacto directo y presencia online seria.",
+  },
+  {
+    pregunta: "¿Podés mantener mi sitio después de lanzarlo?",
+    respuesta:
+      "Sí. Ofrezco un plan de mantenimiento con actualizaciones, copias de seguridad, monitoreo y mejoras continuas para que tu sitio siga funcionando sin sobresaltos.",
+  },
+];
+---
+
+<Layout
+  title="Desarrollo web en La Carlota, Córdoba | Marcos Zingaretti"
+  description="Páginas web y sistemas a medida para negocios de La Carlota, Córdoba. Sitios rápidos, optimizados y pensados para traer clientes. Presupuesto sin costo."
+>
+  <LocalLanding
+    ciudad="La Carlota"
+    provincia="Córdoba"
+    heading="Desarrollo web y software a medida en La Carlota"
+    intro={[
+      "La Carlota tiene un comercio y un sector agropecuario que crecen, y cada vez más negocios necesitan una presencia online que esté a la altura.",
+      "Diseño páginas web y sistemas a medida para empresas de La Carlota y la zona: desde una web institucional que atrae consultas hasta un sistema que ordena la operación del día a día.",
+      "Trabajo de forma directa, sin intermediarios, y acompaño cada proyecto de la idea al lanzamiento.",
+    ]}
+    faqs={faqs}
+  />
+</Layout>

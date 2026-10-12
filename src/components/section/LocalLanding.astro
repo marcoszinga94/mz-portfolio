@@ -1,0 +1,188 @@
+---
+import { Icon } from "astro-icon/components";
+import data from "../../data/cv";
+import SectionHeading from "../ui/SectionHeading.astro";
+import WhatsAppButton from "../ui/WhatsAppButton.astro";
+
+interface Props {
+  ciudad: string;
+  provincia: string;
+  heading: string;
+  intro: string[];
+  faqs: { pregunta: string; respuesta: string }[];
+}
+
+const { ciudad, provincia, heading, intro, faqs } = Astro.props;
+
+const site = (Astro.site?.href ?? "https://marcoszinga.vercel.app").replace(/\/$/, "");
+const pageUrl = `${site}${Astro.url.pathname}`.replace(/\/$/, "");
+
+const whatsapp = data.socialLinks.find((s) => s.name === "WhatsApp")!;
+const waUrl = `${whatsapp.url}?text=${encodeURIComponent(
+  `Hola Marcos, estoy en ${ciudad} y quiero un presupuesto para mi proyecto.`,
+)}`;
+
+const faqSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((item) => ({
+    "@type": "Question",
+    name: item.pregunta,
+    acceptedAnswer: { "@type": "Answer", text: item.respuesta },
+  })),
+});
+
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: `${site}/` },
+    { "@type": "ListItem", position: 2, name: heading, item: pageUrl },
+  ],
+});
+---
+
+<section class="relative scroll-mt-28">
+  <div class="flex flex-col items-start gap-6" data-reveal>
+    <p class="inline-flex items-center gap-2 rounded-full border border-borde bg-superficie/60 px-3 py-1 text-xs font-medium text-claro/70">
+      <span class="size-1.5 rounded-full bg-acento"></span>
+      {ciudad}, {provincia} · Desarrollo web y software
+    </p>
+
+    <h1 class="max-w-[680px] bg-gradient-to-r from-white to-hero-end bg-clip-text text-4xl font-extrabold text-transparent sm:text-5xl">
+      {heading}
+    </h1>
+
+    <div class="max-w-[680px] space-y-4 text-lg leading-relaxed text-claro/70">
+      {intro.map((parrafo) => (
+        <p>{parrafo}</p>
+      ))}
+    </div>
+
+    <div class="flex flex-wrap items-center gap-4">
+      <a
+        href={waUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 rounded-full bg-acento px-6 py-3 text-base font-semibold text-white transition-transform duration-300 ease-fluid hover:scale-[1.03] active:scale-[0.98]"
+      >
+        <Icon name="ph:whatsapp-logo" class="size-5" />
+        Pedir presupuesto
+      </a>
+      <a
+        href="/#proyectos"
+        class="inline-flex items-center gap-2 rounded-full border border-borde px-6 py-3 text-base font-semibold text-claro transition-colors duration-300 ease-fluid hover:border-acento hover:text-acento"
+      >
+        Ver proyectos
+        <Icon name="ph:arrow-right" class="size-5" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="local-servicios" class="relative scroll-mt-28">
+  <SectionHeading
+    title={`Qué puedo hacer por tu negocio en ${ciudad}`}
+    description="Soluciones digitales a medida, desde la idea hasta el soporte continuo."
+  />
+
+  <div class="mt-12 grid gap-6 md:grid-cols-3">
+    {data.servicios.map((servicio, index) => (
+      <article
+        data-reveal
+        data-reveal-delay={index * 100}
+        class="flex flex-col rounded-2xl border border-borde bg-superficie p-6"
+      >
+        <span class="grid size-12 place-items-center rounded-xl bg-elevada text-acento">
+          <Icon name={servicio.icono} class="size-6" />
+        </span>
+
+        <h3 class="mt-6 text-xl font-bold">{servicio.nombre}</h3>
+        <p class="mt-2 leading-relaxed text-claro/70">{servicio.descripcion}</p>
+
+        <ul class="mt-6 flex-1 space-y-3">
+          {servicio.caracteristicas.map((caracteristica) => (
+            <li class="flex items-start gap-3 text-sm text-claro/80">
+              <Icon name="ph:check" class="mt-0.5 size-4 shrink-0 text-acento" />
+              {caracteristica}
+            </li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section id="local-resultados" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Trabajo entregado, no promesas"
+    description="Proyectos reales en clínicas, gimnasios, agro y gestión."
+  />
+
+  <div class="mt-12 grid gap-6 sm:grid-cols-3">
+    {data.metricas.map((metrica, index) => (
+      <div
+        data-reveal
+        data-reveal-delay={index * 100}
+        class="rounded-2xl border border-borde bg-superficie p-8 text-center"
+      >
+        <p class="text-4xl font-extrabold text-acento">{metrica.valor}</p>
+        <p class="mt-2 text-sm text-claro/70">{metrica.etiqueta}</p>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section id="local-preguntas" class="relative scroll-mt-28">
+  <SectionHeading
+    title="Preguntas frecuentes"
+    description={`Lo que suelen consultarme los negocios de ${ciudad}.`}
+  />
+
+  <div class="mt-12 divide-y divide-borde overflow-hidden rounded-2xl border border-borde bg-superficie">
+    {faqs.map((item) => (
+      <details class="group px-6" data-reveal>
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-semibold">
+          {item.pregunta}
+          <Icon
+            name="ph:caret-down"
+            class="size-5 shrink-0 text-claro/50 transition-transform duration-300 ease-fluid group-open:rotate-180"
+          />
+        </summary>
+        <p class="pb-5 leading-relaxed text-claro/70">{item.respuesta}</p>
+      </details>
+    ))}
+  </div>
+</section>
+
+<section id="local-contacto" class="relative">
+  <div
+    class="rounded-3xl border border-borde bg-superficie px-6 py-14 text-center sm:px-12"
+    data-reveal
+  >
+    <h2 class="mx-auto max-w-[680px] text-3xl font-bold sm:text-4xl">
+      Contame tu idea y te respondo en menos de 24 horas
+    </h2>
+    <p class="mx-auto mt-4 max-w-xl leading-relaxed text-claro/70">
+      Sin costo y sin compromiso. Trabajo con negocios de {ciudad} y de toda la provincia de
+      Córdoba.
+    </p>
+
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <WhatsAppButton
+        message={`Hola Marcos, estoy en ${ciudad} y quiero pedirte un presupuesto.`}
+        label="Hablar por WhatsApp"
+      />
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 rounded-full border border-borde px-6 py-3 text-base font-semibold text-claro transition-colors duration-300 ease-fluid hover:border-acento hover:text-acento"
+      >
+        <Icon name="ph:arrow-left" class="size-5" />
+        Volver al inicio
+      </a>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={faqSchema} />
+<script type="application/ld+json" set:html={breadcrumbSchema} />

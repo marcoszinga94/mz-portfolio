@@ -14,31 +14,124 @@ interface Props {
 }
 const { title, description } = Astro.props;
 
-const site = "https://portafoliozingaretti.vercel.app";
-const canonical = new URL(Astro.url.pathname, site).href;
-const ogImage = `${site}/Images/og-image.jpg`;
+const siteUrl = (
+  Astro.site?.href ??
+  import.meta.env.PUBLIC_SITE_URL ??
+  "https://marcoszinga.vercel.app"
+).replace(/\/$/, "");
+
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = `${siteUrl}/Images/og-image.jpg`;
+
+const NAME = "Marcos F. Zingaretti";
+const FULL_NAME = "Marcos Federico Zingaretti";
+const EMAIL = "marcoszinga94@gmail.com";
+const PHONE = "+5493584406950";
+const GITHUB = "https://github.com/marcoszinga94";
+const INSTAGRAM = "https://www.instagram.com/marcosfzinga/";
+
+// Sumar LinkedIn cuando esté disponible.
+const sameAs = [GITHUB, INSTAGRAM];
+const knowsAbout = [
+  "Desarrollo web",
+  "Software a medida",
+  "Páginas web",
+  "Sistemas de gestión",
+  "Astro",
+  "React",
+  "TypeScript",
+  "Node.js",
+  "Python",
+  "TailwindCSS",
+  "Inteligencia artificial",
+];
+
+const areaServed = [
+  { "@type": "City", name: "La Carlota" },
+  { "@type": "City", name: "Córdoba" },
+  { "@type": "AdministrativeArea", name: "Provincia de Córdoba" },
+  { "@type": "Country", name: "Argentina" },
+];
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Marcos F. Zingaretti",
-  description,
-  url: site,
-  image: ogImage,
-  areaServed: "AR",
-  priceRange: "$$",
-  founder: {
-    "@type": "Person",
-    name: "Marcos Federico Zingaretti",
-    jobTitle: "Desarrollador web full stack",
-    sameAs: ["https://github.com/marcoszinga94"],
-  },
-  knowsAbout: ["Desarrollo web", "Astro", "React", "TypeScript", "Node.js", "TailwindCSS"],
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: NAME,
+      description,
+      inLanguage: "es-AR",
+      publisher: { "@id": `${siteUrl}/#organizacion` },
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteUrl}/#organizacion`,
+      name: NAME,
+      alternateName: "Marcos Zingaretti, desarrollo web y software a medida",
+      description,
+      url: siteUrl,
+      image: ogImage,
+      logo: ogImage,
+      email: EMAIL,
+      telephone: PHONE,
+      priceRange: "$$",
+      currenciesAccepted: "ARS",
+      areaServed,
+      knowsAbout,
+      sameAs,
+      founder: { "@id": `${siteUrl}/#persona` },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Servicios de desarrollo web y software",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Desarrollo web y páginas web",
+              description:
+                "Sitios web modernos, rápidos y optimizados para convertir visitas en clientes.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Software y sistemas a medida",
+              description:
+                "Plataformas y sistemas con panel de administración, usuarios y datos en la nube.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Mantenimiento y soporte web",
+              description: "Actualizaciones, mejoras continuas, copias de seguridad y monitoreo.",
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#persona`,
+      name: FULL_NAME,
+      jobTitle: "Desarrollador web full stack y de software a medida",
+      url: siteUrl,
+      email: EMAIL,
+      worksFor: { "@id": `${siteUrl}/#organizacion` },
+      knowsAbout,
+      sameAs,
+    },
+  ],
 });
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-AR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -47,9 +140,11 @@ const jsonLd = JSON.stringify({
     </script>
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={NAME} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta
       name="keywords"
-      content="Desarrollador web, Full Stack Developer, JavaScript, React, Astro, TailwindCSS, páginas web Argentina"
+      content="desarrollo web La Carlota, desarrollo web Córdoba, software a medida, páginas web, sistemas a medida, mantenimiento web"
     />
     <meta name="theme-color" content="#000000" />
     <link rel="canonical" href={canonical} />
@@ -57,12 +152,13 @@ const jsonLd = JSON.stringify({
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_AR" />
-    <meta property="og:site_name" content="Marcos F. Zingaretti" />
+    <meta property="og:site_name" content={NAME} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${NAME} — desarrollo web y software a medida`} />
     <meta property="og:url" content={canonical} />
 
     <meta name="twitter:card" content="summary_large_image" />
@@ -106,17 +202,21 @@ const jsonLd = JSON.stringify({
   <script>
     const headerOffset = 88;
 
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((anchor) => {
+      const href = anchor.getAttribute("href");
+      if (!href || !href.includes("#")) return;
+
+      const url = new URL(anchor.href, window.location.href);
+      if (url.pathname !== window.location.pathname) return;
+
+      const target = document.getElementById(url.hash.slice(1));
+      if (!target) return;
+
       anchor.addEventListener("click", (event) => {
-        const targetId = anchor.getAttribute("href");
-        if (!targetId || targetId === "#") return;
-
-        const target = document.querySelector(targetId);
-        if (!target) return;
-
         event.preventDefault();
         const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
         window.scrollTo({ top, behavior: "smooth" });
+        history.pushState(null, "", url.hash);
       });
     });
 

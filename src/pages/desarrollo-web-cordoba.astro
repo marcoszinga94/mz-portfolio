@@ -1,0 +1,46 @@
+---
+import Layout from "../layouts/Layout.astro";
+import LocalLanding from "../components/section/LocalLanding.astro";
+
+export const prerender = true;
+
+const faqs = [
+  {
+    pregunta: "¿Trabajás con empresas de Córdoba capital y del interior?",
+    respuesta:
+      "Sí. Trabajo de forma remota con clientes de toda la provincia de Córdoba, tanto de la capital como de localidades del interior, con comunicación directa y entregas por etapas.",
+  },
+  {
+    pregunta: "¿Qué incluye una web profesional?",
+    respuesta:
+      "Diseño a medida, optimización para buscadores, formularios y WhatsApp integrados, y carga rápida en cualquier dispositivo. Todo pensado para convertir visitas en consultas reales.",
+  },
+  {
+    pregunta: "¿Hacés sistemas a medida o solo páginas web?",
+    respuesta:
+      "Hago los dos. Desarrollo sistemas con panel de administración, usuarios y permisos por rol, base de datos en la nube y funciones a medida para tu operación.",
+  },
+  {
+    pregunta: "¿Cuánto tarda un proyecto?",
+    respuesta:
+      "Una web institucional suele estar lista en 2 a 3 semanas. Un sistema con panel y usuarios toma entre 4 y 8 semanas, según el alcance. Los plazos quedan fijados en la propuesta antes de empezar.",
+  },
+];
+---
+
+<Layout
+  title="Desarrollo web y software a medida en Córdoba | Marcos Zingaretti"
+  description="Desarrollador web full stack en Córdoba. Diseño webs y sistemas a medida para pymes y profesionales: rápidos, optimizados y pensados para vender. Presupuesto sin costo."
+>
+  <LocalLanding
+    ciudad="Córdoba"
+    provincia="Córdoba"
+    heading="Desarrollo web y software a medida en Córdoba"
+    intro={[
+      "Córdoba es una de las plazas tecnológicas más importantes del país, y competir online exige un sitio rápido, bien posicionado y pensado para vender.",
+      "Desarrollo webs y sistemas a medida para pymes, profesionales y empresas de Córdoba capital y del interior de la provincia.",
+      "Trabajo de forma remota con clientes de toda la provincia, con comunicación directa y entregas por etapas para que veas avances en todo momento.",
+    ]}
+    faqs={faqs}
+  />
+</Layout>

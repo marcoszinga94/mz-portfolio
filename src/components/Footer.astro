@@ -7,6 +7,7 @@ const iconByName: Record<string, string> = {
   WhatsApp: "ph:whatsapp-logo",
   GitHub: "ph:github-logo",
   LinkedIn: "ph:linkedin-logo",
+  Instagram: "ph:instagram-logo",
 };
 
 const year = new Date().getFullYear();
@@ -29,6 +30,24 @@ const year = new Date().getFullYear();
     </div>
 
     <nav
+      class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-claro/70"
+      aria-label="Zonas de servicio"
+    >
+      <a
+        href="/desarrollo-web-la-carlota"
+        class="transition-colors duration-300 ease-fluid hover:text-claro"
+      >
+        Desarrollo web en La Carlota
+      </a>
+      <a
+        href="/desarrollo-web-cordoba"
+        class="transition-colors duration-300 ease-fluid hover:text-claro"
+      >
+        Desarrollo web en Córdoba
+      </a>
+    </nav>
+
+    <nav
       class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-claro/60"
       aria-label="Enlaces legales"
     >
@@ -49,7 +68,7 @@ const year = new Date().getFullYear();
     </nav>
 
     <p class="text-sm text-claro/60">
-      © {year} Marcos F. Zingaretti. Diseñado y desarrollado en Argentina.
+      © {year} Marcos F. Zingaretti. Desarrollado en La Carlota, Córdoba, Argentina.
     </p>
   </div>
 </footer>
