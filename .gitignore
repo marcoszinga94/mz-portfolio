@@ -20,3 +20,6 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# imagenes de marca para Google (solo locales, no se commitean)
+public/Images/GSC/
