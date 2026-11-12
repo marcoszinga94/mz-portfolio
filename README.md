@@ -1,93 +1,102 @@
-# Portfolio — Marcos F. Zingaretti 🚀
+# Portfolio de Marcos Zingaretti
 
-Portfolio personal con exhibición de proyectos, experiencia profesional y habilidades técnicas. Construido con **Astro**, **TailwindCSS v4** y **TypeScript**, desplegado en **Vercel** con SSR.
+> Sitio personal de una página para presentar servicios de desarrollo web y software a medida.
 
----
+![Astro](https://img.shields.io/badge/Astro-FF5D01?logo=astro&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?logo=vercel&logoColor=white)
 
-## 🛠️ Stack
+**Demo:** https://marcoszinga.vercel.app
 
-| Tecnología           | Uso                     |
-| -------------------- | ----------------------- |
-| **Astro 6**          | Framework web con SSR   |
-| **TailwindCSS v4**   | Estilos utilitarios     |
-| **TypeScript 5**     | Tipado estricto         |
-| **@astrojs/vercel**  | Adaptador de despliegue |
-| **Vercel Analytics** | Métricas de visitas     |
+## Características
 
----
+- **Landing de una página:** hero, servicios, proyectos, proceso, métricas, sobre mí, experiencia, FAQ y contacto.
+- **Contenido centralizado:** textos, proyectos, habilidades y servicios viven en `src/data/cv.ts`.
+- **Proyectos enlazados:** tarjetas con descripción, stack y captura de cada sitio publicado.
+- **SEO técnico:** título y descripción por página, canonical, Open Graph, JSON-LD (WebSite, Organization, Person), sitemap y `robots.txt`.
+- **Landings locales:** `/desarrollo-web-cordoba` y `/desarrollo-web-la-carlota`, con FAQPage y BreadcrumbList.
+- **Contacto directo:** CTA a WhatsApp, correo y descarga del CV en PDF.
+- **Accesibilidad:** skip link, `aria-current` en la navegación, foco visible y soporte de `prefers-reduced-motion`.
+- **Movimiento:** reveals de entrada con `IntersectionObserver` sobre atributos `data-reveal`.
+- **Legal:** modales de privacidad y términos alimentados por `src/data/legal.ts`.
+- **Automatización:** workflow semanal que regenera las capturas de los proyectos y las commitea.
 
-## 📁 Estructura
+## Stack
 
-```
+| Capa | Tecnología |
+| --- | --- |
+| Framework | Astro 7 con adapter de Vercel y sitemap |
+| UI y estilos | Tailwind CSS 4 vía `@tailwindcss/vite` |
+| Lenguaje | TypeScript en modo strict |
+| Iconos y tipografía | `astro-icon` con Phosphor y Manrope Variable |
+| Utilidades | `pdfkit` para el CV y Chromium headless para capturas |
+| Deploy | Vercel con Analytics |
+
+## Estructura del proyecto
+
+```text
 src/
-  components/       # Componentes reutilizables
-    section/        # Secciones de página (Hero, About, Projects, Experience)
-    ui/             # UI atómica (card, timeline, socialLinks)
-  data/
-    cv.ts           # Contenido del portfolio (única fuente de datos)
-  layouts/
-    Layout.astro    # Layout raíz con SEO, fuentes y estilos globales
-  pages/
-    index.astro     # Single-page portfolio
-    404.astro       # Página de error personalizada
-  styles/
-    global.css      # Tema Tailwind, keyframes, utilidades globales
-  types/
-    index.ts        # Interfaces TypeScript (Proyecto, Habilidad, etc.)
-public/
-  Fonts/            # FiraCode
-  Images/           # Imágenes del portfolio (proyectos, stacks, avatar)
+  pages/        landing, 404 y landings locales
+  layouts/      Layout con SEO, JSON-LD y reveals
+  components/
+    section/    secciones de la landing
+    ui/         botones, cards, modales y helpers
+  data/         cv.ts (contenido) y legal.ts
+  styles/       Tailwind y tokens del tema
+  types/        interfaces del contenido
+scripts/        CV en PDF, capturas e imágenes de marca
+public/         imágenes, CV, robots.txt y verificación
+.github/        workflow de capturas
 ```
 
----
+## Puesta en marcha
 
-## ⚡ Desarrollo
+### Requisitos
+
+- Node.js 22 o superior y npm.
+- Chromium o Chrome solo si vas a regenerar las capturas de proyectos.
+
+### Instalación
 
 ```bash
-npm run dev        # Iniciar servidor de desarrollo
-npm run build      # Type-check + build de producción
-npm run preview    # Vista previa del build
+npm install
+npm run dev
 ```
 
----
+Astro sirve el sitio en `http://localhost:4321` por defecto.
 
-## 📄 Contenido
+## Scripts
 
-Todo el contenido se centraliza en `src/data/cv.ts`:
+| Comando | Descripción |
+| --- | --- |
+| `npm run dev` | Servidor de desarrollo |
+| `npm run start` | Alias de `dev` |
+| `npm run build` | `astro check` y build de producción |
+| `npm run preview` | Sirve el build generado |
+| `npm run astro` | Acceso directo al CLI de Astro |
+| `npm run lint` | ESLint sobre todo el proyecto |
+| `npm run format` | Prettier con plugin de Astro |
+| `npm run format:check` | Verifica el formato sin escribir |
+| `npm run generate-cv` | Genera el PDF del CV desde `cv.ts` |
+| `npm run generate-shots` | Regenera las capturas de los proyectos |
+| `npm run generate-google-images` | Genera imágenes de marca para Google |
 
-- **sobreMi** — párrafos descriptivos
-- **habilidades** — tecnologías con iconos SVG
-- **experiencias** — línea de tiempo profesional y académica
-- **proyectos** — tarjetas con imagen, descripción y tecnologías
-- **socialLinks** — enlaces a GitHub y LinkedIn
+## Despliegue
 
----
+Pensado para Vercel con el adapter y Analytics ya configurados. La URL canónica se toma
+de `PUBLIC_SITE_URL` y, si no está definida, usa la del sitio publicado. El workflow
+`.github/workflows/update-project-shots.yml` actualiza las capturas cada lunes.
 
-## 👁️ Vistas de proyectos
+## Estado del proyecto
 
-El portafolio incluye dos modos de visualización para los proyectos:
+Sitio personal en producción. El contenido se edita en `src/data/cv.ts` y las landings
+locales se mantienen como páginas independientes.
 
-- **Grid** 🟦 — cuadrícula responsive de 1, 2 o 3 columnas
-- **Lista** 📋 — cards horizontales con imagen y contenido lado a lado
+## Licencia
 
-La transición entre vistas usa la Web Animations API para desplazar suavemente cada card de su posición anterior a la nueva (FLIP animation).
+Sin licencia definida.
 
----
+## Autor
 
-## ✏️ Personalización
-
-1. Editar `src/data/cv.ts` con la información personal
-2. Agregar imágenes de proyectos en `public/Images/paginas/` en formato `.webp`
-3. Agregar iconos de tecnologías en `public/Images/stacks/` en formato `.svg`
-4. Ajustar colores del tema en `src/styles/global.css` (bloque `@theme`)
-
----
-
-## 🌐 Despliegue
-
-El proyecto se despliega automáticamente en Vercel desde el repositorio de GitHub. Incluye analíticas web y speed insights.
-
-```bash
-npm run build
-# El adaptador de Vercel genera la salida en .vercel/output
-```
+Marcos Zingaretti — https://github.com/marcoszinga94
